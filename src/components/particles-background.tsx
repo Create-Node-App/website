@@ -1,128 +1,132 @@
-"use client"
+'use client';
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef } from 'react';
 
 interface ParticlesBackgroundProps {
-  className?: string
-  particleCount?: number
-  particleColor?: string
-  linkColor?: string
-  speed?: number
+  className?: string;
+  particleCount?: number;
+  particleColor?: string;
+  linkColor?: string;
+  speed?: number;
 }
 
 export function ParticlesBackground({
   className,
   particleCount = 50,
-  particleColor = "rgba(138, 43, 226, 0.7)",
-  linkColor = "rgba(138, 43, 226, 0.15)",
+  particleColor = 'rgba(138, 43, 226, 0.7)',
+  linkColor = 'rgba(138, 43, 226, 0.15)',
   speed = 0.5,
 }: ParticlesBackgroundProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-    let animationFrameId: number
-    let particles: Particle[] = []
+    let animationFrameId: number;
+    let particles: Particle[] = [];
 
     class Particle {
-      x: number
-      y: number
-      dirX: number
-      dirY: number
-      size: number
+      x: number;
+      y: number;
+      dirX: number;
+      dirY: number;
+      size: number;
 
       constructor(x: number, y: number) {
-        this.x = x
-        this.y = y
-        this.dirX = (Math.random() - 0.5) * speed
-        this.dirY = (Math.random() - 0.5) * speed
-        this.size = Math.random() * 3 + 1
+        this.x = x;
+        this.y = y;
+        this.dirX = (Math.random() - 0.5) * speed;
+        this.dirY = (Math.random() - 0.5) * speed;
+        this.size = Math.random() * 3 + 1;
       }
 
       update() {
         if (this.x > canvas.width || this.x < 0) {
-          this.dirX = -this.dirX
+          this.dirX = -this.dirX;
         }
         if (this.y > canvas.height || this.y < 0) {
-          this.dirY = -this.dirY
+          this.dirY = -this.dirY;
         }
 
-        this.x += this.dirX
-        this.y += this.dirY
+        this.x += this.dirX;
+        this.y += this.dirY;
       }
 
       draw() {
-        ctx!.beginPath()
-        ctx!.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-        ctx!.fillStyle = particleColor
-        ctx!.fill()
+        ctx!.beginPath();
+        ctx!.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx!.fillStyle = particleColor;
+        ctx!.fill();
       }
     }
 
     function init() {
-      particles = []
+      particles = [];
       for (let i = 0; i < particleCount; i++) {
-        const x = Math.random() * canvas.width
-        const y = Math.random() * canvas.height
-        particles.push(new Particle(x, y))
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        particles.push(new Particle(x, y));
       }
     }
 
     function connect() {
       for (let a = 0; a < particles.length; a++) {
         for (let b = a; b < particles.length; b++) {
-          const dx = particles[a].x - particles[b].x
-          const dy = particles[a].y - particles[b].y
-          const distance = Math.sqrt(dx * dx + dy * dy)
+          const dx = particles[a].x - particles[b].x;
+          const dy = particles[a].y - particles[b].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 120) {
-            ctx!.beginPath()
-            ctx!.strokeStyle = linkColor
-            ctx!.lineWidth = 0.5
-            ctx!.moveTo(particles[a].x, particles[a].y)
-            ctx!.lineTo(particles[b].x, particles[b].y)
-            ctx!.stroke()
+            ctx!.beginPath();
+            ctx!.strokeStyle = linkColor;
+            ctx!.lineWidth = 0.5;
+            ctx!.moveTo(particles[a].x, particles[a].y);
+            ctx!.lineTo(particles[b].x, particles[b].y);
+            ctx!.stroke();
           }
         }
       }
     }
 
     function animate() {
-      ctx!.clearRect(0, 0, canvas.width, canvas.height)
+      ctx!.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < particles.length; i++) {
-        particles[i].update()
-        particles[i].draw()
+        particles[i].update();
+        particles[i].draw();
       }
 
-      connect()
-      animationFrameId = requestAnimationFrame(animate)
+      connect();
+      animationFrameId = requestAnimationFrame(animate);
     }
 
     const resizeCanvas = () => {
-      const { width, height } = canvas.getBoundingClientRect()
-      const dpr = window.devicePixelRatio || 1
-      canvas.width = width * dpr
-      canvas.height = height * dpr
-      ctx.scale(dpr, dpr)
-      init()
-    }
+      const { width, height } = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
+      init();
+    };
 
-    window.addEventListener("resize", resizeCanvas)
-    resizeCanvas()
-    animate()
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    animate();
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas)
-      cancelAnimationFrame(animationFrameId)
-    }
-  }, [particleCount, particleColor, linkColor, speed])
+      window.removeEventListener('resize', resizeCanvas);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [particleCount, particleColor, linkColor, speed]);
 
-  return <canvas ref={canvasRef} className={`absolute inset-0 w-full h-full ${className || ""}`} />
+  return (
+    <canvas
+      ref={canvasRef}
+      className={`absolute inset-0 w-full h-full ${className || ''}`}
+    />
+  );
 }
-

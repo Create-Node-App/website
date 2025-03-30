@@ -1,14 +1,31 @@
-import Link from "next/link"
-import { ArrowRight, Package } from "lucide-react"
+import { ArrowRight, Package } from 'lucide-react';
+import Link from 'next/link';
 
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import type { Template } from "@/lib/schemas"
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import type { Template } from '@/lib/schemas';
 
-type FeaturedTemplateProps = Pick<Template, "name" | "slug" | "description" | "type" | "category" | "labels">
+type FeaturedTemplateProps = Pick<
+  Template,
+  'name' | 'slug' | 'description' | 'type' | 'category' | 'labels'
+>;
 
-export function FeaturedTemplate({ name, slug, description, type, category, labels }: FeaturedTemplateProps) {
+export function FeaturedTemplate({
+  name,
+  slug,
+  description,
+  type,
+  category,
+  labels,
+}: FeaturedTemplateProps) {
   return (
     <Card className="flex flex-col overflow-hidden border-primary/10 transition-all duration-300 hover:shadow-md hover:shadow-primary/10 hover:-translate-y-2 group gradient-border shimmer">
       <CardHeader className="pb-0">
@@ -16,12 +33,16 @@ export function FeaturedTemplate({ name, slug, description, type, category, labe
           <div className="h-10 w-10 rounded-md bg-gradient-to-br from-primary/20 to-indigo-500/20 flex items-center justify-center group-hover:from-primary/40 group-hover:to-indigo-500/40 transition-all duration-300">
             <Package className="h-5 w-5 text-primary" />
           </div>
-          <div className="text-xs font-medium text-muted-foreground">{category}</div>
+          <div className="text-xs font-medium text-muted-foreground">
+            {category}
+          </div>
         </div>
         <CardTitle className="text-xl group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-indigo-500 transition-all duration-300">
           {name}
         </CardTitle>
-        <CardDescription className="line-clamp-2">{description}</CardDescription>
+        <CardDescription className="line-clamp-2">
+          {description}
+        </CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pt-4">
         <div className="flex flex-wrap gap-1 mb-4">
@@ -54,6 +75,5 @@ export function FeaturedTemplate({ name, slug, description, type, category, labe
         </Button>
       </CardFooter>
     </Card>
-  )
+  );
 }
-

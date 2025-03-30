@@ -1,65 +1,87 @@
-import type React from "react"
-import Link from "next/link"
-import { ArrowRight, Code, Database, Layers, GitBranch, TestTube, Globe } from "lucide-react"
+import {
+  ArrowRight,
+  Code,
+  Database,
+  GitBranch,
+  Globe,
+  Layers,
+  TestTube,
+} from 'lucide-react';
+import Link from 'next/link';
+import type React from 'react';
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import type { Category } from "@/lib/schemas"
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import type { Category } from '@/lib/schemas';
 
 interface TemplateCategoriesProps {
-  categories: Category[]
+  categories: Category[];
 }
 
 export function TemplateCategories({ categories }: TemplateCategoriesProps) {
   // Map of category slugs to their respective icons
   const categoryIcons: Record<string, React.ReactNode> = {
-    "frontend-applications": <Code className="h-5 w-5 text-primary" />,
-    "backend-applications": <Database className="h-5 w-5 text-indigo-500" />,
-    "fullstack-applications": <Layers className="h-5 w-5 text-purple-500" />,
-    "monorepo-boilerplate": <GitBranch className="h-5 w-5 text-green-500" />,
-    "user-acceptance-testing": <TestTube className="h-5 w-5 text-amber-500" />,
-    "web-extension": <Globe className="h-5 w-5 text-blue-500" />,
-  }
+    'frontend-applications': <Code className="h-5 w-5 text-primary" />,
+    'backend-applications': <Database className="h-5 w-5 text-indigo-500" />,
+    'fullstack-applications': <Layers className="h-5 w-5 text-purple-500" />,
+    'monorepo-boilerplate': <GitBranch className="h-5 w-5 text-green-500" />,
+    'user-acceptance-testing': <TestTube className="h-5 w-5 text-amber-500" />,
+    'web-extension': <Globe className="h-5 w-5 text-blue-500" />,
+  };
 
   // Map of category slugs to their respective color classes
-  const categoryColors: Record<string, { bg: string; hover: string; border: string }> = {
-    "frontend-applications": {
-      bg: "from-primary/20 to-indigo-500/20",
-      hover: "from-primary/40 to-indigo-500/40",
-      border: "border-primary/40",
+  const categoryColors: Record<
+    string,
+    { bg: string; hover: string; border: string }
+  > = {
+    'frontend-applications': {
+      bg: 'from-primary/20 to-indigo-500/20',
+      hover: 'from-primary/40 to-indigo-500/40',
+      border: 'border-primary/40',
     },
-    "backend-applications": {
-      bg: "from-indigo-500/20 to-purple-500/20",
-      hover: "from-indigo-500/40 to-purple-500/40",
-      border: "border-indigo-500/40",
+    'backend-applications': {
+      bg: 'from-indigo-500/20 to-purple-500/20',
+      hover: 'from-indigo-500/40 to-purple-500/40',
+      border: 'border-indigo-500/40',
     },
-    "fullstack-applications": {
-      bg: "from-purple-500/20 to-pink-500/20",
-      hover: "from-purple-500/40 to-pink-500/40",
-      border: "border-purple-500/40",
+    'fullstack-applications': {
+      bg: 'from-purple-500/20 to-pink-500/20',
+      hover: 'from-purple-500/40 to-pink-500/40',
+      border: 'border-purple-500/40',
     },
-    "monorepo-boilerplate": {
-      bg: "from-green-500/20 to-teal-500/20",
-      hover: "from-green-500/40 to-teal-500/40",
-      border: "border-green-500/40",
+    'monorepo-boilerplate': {
+      bg: 'from-green-500/20 to-teal-500/20',
+      hover: 'from-green-500/40 to-teal-500/40',
+      border: 'border-green-500/40',
     },
-    "user-acceptance-testing": {
-      bg: "from-amber-500/20 to-orange-500/20",
-      hover: "from-amber-500/40 to-orange-500/40",
-      border: "border-amber-500/40",
+    'user-acceptance-testing': {
+      bg: 'from-amber-500/20 to-orange-500/20',
+      hover: 'from-amber-500/40 to-orange-500/40',
+      border: 'border-amber-500/40',
     },
-    "web-extension": {
-      bg: "from-blue-500/20 to-cyan-500/20",
-      hover: "from-blue-500/40 to-cyan-500/40",
-      border: "border-blue-500/40",
+    'web-extension': {
+      bg: 'from-blue-500/20 to-cyan-500/20',
+      hover: 'from-blue-500/40 to-cyan-500/40',
+      border: 'border-blue-500/40',
     },
-  }
+  };
 
   return (
     <>
       {categories.map((category) => {
-        const colors = categoryColors[category.slug] || categoryColors["frontend-applications"]
-        const icon = categoryIcons[category.slug] || <Code className="h-5 w-5 text-primary" />
+        const colors =
+          categoryColors[category.slug] ||
+          categoryColors['frontend-applications'];
+        const icon = categoryIcons[category.slug] || (
+          <Code className="h-5 w-5 text-primary" />
+        );
 
         return (
           <Card
@@ -80,7 +102,9 @@ export function TemplateCategories({ categories }: TemplateCategoriesProps) {
               <CardDescription>{category.description}</CardDescription>
             </CardHeader>
             <CardContent className="flex-1">
-              <p className="text-sm text-muted-foreground">{category.details}</p>
+              <p className="text-sm text-muted-foreground">
+                {category.details}
+              </p>
             </CardContent>
             <CardFooter>
               <Button
@@ -95,9 +119,8 @@ export function TemplateCategories({ categories }: TemplateCategoriesProps) {
               </Button>
             </CardFooter>
           </Card>
-        )
+        );
       })}
     </>
-  )
+  );
 }
-
