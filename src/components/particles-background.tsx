@@ -45,10 +45,10 @@ export function ParticlesBackground({
       }
 
       update() {
-        if (this.x > canvas.width || this.x < 0) {
+        if (canvas && (this.x > canvas.width || this.x < 0)) {
           this.dirX = -this.dirX;
         }
-        if (this.y > canvas.height || this.y < 0) {
+        if (canvas && (this.y > canvas.height || this.y < 0)) {
           this.dirY = -this.dirY;
         }
 
@@ -67,9 +67,11 @@ export function ParticlesBackground({
     function init() {
       particles = [];
       for (let i = 0; i < particleCount; i++) {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        particles.push(new Particle(x, y));
+        if (canvas) {
+          const x = Math.random() * canvas.width;
+          const y = Math.random() * canvas.height;
+          particles.push(new Particle(x, y));
+        }
       }
     }
 
@@ -93,7 +95,9 @@ export function ParticlesBackground({
     }
 
     function animate() {
-      ctx!.clearRect(0, 0, canvas.width, canvas.height);
+      if (canvas) {
+        ctx!.clearRect(0, 0, canvas.width, canvas.height);
+      }
 
       for (let i = 0; i < particles.length; i++) {
         particles[i].update();

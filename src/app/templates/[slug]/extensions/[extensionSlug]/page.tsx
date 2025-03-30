@@ -20,8 +20,8 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getTemplatesData } from '@/lib/data';
-import { isCompatible } from '@/lib/utils';
 import type { Extension, Template } from '@/lib/schemas';
+import { isCompatible } from '@/lib/utils';
 
 export default function TemplateExtensionPage({
   params,
