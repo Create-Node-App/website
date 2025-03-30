@@ -1,6 +1,6 @@
 # ⚙️ Project Configuration
 
-The application has been bootstrapped using `Create Awesome Node App` for simplicity reasons. It allows us to create applications quickly without dealing with a complex tooling setup such as bundling, transpiling etc.
+The application has been bootstrapped using [create-awesome-node-app](https://www.npmjs.com/package/create-awesome-node-app) for simplicity reasons. It allows us to create applications quickly without dealing with a complex tooling setup such as bundling, transpiling etc.
 
 You should always configure and use the following tools:
 
