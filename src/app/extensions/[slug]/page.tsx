@@ -17,7 +17,13 @@ import { getTemplatesData } from '@/lib/data';
 import type { Extension, Template } from '@/lib/schemas';
 import { isCompatible } from '@/lib/utils';
 
-export default function ExtensionPage({ params }: { params: { slug: string } }) {
+interface ExtensionPageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export default function ExtensionPage({ params }: ExtensionPageProps) {
+  const [resolvedParams, setResolvedParams] = useState<{ slug: string } | null>(null);
+
   const [extension, setExtension] = useState<Extension | null>(null);
   const [compatibleTemplates, setCompatibleTemplates] = useState<Template[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -27,7 +33,7 @@ export default function ExtensionPage({ params }: { params: { slug: string } }) 
       setIsLoading(true);
       const { extensions, templates } = await getTemplatesData();
 
-      const foundExtension = extensions.find((e) => e.slug === params.slug);
+      const foundExtension = extensions.find((e) => e.slug === resolvedParams?.slug);
 
       if (!foundExtension) {
         notFound();
@@ -43,7 +49,11 @@ export default function ExtensionPage({ params }: { params: { slug: string } }) 
     }
 
     fetchData();
-  }, [params.slug]);
+  }, [resolvedParams?.slug]);
+
+  useEffect(() => {
+    params.then(setResolvedParams);
+  }, [params]);
 
   if (isLoading) {
     return (
