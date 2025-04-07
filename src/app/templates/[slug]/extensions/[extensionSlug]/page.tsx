@@ -1,11 +1,12 @@
 'use client';
 
-import { ArrowLeft, Check, Copy, Loader2, Package, Puzzle } from 'lucide-react';
+import { ArrowLeft, Check, Loader2, Package, Puzzle } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 import { AnimatedGradient } from '@/components/animated-gradient';
+import { CopyButton } from '@/components/copy-button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -417,40 +418,5 @@ export default function TemplateExtensionPage({
         </section>
       </main>
     </div>
-  );
-}
-
-// Copy button component with copy feedback
-function CopyButton({
-  command,
-  className,
-  size = 'default',
-}: {
-  command: string;
-  className?: string;
-  size?: 'default' | 'sm' | 'lg';
-}) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard?.writeText(command);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <Button onClick={handleCopy} className={className} size={size}>
-      {copied ? (
-        <>
-          <Check className="mr-2 h-4 w-4" />
-          Copied!
-        </>
-      ) : (
-        <>
-          <Copy className="mr-2 h-4 w-4" />
-          Copy Command
-        </>
-      )}
-    </Button>
   );
 }

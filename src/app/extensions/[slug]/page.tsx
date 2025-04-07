@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { AnimatedGradient } from '@/components/animated-gradient';
+import { CopyButton } from '@/components/copy-button';
 import { ParticlesBackground } from '@/components/particles-background';
 import { TemplateCard } from '@/components/template-card';
 import { Badge } from '@/components/ui/badge';
@@ -270,16 +271,13 @@ export default function ExtensionPage({ params }: ExtensionPageProps) {
                     </div>
                   </CardContent>
                   <CardFooter className="flex flex-col items-start gap-4">
-                    <Button
+                    <CopyButton
                       className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-500/90 hover:to-purple-500/90 glow transition-all duration-300"
                       onClick={() => {
                         const command = `npx create-awesome-node-app --template [template-name] --addons ${extension.slug}`;
                         navigator.clipboard?.writeText?.(command);
                       }}
-                    >
-                      <Copy className="mr-2 h-4 w-4" />
-                      Copy Command
-                    </Button>
+                    />
                     <Link href={extension.url} className="w-full" target="_blank">
                       <Button
                         variant="outline"

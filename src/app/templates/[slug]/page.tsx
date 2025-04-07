@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 import { AnimatedGradient } from '@/components/animated-gradient';
+import { CopyButton } from '@/components/copy-button';
 import { ExtensionCard } from '@/components/extension-card';
 import { ParticlesBackground } from '@/components/particles-background';
 import { TemplateExtensionCombo } from '@/components/template-extension-combo';
@@ -286,9 +287,13 @@ export default function TemplatePage({ params }: { params: Promise<{ slug: strin
                     </div>
                   </CardContent>
                   <CardFooter className="flex flex-col items-start gap-4">
-                    <Button className="w-full bg-gradient-to-r from-primary to-indigo-500 hover:from-primary/90 hover:to-indigo-500/90 glow transition-all duration-300">
-                      Copy Command
-                    </Button>
+                    <CopyButton
+                      className="w-full bg-gradient-to-r from-primary to-indigo-500 hover:from-primary/90 hover:to-indigo-500/90 glow transition-all duration-300"
+                      onClick={() => {
+                        const command = `npx create-awesome-node-app --template [template-name]`;
+                        navigator.clipboard?.writeText?.(command);
+                      }}
+                    />
                     <Link href={template.url} className="w-full" target="_blank">
                       <Button
                         variant="outline"
