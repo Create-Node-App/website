@@ -300,8 +300,8 @@ export default function TemplateExtensionPage({
                   </CardContent>
                   <CardFooter className="flex flex-col items-start gap-4">
                     <CopyButton
-                      command={`npx create-awesome-node-app --template ${template.slug} --addons ${extension.slug}`}
                       className="w-full bg-gradient-to-r from-primary via-indigo-500 to-purple-500 hover:from-primary/90 hover:via-indigo-500/90 hover:to-purple-500/90 glow transition-all duration-300"
+                      command={`npx create-awesome-node-app --template ${template.slug} --addons ${extension.slug}`}
                     />
                     <div className="flex w-full gap-2">
                       <Link href={template.url} className="flex-1" target="_blank">
@@ -400,9 +400,9 @@ export default function TemplateExtensionPage({
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
                 <CopyButton
+                  className="bg-gradient-to-r from-primary via-indigo-500 to-purple-500 hover:from-primary/90 hover:via-indigo-500/90 hover:to-purple-500/90 glow transition-all duration-300"
                   command={`npx create-awesome-node-app --template ${template.slug} --addons ${extension.slug}`}
                   size="lg"
-                  className="bg-gradient-to-r from-primary via-indigo-500 to-purple-500 hover:from-primary/90 hover:via-indigo-500/90 hover:to-purple-500/90 glow transition-all duration-300"
                 />
                 <Button
                   size="lg"

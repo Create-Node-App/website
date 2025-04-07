@@ -289,10 +289,7 @@ export default function TemplatePage({ params }: { params: Promise<{ slug: strin
                   <CardFooter className="flex flex-col items-start gap-4">
                     <CopyButton
                       className="w-full bg-gradient-to-r from-primary to-indigo-500 hover:from-primary/90 hover:to-indigo-500/90 glow transition-all duration-300"
-                      onClick={() => {
-                        const command = `npx create-awesome-node-app --template [template-name]`;
-                        navigator.clipboard?.writeText?.(command);
-                      }}
+                      command={`npx create-awesome-node-app --template [template-name]`}
                     />
                     <Link href={template.url} className="w-full" target="_blank">
                       <Button

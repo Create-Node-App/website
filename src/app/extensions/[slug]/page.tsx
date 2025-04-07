@@ -273,10 +273,7 @@ export default function ExtensionPage({ params }: ExtensionPageProps) {
                   <CardFooter className="flex flex-col items-start gap-4">
                     <CopyButton
                       className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-500/90 hover:to-purple-500/90 glow transition-all duration-300"
-                      onClick={() => {
-                        const command = `npx create-awesome-node-app --template [template-name] --addons ${extension.slug}`;
-                        navigator.clipboard?.writeText?.(command);
-                      }}
+                      command={`npx create-awesome-node-app --template [template-name] --addons ${extension.slug}`}
                     />
                     <Link href={extension.url} className="w-full" target="_blank">
                       <Button
