@@ -1,6 +1,6 @@
 import { Check, Copy } from 'lucide-react';
 import { useState } from 'react';
-import { Button, ButtonProps } from 'react-day-picker';
+import { Button, ButtonProps } from '@/components/ui/button';
 
 export function CopyButton({
   command,
