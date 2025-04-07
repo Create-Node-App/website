@@ -55,14 +55,7 @@ const config = typescriptEslint.config(
       'import/order': [
         'warn',
         {
-          groups: [
-            'external',
-            'builtin',
-            'internal',
-            'sibling',
-            'parent',
-            'index',
-          ],
+          groups: ['external', 'builtin', 'internal', 'sibling', 'parent', 'index'],
           pathGroups: [
             ...getDirectoriesToSort().map((singleDir) => ({
               pattern: `${singleDir}/**`,
@@ -94,12 +87,7 @@ const config = typescriptEslint.config(
 );
 
 function getDirectoriesToSort() {
-  const ignoredSortingDirectories = [
-    '.git',
-    '.next',
-    '.vscode',
-    'node_modules',
-  ];
+  const ignoredSortingDirectories = ['.git', '.next', '.vscode', 'node_modules'];
   return fs
     .readdirSync(process.cwd())
     .filter((file) => fs.statSync(process.cwd() + '/' + file).isDirectory())

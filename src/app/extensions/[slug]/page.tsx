@@ -1,14 +1,6 @@
 'use client';
 
-import {
-  ArrowLeft,
-  ArrowRight,
-  Check,
-  Copy,
-  Github,
-  Loader2,
-  Puzzle,
-} from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Copy, Github, Loader2, Puzzle } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -18,29 +10,16 @@ import { ParticlesBackground } from '@/components/particles-background';
 import { TemplateCard } from '@/components/template-card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getTemplatesData } from '@/lib/data';
 import type { Extension, Template } from '@/lib/schemas';
 import { isCompatible } from '@/lib/utils';
 
-export default function ExtensionPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default function ExtensionPage({ params }: { params: { slug: string } }) {
   const [extension, setExtension] = useState<Extension | null>(null);
-  const [compatibleTemplates, setCompatibleTemplates] = useState<Template[]>(
-    [],
-  );
+  const [compatibleTemplates, setCompatibleTemplates] = useState<Template[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -58,9 +37,7 @@ export default function ExtensionPage({
       setExtension(foundExtension);
 
       // Find compatible templates
-      const compatible = templates.filter((template) =>
-        isCompatible(template, foundExtension),
-      );
+      const compatible = templates.filter((template) => isCompatible(template, foundExtension));
       setCompatibleTemplates(compatible);
       setIsLoading(false);
     }
@@ -88,10 +65,7 @@ export default function ExtensionPage({
           <div className="container px-4 md:px-6 relative z-10">
             <div className="mb-8 fade-in-up">
               <Link href="/extensions">
-                <Button
-                  variant="ghost"
-                  className="pl-0 hover:bg-background/20 transition-all duration-300"
-                >
+                <Button variant="ghost" className="pl-0 hover:bg-background/20 transition-all duration-300">
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Back to Extensions
                 </Button>
@@ -108,9 +82,7 @@ export default function ExtensionPage({
                     <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500 animate-gradient-text glow-text">
                       {extension.name}
                     </h1>
-                    <p className="text-muted-foreground">
-                      {extension.category}
-                    </p>
+                    <p className="text-muted-foreground">{extension.category}</p>
                   </div>
                 </div>
 
@@ -155,20 +127,15 @@ export default function ExtensionPage({
                         About this extension
                       </h3>
                       <p>
-                        This extension enhances your project with{' '}
-                        {extension.name} functionality. It's designed to
-                        integrate seamlessly with compatible templates and
-                        provide additional features to improve your development
-                        experience.
+                        This extension enhances your project with {extension.name} functionality. It's designed to
+                        integrate seamlessly with compatible templates and provide additional features to improve your
+                        development experience.
                       </p>
 
                       <p>
                         The {extension.name} extension is compatible with{' '}
-                        {Array.isArray(extension.type)
-                          ? extension.type.join(', ')
-                          : extension.type}{' '}
-                        templates, making it versatile for different project
-                        types.
+                        {Array.isArray(extension.type) ? extension.type.join(', ') : extension.type} templates, making
+                        it versatile for different project types.
                       </p>
 
                       <h3 className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">
@@ -177,9 +144,7 @@ export default function ExtensionPage({
                       <ul>
                         <li>Seamless integration with compatible templates</li>
                         <li>Enhanced development experience</li>
-                        <li>
-                          Additional features specific to {extension.name}
-                        </li>
+                        <li>Additional features specific to {extension.name}</li>
                         <li>Well-documented and maintained</li>
                         <li>Community-supported and regularly updated</li>
                       </ul>
@@ -190,25 +155,16 @@ export default function ExtensionPage({
                       <h3 className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">
                         Getting Started
                       </h3>
-                      <p>
-                        To use this extension with a compatible template, run
-                        the following command:
-                      </p>
+                      <p>To use this extension with a compatible template, run the following command:</p>
 
                       <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto shimmer">
-                        <p>
-                          npx create-awesome-node-app --template [template-name]
-                          --addons {extension.slug}
-                        </p>
+                        <p>npx create-awesome-node-app --template [template-name] --addons {extension.slug}</p>
                       </div>
 
                       <h3 className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">
                         With Specific Templates
                       </h3>
-                      <p>
-                        Here are some examples of using this extension with
-                        compatible templates:
-                      </p>
+                      <p>Here are some examples of using this extension with compatible templates:</p>
 
                       {compatibleTemplates.slice(0, 2).map((template) => (
                         <div
@@ -216,8 +172,7 @@ export default function ExtensionPage({
                           className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto shimmer mb-4"
                         >
                           <p>
-                            npx create-awesome-node-app --template{' '}
-                            {template.slug} --addons {extension.slug}
+                            npx create-awesome-node-app --template {template.slug} --addons {extension.slug}
                           </p>
                         </div>
                       ))}
@@ -239,8 +194,7 @@ export default function ExtensionPage({
                           </CardHeader>
                           <CardContent>
                             <p className="text-sm text-muted-foreground">
-                              Seamlessly integrates with compatible templates
-                              with minimal configuration.
+                              Seamlessly integrates with compatible templates with minimal configuration.
                             </p>
                           </CardContent>
                         </Card>
@@ -254,8 +208,7 @@ export default function ExtensionPage({
                           </CardHeader>
                           <CardContent>
                             <p className="text-sm text-muted-foreground">
-                              Adds powerful features to your project that
-                              improve development workflow.
+                              Adds powerful features to your project that improve development workflow.
                             </p>
                           </CardContent>
                         </Card>
@@ -269,8 +222,7 @@ export default function ExtensionPage({
                           </CardHeader>
                           <CardContent>
                             <p className="text-sm text-muted-foreground">
-                              Comprehensive documentation to help you get the
-                              most out of the extension.
+                              Comprehensive documentation to help you get the most out of the extension.
                             </p>
                           </CardContent>
                         </Card>
@@ -284,8 +236,7 @@ export default function ExtensionPage({
                           </CardHeader>
                           <CardContent>
                             <p className="text-sm text-muted-foreground">
-                              Maintained and updated regularly to ensure
-                              compatibility and security.
+                              Maintained and updated regularly to ensure compatibility and security.
                             </p>
                           </CardContent>
                         </Card>
@@ -299,15 +250,11 @@ export default function ExtensionPage({
                 <Card className="backdrop-blur-sm bg-card/50 border-indigo-500/10 gradient-border shimmer">
                   <CardHeader>
                     <CardTitle>Quick Start</CardTitle>
-                    <CardDescription>
-                      Add this extension to your project
-                    </CardDescription>
+                    <CardDescription>Add this extension to your project</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto mb-4">
-                      <p className="text-green-500">
-                        $ npx create-awesome-node-app \
-                      </p>
+                      <p className="text-green-500">$ npx create-awesome-node-app \</p>
                       <p className="pl-4">--template [template-name] \</p>
                       <p className="pl-4">--addons {extension.slug}</p>
                     </div>
@@ -323,11 +270,7 @@ export default function ExtensionPage({
                       <Copy className="mr-2 h-4 w-4" />
                       Copy Command
                     </Button>
-                    <Link
-                      href={extension.url}
-                      className="w-full"
-                      target="_blank"
-                    >
+                    <Link href={extension.url} className="w-full" target="_blank">
                       <Button
                         variant="outline"
                         className="w-full backdrop-blur-sm bg-background/30 border-indigo-500/20 hover:bg-background/50 transition-all duration-300"
@@ -345,13 +288,9 @@ export default function ExtensionPage({
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">
-                        Compatible with
-                      </span>
+                      <span className="text-muted-foreground">Compatible with</span>
                       <span className="font-medium">
-                        {Array.isArray(extension.type)
-                          ? extension.type.join(', ')
-                          : extension.type}
+                        {Array.isArray(extension.type) ? extension.type.join(', ') : extension.type}
                       </span>
                     </div>
                     <Separator />
@@ -361,12 +300,8 @@ export default function ExtensionPage({
                     </div>
                     <Separator />
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">
-                        Compatible Templates
-                      </span>
-                      <span className="font-medium">
-                        {compatibleTemplates.length}
-                      </span>
+                      <span className="text-muted-foreground">Compatible Templates</span>
+                      <span className="font-medium">{compatibleTemplates.length}</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -387,8 +322,7 @@ export default function ExtensionPage({
                   Compatible Templates
                 </h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Use {extension.name} with these templates to enhance your
-                  project
+                  Use {extension.name} with these templates to enhance your project
                 </p>
               </div>
             </div>
@@ -396,13 +330,8 @@ export default function ExtensionPage({
             {compatibleTemplates.length > 0 ? (
               <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {compatibleTemplates.map((template, index) => (
-                  <div
-                    key={template.slug}
-                    className={`fade-in-up-delay-${(index % 3) + 1}`}
-                  >
-                    <Link
-                      href={`/templates/${template.slug}/extensions/${extension.slug}`}
-                    >
+                  <div key={template.slug} className={`fade-in-up-delay-${(index % 3) + 1}`}>
+                    <Link href={`/templates/${template.slug}/extensions/${extension.slug}`}>
                       <TemplateCard template={template} />
                     </Link>
                   </div>
@@ -411,9 +340,7 @@ export default function ExtensionPage({
             ) : (
               <div className="text-center py-12 bg-background/30 backdrop-blur-sm rounded-lg border border-indigo-500/10">
                 <Puzzle className="h-12 w-12 text-muted-foreground mx-auto mb-4 opacity-50" />
-                <p className="text-muted-foreground">
-                  No compatible templates found for this extension.
-                </p>
+                <p className="text-muted-foreground">No compatible templates found for this extension.</p>
                 <Button
                   variant="outline"
                   className="mt-4 backdrop-blur-sm bg-background/30 border-indigo-500/20 hover:bg-background/50 transition-all duration-300"

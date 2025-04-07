@@ -1,16 +1,6 @@
 'use client';
 
-import {
-  ArrowLeft,
-  ArrowRight,
-  Check,
-  Code,
-  Github,
-  Loader2,
-  Package,
-  Puzzle,
-  Server,
-} from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Code, Github, Loader2, Package, Puzzle, Server } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -21,33 +11,18 @@ import { ParticlesBackground } from '@/components/particles-background';
 import { TemplateExtensionCombo } from '@/components/template-extension-combo';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getTemplatesData } from '@/lib/data';
 import type { Extension, Template } from '@/lib/schemas';
 
-export default function TemplatePage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default function TemplatePage({ params }: { params: Promise<{ slug: string }> }) {
   const [template, setTemplate] = useState<Template | null>(null);
-  const [compatibleExtensions, setCompatibleExtensions] = useState<Extension[]>(
-    [],
-  );
+  const [compatibleExtensions, setCompatibleExtensions] = useState<Extension[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [resolvedParams, setResolvedParams] = useState<{ slug: string } | null>(
-    null,
-  );
+  const [resolvedParams, setResolvedParams] = useState<{ slug: string } | null>(null);
 
   useEffect(() => {
     params.then(setResolvedParams);
@@ -60,9 +35,7 @@ export default function TemplatePage({
       setIsLoading(true);
       const { templates, extensions } = await getTemplatesData();
 
-      const foundTemplate = templates.find(
-        (t) => t.slug === resolvedParams?.slug,
-      );
+      const foundTemplate = templates.find((t) => t.slug === resolvedParams?.slug);
 
       if (!foundTemplate) {
         notFound();
@@ -76,7 +49,7 @@ export default function TemplatePage({
         if (Array.isArray(ext.type)) {
           return ext.type.includes(foundTemplate.type);
         }
-        return ext.type === foundTemplate.type;
+        return ext.type === foundTemplate.type || ext.type === 'all';
       });
 
       setCompatibleExtensions(compatible);
@@ -120,10 +93,7 @@ export default function TemplatePage({
           <div className="container px-4 md:px-6 relative z-10">
             <div className="mb-8 fade-in-up">
               <Link href="/templates">
-                <Button
-                  variant="ghost"
-                  className="pl-0 hover:bg-background/20 transition-all duration-300"
-                >
+                <Button variant="ghost" className="pl-0 hover:bg-background/20 transition-all duration-300">
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Back to Templates
                 </Button>
@@ -185,19 +155,14 @@ export default function TemplatePage({
                         About this template
                       </h3>
                       <p>
-                        This template provides a solid foundation for building{' '}
-                        {template.type} applications. It comes with all the
-                        essential tools and configurations to help you get
-                        started quickly.
+                        This template provides a solid foundation for building {template.type} applications. It comes
+                        with all the essential tools and configurations to help you get started quickly.
                       </p>
 
                       <p>
-                        The {template.name} template is designed to help
-                        developers jumpstart their projects with best practices,
-                        modern tooling, and a well-structured codebase. Whether
-                        you're building a small project or a large-scale
-                        application, this template provides the foundation you
-                        need.
+                        The {template.name} template is designed to help developers jumpstart their projects with best
+                        practices, modern tooling, and a well-structured codebase. Whether you're building a small
+                        project or a large-scale application, this template provides the foundation you need.
                       </p>
 
                       <h3 className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-500">
@@ -220,22 +185,17 @@ export default function TemplatePage({
                       <p>To use this template, run the following command:</p>
 
                       <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto shimmer">
-                        <p>
-                          npx create-awesome-node-app --template {template.slug}
-                        </p>
+                        <p>npx create-awesome-node-app --template {template.slug}</p>
                       </div>
 
                       <h3 className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-500">
                         With Extensions
                       </h3>
-                      <p>
-                        You can also add extensions to enhance your template:
-                      </p>
+                      <p>You can also add extensions to enhance your template:</p>
 
                       <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto shimmer">
                         <p>
-                          npx create-awesome-node-app --template {template.slug}{' '}
-                          --addons{' '}
+                          npx create-awesome-node-app --template {template.slug} --addons{' '}
                           {compatibleExtensions.length >= 2
                             ? `${compatibleExtensions[0].slug} ${compatibleExtensions[1].slug}`
                             : compatibleExtensions.length === 1
@@ -261,8 +221,7 @@ export default function TemplatePage({
                           </CardHeader>
                           <CardContent>
                             <p className="text-sm text-muted-foreground">
-                              Full TypeScript integration with properly
-                              configured tsconfig.
+                              Full TypeScript integration with properly configured tsconfig.
                             </p>
                           </CardContent>
                         </Card>
@@ -276,8 +235,7 @@ export default function TemplatePage({
                           </CardHeader>
                           <CardContent>
                             <p className="text-sm text-muted-foreground">
-                              ESLint, Prettier, and other tools preconfigured
-                              for code quality.
+                              ESLint, Prettier, and other tools preconfigured for code quality.
                             </p>
                           </CardContent>
                         </Card>
@@ -291,8 +249,7 @@ export default function TemplatePage({
                           </CardHeader>
                           <CardContent>
                             <p className="text-sm text-muted-foreground">
-                              Testing framework and utilities ready for unit and
-                              integration tests.
+                              Testing framework and utilities ready for unit and integration tests.
                             </p>
                           </CardContent>
                         </Card>
@@ -306,8 +263,7 @@ export default function TemplatePage({
                           </CardHeader>
                           <CardContent>
                             <p className="text-sm text-muted-foreground">
-                              Production-ready build configuration for optimal
-                              performance.
+                              Production-ready build configuration for optimal performance.
                             </p>
                           </CardContent>
                         </Card>
@@ -321,15 +277,11 @@ export default function TemplatePage({
                 <Card className="backdrop-blur-sm bg-card/50 border-primary/10 gradient-border shimmer">
                   <CardHeader>
                     <CardTitle>Quick Start</CardTitle>
-                    <CardDescription>
-                      Get up and running in seconds
-                    </CardDescription>
+                    <CardDescription>Get up and running in seconds</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto mb-4">
-                      <p className="text-green-500">
-                        $ npx create-awesome-node-app \
-                      </p>
+                      <p className="text-green-500">$ npx create-awesome-node-app \</p>
                       <p className="pl-4">--template {template.slug}</p>
                     </div>
                   </CardContent>
@@ -337,11 +289,7 @@ export default function TemplatePage({
                     <Button className="w-full bg-gradient-to-r from-primary to-indigo-500 hover:from-primary/90 hover:to-indigo-500/90 glow transition-all duration-300">
                       Copy Command
                     </Button>
-                    <Link
-                      href={template.url}
-                      className="w-full"
-                      target="_blank"
-                    >
+                    <Link href={template.url} className="w-full" target="_blank">
                       <Button
                         variant="outline"
                         className="w-full backdrop-blur-sm bg-background/30 border-primary/20 hover:bg-background/50 transition-all duration-300"
@@ -369,12 +317,8 @@ export default function TemplatePage({
                     </div>
                     <Separator />
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">
-                        Compatible Extensions
-                      </span>
-                      <span className="font-medium">
-                        {compatibleExtensions.length}
-                      </span>
+                      <span className="text-muted-foreground">Compatible Extensions</span>
+                      <span className="font-medium">{compatibleExtensions.length}</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -403,23 +347,15 @@ export default function TemplatePage({
             {compatibleExtensions.length > 0 ? (
               <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {compatibleExtensions.map((extension, index) => (
-                  <div
-                    key={extension.slug}
-                    className={`fade-in-up-delay-${(index % 3) + 1}`}
-                  >
-                    <ExtensionCard
-                      extension={extension}
-                      templateSlug={template.slug}
-                    />
+                  <div key={extension.slug} className={`fade-in-up-delay-${(index % 3) + 1}`}>
+                    <ExtensionCard extension={extension} templateSlug={template.slug} />
                   </div>
                 ))}
               </div>
             ) : (
               <div className="text-center py-12 bg-background/30 backdrop-blur-sm rounded-lg border border-primary/10">
                 <Puzzle className="h-12 w-12 text-muted-foreground mx-auto mb-4 opacity-50" />
-                <p className="text-muted-foreground">
-                  No compatible extensions found for this template.
-                </p>
+                <p className="text-muted-foreground">No compatible extensions found for this template.</p>
                 <Button
                   variant="outline"
                   className="mt-4 backdrop-blur-sm bg-background/30 border-primary/20 hover:bg-background/50 transition-all duration-300"
@@ -461,22 +397,15 @@ export default function TemplatePage({
                     Recommended Combinations
                   </h2>
                   <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    Get started quickly with these popular template and
-                    extension combinations
+                    Get started quickly with these popular template and extension combinations
                   </p>
                 </div>
               </div>
 
               <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2">
                 {compatibleExtensions.slice(0, 4).map((extension, index) => (
-                  <div
-                    key={extension.slug}
-                    className={`fade-in-up-delay-${(index % 2) + 1}`}
-                  >
-                    <TemplateExtensionCombo
-                      template={template}
-                      extension={extension}
-                    />
+                  <div key={extension.slug} className={`fade-in-up-delay-${(index % 2) + 1}`}>
+                    <TemplateExtensionCombo template={template} extension={extension} />
                   </div>
                 ))}
               </div>

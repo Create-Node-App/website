@@ -6,12 +6,7 @@ const SMALL_PR_LINES = 200;
 const DOC_FILE_MATCH = '**/*.md';
 const SRC_FILE_REGEXP = /test.*\.([tj]s?)$/;
 
-const templateSections = [
-  '## Description',
-  '## Type of Change',
-  '## How Has This Been Tested?',
-  '## Checklist',
-];
+const templateSections = ['## Description', '## Type of Change', '## How Has This Been Tested?', '## Checklist'];
 
 const checklistItems = [
   'My code follows the style guidelines of this project',
@@ -43,50 +38,33 @@ if (!danger.github.pr.title) {
 const hasSection = (section: string) => danger.github.pr.body.includes(section);
 
 // Function to check if a checklist item is checked in the PR body
-const isChecklistItemChecked = (item: string) =>
-  danger.github.pr.body.includes(`- [x] ${item}`);
+const isChecklistItemChecked = (item: string) => danger.github.pr.body.includes(`- [x] ${item}`);
 
 // Check for missing sections
 templateSections.forEach((section) => {
   if (!hasSection(section)) {
-    fail(
-      `:clipboard: Missing Section - Please include the section: <i>${section}</i> in your PR description.`,
-    );
+    fail(`:clipboard: Missing Section - Please include the section: <i>${section}</i> in your PR description.`);
   }
 });
 
 // Check for missing or unchecked checklist items
 checklistItems.forEach((item) => {
   if (!isChecklistItemChecked(item)) {
-    warn(
-      `:clipboard: Unchecked Checklist Item - Please check the item: <i>${item}</i> in your PR description.`,
-    );
+    warn(`:clipboard: Unchecked Checklist Item - Please check the item: <i>${item}</i> in your PR description.`);
   }
 });
 
 const touchedFiles = danger.git.created_files.concat(danger.git.modified_files);
 const allFiles = touchedFiles.concat(danger.git.deleted_files);
 
-const diffsList: Promise<(TextDiff | null)[]> = Promise.all(
-  allFiles.map((p) => danger.git.diffForFile(p)),
-);
+const diffsList: Promise<(TextDiff | null)[]> = Promise.all(allFiles.map((p) => danger.git.diffForFile(p)));
 
 diffsList
   .then((diffs) => diffs.filter(Boolean) as TextDiff[])
   .then((diffs) => ({
-    removed: diffs.reduce(
-      (lines, diff) => lines + diff.removed.split('\n').length,
-      0,
-    ),
-    added: diffs.reduce(
-      (lines, diff) => lines + diff.added.split('\n').length,
-      0,
-    ),
-    lines: diffs.reduce(
-      (lines, diff) =>
-        lines + diff.added.split('\n').length + diff.removed.split('\n').length,
-      0,
-    ),
+    removed: diffs.reduce((lines, diff) => lines + diff.removed.split('\n').length, 0),
+    added: diffs.reduce((lines, diff) => lines + diff.added.split('\n').length, 0),
+    lines: diffs.reduce((lines, diff) => lines + diff.added.split('\n').length + diff.removed.split('\n').length, 0),
     files: diffs.length,
   }))
   .then((diff) => {
@@ -116,9 +94,7 @@ if (docs.edited) {
 }
 
 if (appModified) {
-  message(
-    'Thanks for updating tests! Only YOU can prevent production fires. :fire::evergreen_tree::bear:',
-  );
+  message('Thanks for updating tests! Only YOU can prevent production fires. :fire::evergreen_tree::bear:');
 }
 
 // Warns if there are changes to package.json, and tags the team.

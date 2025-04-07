@@ -10,13 +10,7 @@ import { AnimatedGradient } from '@/components/animated-gradient';
 import { ExtensionCard } from '@/components/extension-card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { getTemplatesData } from '@/lib/data';
 import type { Extension } from '@/lib/schemas';
 
@@ -29,9 +23,7 @@ export default function ExtensionsPage() {
   const [templateTypes, setTemplateTypes] = useState<string[]>([]);
   const [filteredExtensions, setFilteredExtensions] = useState<Extension[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState(
-    searchParams.get('search') || '',
-  );
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
 
   useEffect(() => {
     async function fetchData() {
@@ -41,11 +33,7 @@ export default function ExtensionsPage() {
 
       // Get unique template types for the filter dropdown
       const types = Array.from(
-        new Set(
-          data.extensions.flatMap((ext) =>
-            Array.isArray(ext.type) ? ext.type : [ext.type],
-          ),
-        ),
+        new Set(data.extensions.flatMap((ext) => (Array.isArray(ext.type) ? ext.type : [ext.type]))),
       );
       setTemplateTypes(types);
 
@@ -146,10 +134,7 @@ export default function ExtensionsPage() {
                   />
                 </div>
                 <div className="flex gap-2">
-                  <Select
-                    defaultValue={typeParam || 'all'}
-                    onValueChange={handleTypeChange}
-                  >
+                  <Select defaultValue={typeParam || 'all'} onValueChange={handleTypeChange}>
                     <SelectTrigger className="w-[180px] bg-background/50 backdrop-blur-sm border-indigo-500/20 focus:border-indigo-500/40 transition-all duration-300">
                       <SelectValue placeholder="Type" />
                     </SelectTrigger>
@@ -181,18 +166,13 @@ export default function ExtensionsPage() {
                 </div>
               ) : filteredExtensions.length > 0 ? (
                 filteredExtensions.map((extension, index) => (
-                  <div
-                    key={extension.slug}
-                    className={`fade-in-up-delay-${(index % 3) + 1}`}
-                  >
+                  <div key={extension.slug} className={`fade-in-up-delay-${(index % 3) + 1}`}>
                     <ExtensionCard extension={extension} />
                   </div>
                 ))
               ) : (
                 <div className="col-span-3 text-center py-12">
-                  <p className="text-muted-foreground">
-                    No extensions found. Please try a different search or type.
-                  </p>
+                  <p className="text-muted-foreground">No extensions found. Please try a different search or type.</p>
                 </div>
               )}
             </div>

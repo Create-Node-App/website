@@ -9,14 +9,7 @@ import { AnimatedGradient } from '@/components/animated-gradient';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getTemplatesData } from '@/lib/data';
@@ -48,12 +41,8 @@ export default function TemplateExtensionPage({
       setIsLoading(true);
       const { templates, extensions } = await getTemplatesData();
 
-      const foundTemplate = templates.find(
-        (t) => t.slug === resolvedParams.slug,
-      );
-      const foundExtension = extensions.find(
-        (e) => e.slug === resolvedParams.extensionSlug,
-      );
+      const foundTemplate = templates.find((t) => t.slug === resolvedParams.slug);
+      const foundExtension = extensions.find((e) => e.slug === resolvedParams.extensionSlug);
 
       if (!foundTemplate || !foundExtension) {
         notFound();
@@ -91,10 +80,7 @@ export default function TemplateExtensionPage({
           <div className="container px-4 md:px-6 relative z-10">
             <div className="mb-8 fade-in-up">
               <Link href={`/templates/${template.slug}`}>
-                <Button
-                  variant="ghost"
-                  className="pl-0 hover:bg-background/20 transition-all duration-300"
-                >
+                <Button variant="ghost" className="pl-0 hover:bg-background/20 transition-all duration-300">
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Back to {template.name}
                 </Button>
@@ -105,9 +91,8 @@ export default function TemplateExtensionPage({
               <Alert variant="destructive" className="mb-8">
                 <AlertTitle>Compatibility Warning</AlertTitle>
                 <AlertDescription>
-                  This extension may not be fully compatible with the{' '}
-                  {template.name} template. Please check the documentation for
-                  more information.
+                  This extension may not be fully compatible with the {template.name} template. Please check the
+                  documentation for more information.
                 </AlertDescription>
               </Alert>
             )}
@@ -135,8 +120,7 @@ export default function TemplateExtensionPage({
                 </div>
 
                 <p className="text-lg mb-6">
-                  Add {extension.name} to your {template.name} project to
-                  enhance its functionality with{' '}
+                  Add {extension.name} to your {template.name} project to enhance its functionality with{' '}
                   {extension.description.toLowerCase()}
                 </p>
 
@@ -179,28 +163,21 @@ export default function TemplateExtensionPage({
                         Perfect Combination
                       </h3>
                       <p>
-                        The {template.name} template and {extension.name}{' '}
-                        extension work together seamlessly to provide an
-                        enhanced development experience. This combination gives
-                        you all the benefits of the {template.type}
-                        template with the added functionality of{' '}
-                        {extension.name}.
+                        The {template.name} template and {extension.name} extension work together seamlessly to provide
+                        an enhanced development experience. This combination gives you all the benefits of the{' '}
+                        {template.type}
+                        template with the added functionality of {extension.name}.
                       </p>
 
                       <p>
-                        By adding {extension.name} to your {template.name}{' '}
-                        project, you'll be able to:
+                        By adding {extension.name} to your {template.name} project, you'll be able to:
                       </p>
 
                       <ul>
                         <li>Accelerate your development workflow</li>
-                        <li>
-                          Add powerful features specific to {extension.name}
-                        </li>
+                        <li>Add powerful features specific to {extension.name}</li>
                         <li>Maintain a clean, well-structured codebase</li>
-                        <li>
-                          Follow best practices for {template.type} development
-                        </li>
+                        <li>Follow best practices for {template.type} development</li>
                       </ul>
                     </div>
                   </TabsContent>
@@ -210,21 +187,14 @@ export default function TemplateExtensionPage({
                         One-Command Installation
                       </h3>
                       <p>
-                        You can create a new project with {template.name} and{' '}
-                        {extension.name} using a single command:
+                        You can create a new project with {template.name} and {extension.name} using a single command:
                       </p>
 
                       <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto shimmer">
                         <p>
-                          <span className="text-green-500">
-                            $ npx create-awesome-node-app
-                          </span>{' '}
-                          <span className="whitespace-nowrap">
-                            --template {template.slug}
-                          </span>{' '}
-                          <span className="whitespace-nowrap">
-                            --addons {extension.slug}
-                          </span>
+                          <span className="text-green-500">$ npx create-awesome-node-app</span>{' '}
+                          <span className="whitespace-nowrap">--template {template.slug}</span>{' '}
+                          <span className="whitespace-nowrap">--addons {extension.slug}</span>
                         </p>
                       </div>
 
@@ -234,14 +204,8 @@ export default function TemplateExtensionPage({
                       <p>After running this command:</p>
 
                       <ol>
-                        <li>
-                          A new project will be created using the{' '}
-                          {template.name} template
-                        </li>
-                        <li>
-                          The {extension.name} extension will be automatically
-                          integrated
-                        </li>
+                        <li>A new project will be created using the {template.name} template</li>
+                        <li>The {extension.name} extension will be automatically integrated</li>
                         <li>All necessary dependencies will be installed</li>
                         <li>Configuration files will be set up for you</li>
                         <li>You'll be ready to start developing right away</li>
@@ -264,8 +228,7 @@ export default function TemplateExtensionPage({
                           </CardHeader>
                           <CardContent>
                             <p className="text-sm text-muted-foreground">
-                              {extension.name} is designed to work seamlessly
-                              with {template.name}, ensuring a smooth
+                              {extension.name} is designed to work seamlessly with {template.name}, ensuring a smooth
                               development experience.
                             </p>
                           </CardContent>
@@ -280,8 +243,8 @@ export default function TemplateExtensionPage({
                           </CardHeader>
                           <CardContent>
                             <p className="text-sm text-muted-foreground">
-                              Save time with pre-configured settings and
-                              optimized workflows specific to this combination.
+                              Save time with pre-configured settings and optimized workflows specific to this
+                              combination.
                             </p>
                           </CardContent>
                         </Card>
@@ -295,8 +258,7 @@ export default function TemplateExtensionPage({
                           </CardHeader>
                           <CardContent>
                             <p className="text-sm text-muted-foreground">
-                              Follow industry standards and best practices with
-                              this template and extension combination.
+                              Follow industry standards and best practices with this template and extension combination.
                             </p>
                           </CardContent>
                         </Card>
@@ -310,8 +272,7 @@ export default function TemplateExtensionPage({
                           </CardHeader>
                           <CardContent>
                             <p className="text-sm text-muted-foreground">
-                              Benefit from active community support for both{' '}
-                              {template.name} and {extension.name}.
+                              Benefit from active community support for both {template.name} and {extension.name}.
                             </p>
                           </CardContent>
                         </Card>
@@ -325,22 +286,14 @@ export default function TemplateExtensionPage({
                 <Card className="backdrop-blur-sm bg-card/50 border-primary/10 gradient-border shimmer">
                   <CardHeader>
                     <CardTitle>Quick Start</CardTitle>
-                    <CardDescription>
-                      Create your project with one command
-                    </CardDescription>
+                    <CardDescription>Create your project with one command</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto mb-4">
                       <p>
-                        <span className="text-green-500">
-                          $ npx create-awesome-node-app
-                        </span>{' '}
-                        <span className="whitespace-nowrap">
-                          --template {template.slug}
-                        </span>{' '}
-                        <span className="whitespace-nowrap">
-                          --addons {extension.slug}
-                        </span>
+                        <span className="text-green-500">$ npx create-awesome-node-app</span>{' '}
+                        <span className="whitespace-nowrap">--template {template.slug}</span>{' '}
+                        <span className="whitespace-nowrap">--addons {extension.slug}</span>
                       </p>
                     </div>
                   </CardContent>
@@ -350,11 +303,7 @@ export default function TemplateExtensionPage({
                       className="w-full bg-gradient-to-r from-primary via-indigo-500 to-purple-500 hover:from-primary/90 hover:via-indigo-500/90 hover:to-purple-500/90 glow transition-all duration-300"
                     />
                     <div className="flex w-full gap-2">
-                      <Link
-                        href={template.url}
-                        className="flex-1"
-                        target="_blank"
-                      >
+                      <Link href={template.url} className="flex-1" target="_blank">
                         <Button
                           variant="outline"
                           className="w-full backdrop-blur-sm bg-background/30 border-primary/20 hover:bg-background/50 transition-all duration-300"
@@ -363,11 +312,7 @@ export default function TemplateExtensionPage({
                           Template
                         </Button>
                       </Link>
-                      <Link
-                        href={extension.url}
-                        className="flex-1"
-                        target="_blank"
-                      >
+                      <Link href={extension.url} className="flex-1" target="_blank">
                         <Button
                           variant="outline"
                           className="w-full backdrop-blur-sm bg-background/30 border-indigo-500/20 hover:bg-background/50 transition-all duration-300"
@@ -396,15 +341,9 @@ export default function TemplateExtensionPage({
                     </div>
                     <Separator />
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">
-                        Compatibility
-                      </span>
-                      <span
-                        className={`font-medium ${isExtensionCompatible ? 'text-green-500' : 'text-yellow-500'}`}
-                      >
-                        {isExtensionCompatible
-                          ? 'Fully Compatible'
-                          : 'Check Documentation'}
+                      <span className="text-muted-foreground">Compatibility</span>
+                      <span className={`font-medium ${isExtensionCompatible ? 'text-green-500' : 'text-yellow-500'}`}>
+                        {isExtensionCompatible ? 'Fully Compatible' : 'Check Documentation'}
                       </span>
                     </div>
                   </CardContent>
@@ -435,9 +374,7 @@ export default function TemplateExtensionPage({
                     </div>
                     <div className="flex items-center">
                       <Check className="h-5 w-5 mr-2 text-green-500" />
-                      <span>
-                        Best practices for {template.type} development
-                      </span>
+                      <span>Best practices for {template.type} development</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -472,9 +409,7 @@ export default function TemplateExtensionPage({
                   className="backdrop-blur-sm bg-background/30 border-primary/20 hover:bg-background/50 transition-all duration-300"
                   asChild
                 >
-                  <Link href={`/templates/${template.slug}`}>
-                    Back to {template.name}
-                  </Link>
+                  <Link href={`/templates/${template.slug}`}>Back to {template.name}</Link>
                 </Button>
               </div>
             </div>

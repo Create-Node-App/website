@@ -127,10 +127,5 @@ export function ParticlesBackground({
     };
   }, [particleCount, particleColor, linkColor, speed]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className={`absolute inset-0 w-full h-full ${className || ''}`}
-    />
-  );
+  return <canvas ref={canvasRef} className={`absolute inset-0 w-full h-full ${className || ''}`} />;
 }

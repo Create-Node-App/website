@@ -28,14 +28,7 @@ export function AnimatedGradient({ className }: AnimatedGradientProps) {
     };
 
     const createGradient = (x: number, y: number) => {
-      const gradient = ctx.createRadialGradient(
-        x,
-        y,
-        0,
-        x,
-        y,
-        Math.max(canvas.width, canvas.height) * 0.5,
-      );
+      const gradient = ctx.createRadialGradient(x, y, 0, x, y, Math.max(canvas.width, canvas.height) * 0.5);
 
       // Use hues in the violet/indigo range (260-290)
       gradient.addColorStop(0, `hsla(${hue}, 100%, 60%, 0.4)`);
@@ -91,10 +84,6 @@ export function AnimatedGradient({ className }: AnimatedGradientProps) {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className={`absolute inset-0 w-full h-full ${className || ''}`}
-      style={{ opacity: 0.8 }}
-    />
+    <canvas ref={canvasRef} className={`absolute inset-0 w-full h-full ${className || ''}`} style={{ opacity: 0.8 }} />
   );
 }

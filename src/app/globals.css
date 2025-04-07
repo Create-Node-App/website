@@ -171,12 +171,7 @@
   left: -1px;
   right: -1px;
   bottom: -1px;
-  background: linear-gradient(
-    45deg,
-    rgba(138, 43, 226, 0.5),
-    rgba(94, 234, 212, 0.5),
-    rgba(138, 43, 226, 0.5)
-  );
+  background: linear-gradient(45deg, rgba(138, 43, 226, 0.5), rgba(94, 234, 212, 0.5), rgba(138, 43, 226, 0.5));
   border-radius: calc(var(--radius) + 1px);
   z-index: -1;
   animation: animatedgradient 6s ease infinite alternate;
@@ -196,12 +191,7 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
   transform: rotate(30deg);
   animation: shimmer 6s infinite;
 }

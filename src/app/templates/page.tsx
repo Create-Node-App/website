@@ -11,13 +11,7 @@ import { AnimatedGradient } from '@/components/animated-gradient';
 import { TemplateCard } from '@/components/template-card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { getTemplatesData } from '@/lib/data';
 import type { Category, Template } from '@/lib/schemas';
 
@@ -59,9 +53,7 @@ export default function TemplatesPage() {
           category.labels.some(
             (label) =>
               template.category.toLowerCase().includes(label.toLowerCase()) ||
-              template.labels.some((tLabel) =>
-                tLabel.toLowerCase().includes(label.toLowerCase()),
-              ),
+              template.labels.some((tLabel) => tLabel.toLowerCase().includes(label.toLowerCase())),
           ),
         );
       }
@@ -142,10 +134,7 @@ export default function TemplatesPage() {
                   />
                 </div>
                 <div className="flex gap-2">
-                  <Select
-                    defaultValue={categoryParam || 'all'}
-                    onValueChange={handleCategoryChange}
-                  >
+                  <Select defaultValue={categoryParam || 'all'} onValueChange={handleCategoryChange}>
                     <SelectTrigger className="w-[180px] bg-background/50 backdrop-blur-sm border-primary/20 focus:border-primary/40 transition-all duration-300">
                       <SelectValue placeholder="Category" />
                     </SelectTrigger>
@@ -177,10 +166,7 @@ export default function TemplatesPage() {
                 </div>
               ) : filteredTemplates.length > 0 ? (
                 filteredTemplates.map((template, index) => (
-                  <div
-                    key={template.slug}
-                    className={`fade-in-up-delay-${(index % 3) + 1}`}
-                  >
+                  <div key={template.slug} className={`fade-in-up-delay-${(index % 3) + 1}`}>
                     <Link href={`/templates/${template.slug}`}>
                       <TemplateCard template={template} />
                     </Link>
@@ -189,8 +175,7 @@ export default function TemplatesPage() {
               ) : (
                 <div className="col-span-3 text-center py-12">
                   <p className="text-muted-foreground">
-                    No templates found. Please try a different search or
-                    category.
+                    No templates found. Please try a different search or category.
                   </p>
                 </div>
               )}

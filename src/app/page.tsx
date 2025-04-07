@@ -6,14 +6,7 @@ import { FeaturedTemplate } from '@/components/featured-template';
 import { ParticlesBackground } from '@/components/particles-background';
 import { TemplateCategories } from '@/components/template-categories';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { getTemplatesData } from '@/lib/data';
 
 export default async function Home() {
@@ -40,8 +33,8 @@ export default async function Home() {
                     Create Awesome Node App
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl fade-in-up-delay-1">
-                    Discover templates and extensions to jumpstart your next
-                    project. Mix and match to create the perfect foundation.
+                    Discover templates and extensions to jumpstart your next project. Mix and match to create the
+                    perfect foundation.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row fade-in-up-delay-2">
@@ -100,9 +93,7 @@ export default async function Home() {
                     <div className="w-64 h-64 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-xl backdrop-blur-sm border border-purple-500/30 shadow-xl -rotate-3 transform-gpu transition-transform duration-500 hover:-rotate-6 hover:scale-105 floating-slow">
                       <div className="p-6 h-full flex flex-col">
                         <Code className="h-8 w-8 text-purple-500 mb-4" />
-                        <h3 className="text-lg font-semibold">
-                          Next.js Starter
-                        </h3>
+                        <h3 className="text-lg font-semibold">Next.js Starter</h3>
                         <p className="text-sm text-muted-foreground mt-2">
                           Full-stack React framework with SSR and API routes
                         </p>
@@ -136,10 +127,7 @@ export default async function Home() {
             <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
               {featuredTemplates.length > 0 ? (
                 featuredTemplates.map((template, index) => (
-                  <div
-                    key={template.slug}
-                    className={`fade-in-up-delay-${(index % 3) + 1}`}
-                  >
+                  <div key={template.slug} className={`fade-in-up-delay-${(index % 3) + 1}`}>
                     <FeaturedTemplate
                       name={template.name}
                       slug={template.slug}
@@ -152,9 +140,7 @@ export default async function Home() {
                 ))
               ) : (
                 <div className="col-span-3 text-center py-12">
-                  <p className="text-muted-foreground">
-                    No templates found. Please check back later.
-                  </p>
+                  <p className="text-muted-foreground">No templates found. Please check back later.</p>
                 </div>
               )}
             </div>
@@ -178,9 +164,7 @@ export default async function Home() {
           <div className="container px-4 md:px-6 relative z-10">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">
-                  Categories
-                </div>
+                <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Categories</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 glow-text">
                   Find Your Perfect Stack
                 </h2>
@@ -210,8 +194,7 @@ export default async function Home() {
                     Build Your App in Minutes
                   </h2>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    Select a template, add extensions, and generate your project
-                    with a single command.
+                    Select a template, add extensions, and generate your project with a single command.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -231,25 +214,18 @@ export default async function Home() {
                 <Card className="w-full backdrop-blur-sm bg-card/50 border-primary/10 gradient-border shimmer">
                   <CardHeader>
                     <CardTitle>Create Your Project</CardTitle>
-                    <CardDescription>
-                      Use the CLI to generate your app
-                    </CardDescription>
+                    <CardDescription>Use the CLI to generate your app</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto">
-                      <p className="text-green-500">
-                        $ npx create-awesome-node-app \
-                      </p>
-                      <p className="pl-4">
-                        --template react-vite-boilerplate \
-                      </p>
+                      <p className="text-green-500">$ npx create-awesome-node-app \</p>
+                      <p className="pl-4">--template react-vite-boilerplate \</p>
                       <p className="pl-4">--addons material-ui github-setup</p>
                     </div>
                   </CardContent>
                   <CardFooter>
                     <p className="text-sm text-muted-foreground">
-                      This will create a React app with Material UI and GitHub
-                      setup
+                      This will create a React app with Material UI and GitHub setup
                     </p>
                   </CardFooter>
                 </Card>
@@ -269,8 +245,7 @@ export default async function Home() {
                   Ready to Get Started?
                 </h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Explore our templates and extensions to build your next
-                  awesome Node.js app
+                  Explore our templates and extensions to build your next awesome Node.js app
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">

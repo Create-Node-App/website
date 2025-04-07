@@ -1,12 +1,7 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-import {
-  type Extension,
-  extensionSchema,
-  type Template,
-  templateSchema,
-} from './schemas';
+import { type Extension, extensionSchema, type Template, templateSchema } from './schemas';
 
 // Validate a single template
 export function validateTemplate(data: unknown): Template | null {
@@ -29,10 +24,7 @@ export function validateExtension(data: unknown): Extension | null {
 }
 
 // Validate compatibility between template and extension
-export function isCompatible(
-  template: Template,
-  extension: Extension,
-): boolean {
+export function isCompatible(template: Template, extension: Extension): boolean {
   if (Array.isArray(extension.type)) {
     return extension.type.includes(template.type);
   }

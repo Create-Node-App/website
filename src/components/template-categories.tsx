@@ -1,24 +1,9 @@
-import {
-  ArrowRight,
-  Code,
-  Database,
-  GitBranch,
-  Globe,
-  Layers,
-  TestTube,
-} from 'lucide-react';
+import { ArrowRight, Code, Database, GitBranch, Globe, Layers, TestTube } from 'lucide-react';
 import Link from 'next/link';
 import type React from 'react';
 
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import type { Category } from '@/lib/schemas';
 
 interface TemplateCategoriesProps {
@@ -37,10 +22,7 @@ export function TemplateCategories({ categories }: TemplateCategoriesProps) {
   };
 
   // Map of category slugs to their respective color classes
-  const categoryColors: Record<
-    string,
-    { bg: string; hover: string; border: string }
-  > = {
+  const categoryColors: Record<string, { bg: string; hover: string; border: string }> = {
     'frontend-applications': {
       bg: 'from-primary/20 to-indigo-500/20',
       hover: 'from-primary/40 to-indigo-500/40',
@@ -76,12 +58,8 @@ export function TemplateCategories({ categories }: TemplateCategoriesProps) {
   return (
     <>
       {categories.map((category) => {
-        const colors =
-          categoryColors[category.slug] ||
-          categoryColors['frontend-applications'];
-        const icon = categoryIcons[category.slug] || (
-          <Code className="h-5 w-5 text-primary" />
-        );
+        const colors = categoryColors[category.slug] || categoryColors['frontend-applications'];
+        const icon = categoryIcons[category.slug] || <Code className="h-5 w-5 text-primary" />;
 
         return (
           <Card
@@ -102,9 +80,7 @@ export function TemplateCategories({ categories }: TemplateCategoriesProps) {
               <CardDescription>{category.description}</CardDescription>
             </CardHeader>
             <CardContent className="flex-1">
-              <p className="text-sm text-muted-foreground">
-                {category.details}
-              </p>
+              <p className="text-sm text-muted-foreground">{category.details}</p>
             </CardContent>
             <CardFooter>
               <Button

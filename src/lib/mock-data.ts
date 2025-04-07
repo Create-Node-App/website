@@ -6,31 +6,27 @@ export const mockTemplatesData: TemplatesData = {
       slug: 'frontend-applications',
       name: 'Frontend Applications',
       description: 'Templates for building modern web interfaces',
-      details:
-        'Discover templates for React, Vue, and other frontend frameworks to build beautiful user interfaces.',
+      details: 'Discover templates for React, Vue, and other frontend frameworks to build beautiful user interfaces.',
       labels: ['Frontend', 'UI', 'React', 'Vue', 'Web'],
     },
     {
       slug: 'backend-applications',
       name: 'Backend Applications',
       description: 'Templates for building robust server-side applications',
-      details:
-        'Explore templates for Node.js, Express, NestJS, and other backend frameworks to build powerful APIs.',
+      details: 'Explore templates for Node.js, Express, NestJS, and other backend frameworks to build powerful APIs.',
       labels: ['Backend', 'API', 'Server', 'Node.js', 'Express', 'NestJS'],
     },
     {
       slug: 'fullstack-applications',
       name: 'Full Stack Applications',
       description: 'Templates for building complete web applications',
-      details:
-        'Find templates for Next.js, Remix, and other full stack frameworks to build end-to-end applications.',
+      details: 'Find templates for Next.js, Remix, and other full stack frameworks to build end-to-end applications.',
       labels: ['Fullstack', 'Next.js', 'Remix', 'SSR', 'API Routes'],
     },
     {
       slug: 'monorepo-boilerplate',
       name: 'Monorepo Boilerplate',
-      description:
-        'Templates for managing multiple packages in a single repository',
+      description: 'Templates for managing multiple packages in a single repository',
       details:
         'Streamline development with monorepo templates using tools like Nx, Turborepo, and Lerna for efficient code sharing.',
       labels: ['Monorepo', 'Nx', 'Turborepo', 'Lerna', 'Workspace'],
@@ -38,8 +34,7 @@ export const mockTemplatesData: TemplatesData = {
     {
       slug: 'user-acceptance-testing',
       name: 'User Acceptance Testing',
-      description:
-        'Templates with built-in testing frameworks for end-to-end validation',
+      description: 'Templates with built-in testing frameworks for end-to-end validation',
       details:
         'Ensure your applications meet user requirements with templates featuring Cypress, Playwright, or Selenium for comprehensive testing.',
       labels: ['Testing', 'UAT', 'Cypress', 'Playwright', 'Selenium', 'E2E'],
@@ -57,8 +52,7 @@ export const mockTemplatesData: TemplatesData = {
     {
       slug: 'react-vite-boilerplate',
       name: 'React Vite Boilerplate',
-      description:
-        'A highly opinionated React boilerplate with Vite, TypeScript, ESLint, Prettier, and more.',
+      description: 'A highly opinionated React boilerplate with Vite, TypeScript, ESLint, Prettier, and more.',
       url: 'https://github.com/Create-Node-App/cna-templates/tree/main/templates/react-vite-starter',
       type: 'react',
       category: 'frontend-applications',
@@ -67,8 +61,7 @@ export const mockTemplatesData: TemplatesData = {
     {
       slug: 'nestjs-boilerplate',
       name: 'NestJS Boilerplate',
-      description:
-        'A progressive Node.js framework for building efficient and scalable server-side applications.',
+      description: 'A progressive Node.js framework for building efficient and scalable server-side applications.',
       url: 'https://github.com/Create-Node-App/cna-templates/tree/main/templates/nestjs-starter',
       type: 'nestjs',
       category: 'backend-applications',
@@ -77,8 +70,7 @@ export const mockTemplatesData: TemplatesData = {
     {
       slug: 'nextjs-starter',
       name: 'Next.js Starter',
-      description:
-        'The React framework for production with server-side rendering and static site generation.',
+      description: 'The React framework for production with server-side rendering and static site generation.',
       url: 'https://github.com/Create-Node-App/cna-templates/tree/main/templates/nextjs-starter',
       type: 'nextjs',
       category: 'fullstack-applications',

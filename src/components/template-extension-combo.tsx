@@ -7,10 +7,7 @@ interface TemplateExtensionComboProps {
   extension: Extension;
 }
 
-export function TemplateExtensionCombo({
-  template,
-  extension,
-}: TemplateExtensionComboProps) {
+export function TemplateExtensionCombo({ template, extension }: TemplateExtensionComboProps) {
   return (
     <div className="relative">
       <Card className="bg-background/50 backdrop-blur-sm border-primary/10 overflow-hidden">
@@ -23,23 +20,17 @@ export function TemplateExtensionCombo({
                 </div>
                 <div>
                   <h3 className="text-sm font-medium">{template.name}</h3>
-                  <p className="text-xs text-muted-foreground">
-                    {template.type}
-                  </p>
+                  <p className="text-xs text-muted-foreground">{template.type}</p>
                 </div>
               </div>
               <ArrowRight className="h-4 w-4 text-muted-foreground" />
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-md bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center">
-                  <span className="text-sm font-semibold text-indigo-500">
-                    E
-                  </span>
+                  <span className="text-sm font-semibold text-indigo-500">E</span>
                 </div>
                 <div>
                   <h3 className="text-sm font-medium">{extension.name}</h3>
-                  <p className="text-xs text-muted-foreground">
-                    {extension.category}
-                  </p>
+                  <p className="text-xs text-muted-foreground">{extension.category}</p>
                 </div>
               </div>
             </div>
