@@ -393,7 +393,7 @@ export default function DocsPage() {
                 </CardHeader>
                 <CardContent>
                   <Button asChild className="w-full">
-                    <Link href="/docs/advanced">
+                    <Link href="/docs/advanced/usage">
                       Advanced Topics
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
