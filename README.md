@@ -1,6 +1,9 @@
-# Next.js Starter
+# Create Awesome Node App - Official Website
 
-This project was initialized with [create-awesome-node-app](https://www.npmjs.com/package/create-awesome-node-app). **DO NOT USE THIS TEMPLATE DIRECTLY!** Instead, create your own project using the command and following the interactive menu options. For more information, refer to the documentation!
+This is the official website for [Create Awesome Node App](https://www.npmjs.com/package/create-awesome-node-app), a tool that helps you quickly set up Node.js projects with best practices and modern tooling.
+
+> [!NOTE]
+> This project was initialized with [create-awesome-node-app](https://www.npmjs.com/package/create-awesome-node-app). **DO NOT USE THIS TEMPLATE DIRECTLY!** Instead, create your own project using the command and following the interactive menu options. For more information, refer to the documentation!
 
 ## Features
 
@@ -50,4 +53,4 @@ Scripts for preparing and viewing the production version:
 
 ## Contributing
 
-Bug reports, feature requests, and pull requests are welcome on the [Create-Node-App/cna-templates](https://github.com/Create-Node-App/cna-templates) repository!
+Bug reports, feature requests, and pull requests are welcome on the [Create-Node-App/website](https://github.com/Create-Node-App/website) repository!
