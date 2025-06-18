@@ -1,6 +1,6 @@
 'use client';
 
-import { Filter, Search } from 'lucide-react';
+import { ArrowRight, Filter, Search, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import type React from 'react';
@@ -105,6 +105,30 @@ export default function TemplatesPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1">
+        {/* New Feature Banner */}
+        <div className="w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white py-3 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] animate-pulse"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-indigo-500/20 to-blue-500/20 animate-gradient-x"></div>
+          <div className="container px-4 md:px-6 flex items-center justify-center gap-2 relative z-10">
+            <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm border border-white/20">
+              <Sparkles className="h-5 w-5 animate-pulse text-yellow-300" />
+              <span className="font-semibold bg-gradient-to-r from-yellow-300 to-yellow-100 bg-clip-text text-transparent">
+                NEW
+              </span>
+            </div>
+            <span className="text-sm md:text-base">
+              Custom Cursor Rules for enhanced AI development experience!
+              <Link
+                href="/docs/cursor-rules"
+                className="ml-2 inline-flex items-center gap-1 underline hover:text-white/80 transition-colors group"
+              >
+                Learn more
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </span>
+          </div>
+        </div>
+
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background to-background/80 relative overflow-hidden">
           <div className="absolute inset-0 z-0 opacity-50">
             <AnimatedGradient />

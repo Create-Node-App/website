@@ -1,4 +1,4 @@
-import { ArrowRight, Layers, Package, Settings, Terminal } from 'lucide-react';
+import { ArrowRight, Layers, Package, Settings, Sparkles, Terminal } from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
@@ -27,6 +27,33 @@ export default function DocsPage() {
               setting up modern Node.js applications. It provides a collection of carefully crafted templates and
               extensions that help developers quickly bootstrap projects with best practices and optimal configurations.
             </p>
+
+            <Card className="bg-gradient-to-r from-purple-600/10 via-indigo-600/10 to-blue-600/10 border-purple-500/20 hover:border-purple-500/40 transition-colors">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-yellow-400" />
+                  New: Cursor Rules
+                </CardTitle>
+                <CardDescription>Enhance your development experience with AI-powered assistance</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-4">
+                  Cursor Rules provide context-aware assistance and best practices for your development workflow.
+                  Automatically applied when using templates and extensions, these rules help you maintain consistent
+                  patterns and follow best practices.
+                </p>
+                <Button
+                  variant="outline"
+                  className="bg-white/5 hover:bg-white/10 border-purple-500/20 hover:border-purple-500/40"
+                  asChild
+                >
+                  <Link href="/docs/cursor-rules" className="group">
+                    Learn about Cursor Rules
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
 
             <div className="my-6 rounded-lg border bg-card p-6">
               <h3 className="mb-4 text-xl font-semibold">Key Benefits</h3>
