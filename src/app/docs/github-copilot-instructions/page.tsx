@@ -33,14 +33,16 @@ export default function GitHubCopilotInstructionsPage() {
                       <BookOpen className="h-5 w-5 text-primary" />
                       Overview
                     </CardTitle>
-                    <CardDescription>Understanding how GitHub Copilot Instructions enhance your development workflow</CardDescription>
+                    <CardDescription>
+                      Understanding how GitHub Copilot Instructions enhance your development workflow
+                    </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p>
-                      GitHub Copilot Instructions are a powerful feature that enhances your development experience by providing
-                      context-aware assistance and best practices for specific technologies and frameworks. These instructions
-                      are automatically applied when you install templates or extensions, creating a tailored
-                      development environment for your project.
+                      GitHub Copilot Instructions are a powerful feature that enhances your development experience by
+                      providing context-aware assistance and best practices for specific technologies and frameworks.
+                      These instructions are automatically applied when you install templates or extensions, creating a
+                      tailored development environment for your project.
                     </p>
                   </CardContent>
                 </Card>
@@ -57,16 +59,16 @@ export default function GitHubCopilotInstructionsPage() {
                     <div>
                       <h3 className="font-semibold mb-2">Template Instructions</h3>
                       <p>
-                        When you create a new project using a template, GitHub Copilot automatically applies a set of predefined
-                        instructions specific to that template, helping you follow best practices and maintain consistent
-                        patterns.
+                        When you create a new project using a template, GitHub Copilot automatically applies a set of
+                        predefined instructions specific to that template, helping you follow best practices and
+                        maintain consistent patterns.
                       </p>
                     </div>
                     <div>
                       <h3 className="font-semibold mb-2">Extension Instructions</h3>
                       <p>
-                        As you add extensions to your project, GitHub Copilot dynamically incorporates additional instructions specific
-                        to each extension, providing specialized guidance and best practices.
+                        As you add extensions to your project, GitHub Copilot dynamically incorporates additional
+                        instructions specific to each extension, providing specialized guidance and best practices.
                       </p>
                     </div>
                   </CardContent>
@@ -119,8 +121,9 @@ export default function GitHubCopilotInstructionsPage() {
                   <CardContent className="space-y-4">
                     <p>
                       You can customize these instructions by modifying the{' '}
-                      <code className="bg-muted px-1 py-0.5 rounded">.github/copilot-instructions.md</code> file in your project,
-                      creating new instruction sets, and extending existing instructions to match your team's preferences.
+                      <code className="bg-muted px-1 py-0.5 rounded">.github/copilot-instructions.md</code> file in your
+                      project, creating new instruction sets, and extending existing instructions to match your team's
+                      preferences.
                     </p>
                   </CardContent>
                 </Card>
@@ -135,9 +138,9 @@ export default function GitHubCopilotInstructionsPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p>
-                      We welcome contributions to improve our instruction sets. If you have suggestions for new instructions,
-                      improvements, better examples, or additional anti-patterns, please submit a pull request to our
-                      repository.
+                      We welcome contributions to improve our instruction sets. If you have suggestions for new
+                      instructions, improvements, better examples, or additional anti-patterns, please submit a pull
+                      request to our repository.
                     </p>
                   </CardContent>
                 </Card>

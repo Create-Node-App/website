@@ -38,9 +38,9 @@ export default function DocsPage() {
               </CardHeader>
               <CardContent>
                 <p className="mb-4">
-                  We now provide both Cursor Rules and GitHub Copilot Instructions that offer context-aware assistance and best practices for your development workflow.
-                  Automatically applied when using templates and extensions, these configurations help you maintain consistent
-                  patterns and follow best practices.
+                  We now provide both Cursor Rules and GitHub Copilot Instructions that offer context-aware assistance
+                  and best practices for your development workflow. Automatically applied when using templates and
+                  extensions, these configurations help you maintain consistent patterns and follow best practices.
                 </p>
                 <div className="flex flex-col gap-2 sm:flex-row">
                   <Button
