@@ -32,26 +32,38 @@ export default function DocsPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Sparkles className="h-5 w-5 text-yellow-400" />
-                  New: Cursor Rules
+                  New: AI-Powered Development
                 </CardTitle>
-                <CardDescription>Enhance your development experience with AI-powered assistance</CardDescription>
+                <CardDescription>Enhance your development experience with AI assistance</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="mb-4">
-                  Cursor Rules provide context-aware assistance and best practices for your development workflow.
-                  Automatically applied when using templates and extensions, these rules help you maintain consistent
+                  We now provide both Cursor Rules and GitHub Copilot Instructions that offer context-aware assistance and best practices for your development workflow.
+                  Automatically applied when using templates and extensions, these configurations help you maintain consistent
                   patterns and follow best practices.
                 </p>
-                <Button
-                  variant="outline"
-                  className="bg-white/5 hover:bg-white/10 border-purple-500/20 hover:border-purple-500/40"
-                  asChild
-                >
-                  <Link href="/docs/cursor-rules" className="group">
-                    Learn about Cursor Rules
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </Button>
+                <div className="flex flex-col gap-2 sm:flex-row">
+                  <Button
+                    variant="outline"
+                    className="bg-white/5 hover:bg-white/10 border-purple-500/20 hover:border-purple-500/40"
+                    asChild
+                  >
+                    <Link href="/docs/cursor-rules" className="group">
+                      Cursor Rules
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="bg-white/5 hover:bg-white/10 border-purple-500/20 hover:border-purple-500/40"
+                    asChild
+                  >
+                    <Link href="/docs/github-copilot-instructions" className="group">
+                      GitHub Copilot Instructions
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
+                </div>
               </CardContent>
             </Card>
 

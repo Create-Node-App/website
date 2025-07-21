@@ -30,9 +30,9 @@ export default async function Home() {
               </span>
             </div>
             <span className="text-sm md:text-base">
-              Custom Cursor Rules for enhanced AI development experience!
+              Custom Cursor Rules & GitHub Copilot Instructions for enhanced AI development experience!
               <Link
-                href="/docs/cursor-rules"
+                href="/docs"
                 className="ml-2 inline-flex items-center gap-1 underline hover:text-white/80 transition-colors group"
               >
                 Learn more
