@@ -105,6 +105,47 @@ export default function DocsPage() {
               </ul>
             </div>
 
+            <div className="my-6 rounded-lg border bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10 border-blue-500/20 p-6">
+              <h3 className="mb-4 text-xl font-semibold flex items-center gap-2">
+                <Sparkles className="h-5 w-5 text-blue-500" />
+                AI Tools Integration
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                Enhance your development workflow with AI-powered assistance. Choose from Cursor Rules or GitHub Copilot
+                Instructions to get context-aware suggestions and best practices automatically configured in your
+                project.
+              </p>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="bg-background/50 rounded-lg p-4 border border-blue-500/20">
+                  <h4 className="font-semibold mb-2">Using the AI Tool Flag</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-center gap-2">
+                      <code className="bg-muted px-2 py-1 rounded text-xs">--ai-tool cursor</code>
+                      <span className="text-muted-foreground">Cursor Rules</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <code className="bg-muted px-2 py-1 rounded text-xs">--ai-tool copilot</code>
+                      <span className="text-muted-foreground">GitHub Copilot</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <code className="bg-muted px-2 py-1 rounded text-xs">--ai-tool none</code>
+                      <span className="text-muted-foreground">No AI tools (default)</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-background/50 rounded-lg p-4 border border-blue-500/20">
+                  <h4 className="font-semibold mb-2">Interactive Mode</h4>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Use <code className="bg-muted px-1 rounded">--interactive</code> to be prompted for your AI tool
+                    preference
+                  </p>
+                  <div className="rounded bg-muted p-2">
+                    <code className="text-xs">npx create-awesome-node-app my-app --interactive</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <h3 className="text-xl font-semibold">Getting Started</h3>
             <p>
               Using <code>create-awesome-node-app</code> is straightforward. You can create a new project with a single
@@ -220,6 +261,14 @@ export default function DocsPage() {
                   </tr>
                   <tr className="border-b">
                     <td className="py-2 px-4">
+                      <code>--ai-tool &lt;tool&gt;</code>
+                    </td>
+                    <td className="py-2 px-4">
+                      Specify AI tool configuration: cursor, copilot, or none (default: none)
+                    </td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="py-2 px-4">
                       <code>--list-templates</code>
                     </td>
                     <td className="py-2 px-4">List all available templates</td>
@@ -288,6 +337,36 @@ export default function DocsPage() {
                     <code>npx create-awesome-node-app --list-addons</code>
                   </pre>
                 </div>
+              </div>
+
+              <div>
+                <p className="font-medium">Create a project with Cursor Rules:</p>
+                <div className="rounded-md bg-muted p-4 mt-2">
+                  <pre className="text-sm">
+                    <code>npx create-awesome-node-app my-app --ai-tool cursor</code>
+                  </pre>
+                </div>
+              </div>
+
+              <div>
+                <p className="font-medium">Create a project with GitHub Copilot Instructions:</p>
+                <div className="rounded-md bg-muted p-4 mt-2">
+                  <pre className="text-sm">
+                    <code>npx create-awesome-node-app my-app --ai-tool copilot</code>
+                  </pre>
+                </div>
+              </div>
+
+              <div>
+                <p className="font-medium">Create a project without AI tools (default):</p>
+                <div className="rounded-md bg-muted p-4 mt-2">
+                  <pre className="text-sm">
+                    <code>npx create-awesome-node-app my-app --ai-tool none</code>
+                  </pre>
+                </div>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Or simply: <code>npx create-awesome-node-app my-app</code>
+                </p>
               </div>
             </div>
           </section>

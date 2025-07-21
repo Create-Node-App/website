@@ -242,14 +242,15 @@ export default async function Home() {
                   </CardHeader>
                   <CardContent>
                     <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto">
-                      <p className="text-green-500">$ npx create-awesome-node-app \</p>
+                      <p className="text-green-500">$ npx create-awesome-node-app my-app \</p>
                       <p className="pl-4">--template react-vite-boilerplate \</p>
-                      <p className="pl-4">--addons material-ui github-setup</p>
+                      <p className="pl-4">--addons material-ui github-setup \</p>
+                      <p className="pl-4">--ai-tool copilot</p>
                     </div>
                   </CardContent>
                   <CardFooter>
                     <p className="text-sm text-muted-foreground">
-                      This will create a React app with Material UI and GitHub setup
+                      This will create a React app with Material UI, GitHub setup, and GitHub Copilot Instructions
                     </p>
                   </CardFooter>
                 </Card>

@@ -146,6 +146,29 @@ export default function GitHubCopilotInstructionsPage() {
                 </Card>
               </div>
 
+              <div className="mt-12 p-6 rounded-lg bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10 border-blue-500/20">
+                <h2 className="text-2xl font-bold mb-4">Getting Started</h2>
+                <p className="mb-4">
+                  To enable GitHub Copilot Instructions in your new project, use the{' '}
+                  <code className="bg-muted px-1 py-0.5 rounded">--ai-tool</code> flag when creating your project:
+                </p>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <h3 className="font-semibold mb-2">With GitHub Copilot Instructions</h3>
+                    <div className="bg-background/50 p-3 rounded-lg font-mono text-sm">
+                      <code>npx create-awesome-node-app my-app --ai-tool copilot</code>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-2">Interactive Mode</h3>
+                    <div className="bg-background/50 p-3 rounded-lg font-mono text-sm">
+                      <code>npx create-awesome-node-app my-app --interactive</code>
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-2">Choose your AI tool preference when prompted</p>
+                  </div>
+                </div>
+              </div>
+
               <div className="mt-12 p-6 rounded-lg bg-muted/50 backdrop-blur-sm border border-primary/10">
                 <h2 className="text-2xl font-bold mb-4">Example Instruction Set</h2>
                 <pre className="bg-background/50 p-4 rounded-lg overflow-x-auto">
