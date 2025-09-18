@@ -117,9 +117,9 @@ export default function TemplatesPage() {
               </span>
             </div>
             <span className="text-sm md:text-base">
-              Custom Cursor Rules for enhanced AI development experience!
+              Built-in AGENTS.md contract for AI assistance!
               <Link
-                href="/docs/cursor-rules"
+                href="/docs/agents-md"
                 className="ml-2 inline-flex items-center gap-1 underline hover:text-white/80 transition-colors group"
               >
                 Learn more
