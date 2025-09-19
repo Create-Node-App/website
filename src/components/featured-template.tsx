@@ -10,7 +10,7 @@ type FeaturedTemplateProps = Pick<Template, 'name' | 'slug' | 'description' | 't
 
 export function FeaturedTemplate({ name, slug, description, type: _, category, labels }: FeaturedTemplateProps) {
   return (
-    <Card className="flex flex-col overflow-hidden border-primary/10 transition-all duration-300 hover:shadow-md hover:shadow-primary/10 hover:-translate-y-2 group gradient-border shimmer">
+    <Card className="flex flex-col overflow-hidden border-primary/10 transition-all duration-300 group gradient-border shimmer hover-raise elevation-low hover:elevation-md bg-card/80 backdrop-blur">
       <CardHeader className="pb-0">
         <div className="flex items-center gap-2 mb-2">
           <div className="h-10 w-10 rounded-md bg-gradient-to-br from-primary/20 to-indigo-500/20 flex items-center justify-center group-hover:from-primary/40 group-hover:to-indigo-500/40 transition-all duration-300">

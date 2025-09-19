@@ -1,8 +1,9 @@
-import { ArrowRight, Code, Package, Sparkles } from 'lucide-react';
+import { ArrowRight, Code, Package } from 'lucide-react';
 import Link from 'next/link';
-
 import { AnimatedGradient } from '@/components/animated-gradient';
+import { AnnouncementBanner } from '@/components/announcement-banner';
 import { FeaturedTemplate } from '@/components/featured-template';
+import { HeroSection } from '@/components/hero-section';
 import { ParticlesBackground } from '@/components/particles-background';
 import { TemplateCategories } from '@/components/template-categories';
 import { Button } from '@/components/ui/button';
@@ -18,117 +19,76 @@ export default async function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1">
-        {/* New Feature Banner */}
-        <div className="w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white py-3 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] animate-pulse"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-indigo-500/20 to-blue-500/20 animate-gradient-x"></div>
-          <div className="container px-4 md:px-6 flex items-center justify-center gap-2 relative z-10">
-            <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm border border-white/20">
-              <Sparkles className="h-5 w-5 animate-pulse text-yellow-300" />
-              <span className="font-semibold bg-gradient-to-r from-yellow-300 to-yellow-100 bg-clip-text text-transparent">
-                NEW
-              </span>
-            </div>
-            <span className="text-sm md:text-base">
+        <AnnouncementBanner
+          message={
+            <>
               Built-in AGENTS.md contract for AI assistant guidance in every template!
-              <Link
-                href="/docs/agents-md"
-                className="ml-2 inline-flex items-center gap-1 underline hover:text-white/80 transition-colors group"
+              <Link href="/docs/agents-md" className="ml-2"></Link>
+            </>
+          }
+          ctaHref="/docs/agents-md"
+          ctaLabel="Learn more"
+        />
+        <HeroSection
+          title={<span>Create Awesome Node App</span>}
+          description={
+            'Discover templates and extensions to jumpstart your next project. Mix and match to create the perfect foundation.'
+          }
+          actions={
+            <>
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-primary to-indigo-500 hover:from-primary/90 hover:to-indigo-500/90 glow transition-all duration-300"
+                asChild
               >
-                Learn more
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </span>
-          </div>
-        </div>
-
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-b from-background to-background/80 relative overflow-hidden">
-          {/* Animated background */}
-          <div className="absolute inset-0 z-0">
-            <ParticlesBackground />
-          </div>
-          <div className="absolute inset-0 bg-grid-white/10 bg-[size:30px_30px] [mask-image:radial-gradient(white,transparent_70%)] z-10" />
-
-          <div className="container px-4 md:px-6 space-y-10 xl:space-y-16 relative z-20">
-            <div className="grid gap-4 px-10 md:grid-cols-2 md:gap-16">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-primary via-indigo-500 to-purple-500 animate-gradient-text glow-text fade-in-up">
-                    Create Awesome Node App
-                  </h1>
-                  <p className="max-w-[600px] text-muted-foreground md:text-xl fade-in-up-delay-1">
-                    Discover templates and extensions to jumpstart your next project. Mix and match to create the
-                    perfect foundation.
-                  </p>
-                </div>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row fade-in-up-delay-2">
-                  <Button
-                    size="lg"
-                    className="bg-gradient-to-r from-primary to-indigo-500 hover:from-primary/90 hover:to-indigo-500/90 glow transition-all duration-300"
-                    asChild
-                  >
-                    <Link href="/templates">
-                      Explore Templates
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="backdrop-blur-sm bg-background/30 border-primary/20 hover:bg-background/50 transition-all duration-300"
-                    asChild
-                  >
-                    <Link href="/extensions">Browse Extensions</Link>
-                  </Button>
-                </div>
-              </div>
-
-              {/* Updated card showcase with better positioning */}
-              <div className="hidden md:flex items-center justify-center fade-in-up-delay-3">
-                <div className="relative w-full h-[350px] perspective-800">
-                  {/* First card - positioned slightly to the right and up */}
-                  <div className="absolute inset-0 flex items-center justify-center translate-x-20 -translate-y-6">
-                    <div className="w-64 h-64 bg-gradient-to-br from-primary/30 to-indigo-500/30 rounded-xl backdrop-blur-sm border border-primary/30 shadow-xl rotate-3 transform-gpu transition-transform duration-500 hover:rotate-6 hover:scale-105 floating">
-                      <div className="p-6 h-full flex flex-col">
-                        <Code className="h-8 w-8 text-primary mb-4" />
-                        <h3 className="text-lg font-semibold">React Vite</h3>
-                        <p className="text-sm text-muted-foreground mt-2">
-                          Modern React setup with Vite, TypeScript, and more
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Second card - positioned in the center */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-64 h-64 bg-gradient-to-br from-indigo-500/30 to-purple-500/30 rounded-xl backdrop-blur-sm border border-indigo-500/30 shadow-xl transform-gpu transition-transform duration-500 hover:scale-105 floating-delay">
-                      <div className="p-6 h-full flex flex-col">
-                        <Package className="h-8 w-8 text-indigo-500 mb-4" />
-                        <h3 className="text-lg font-semibold">NestJS API</h3>
-                        <p className="text-sm text-muted-foreground mt-2">
-                          Enterprise-ready Node.js server with TypeScript
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Third card - positioned slightly to the left and down */}
-                  <div className="absolute inset-0 flex items-center justify-center -translate-x-20 translate-y-6">
-                    <div className="w-64 h-64 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-xl backdrop-blur-sm border border-purple-500/30 shadow-xl -rotate-3 transform-gpu transition-transform duration-500 hover:-rotate-6 hover:scale-105 floating-slow">
-                      <div className="p-6 h-full flex flex-col">
-                        <Code className="h-8 w-8 text-purple-500 mb-4" />
-                        <h3 className="text-lg font-semibold">Next.js Starter</h3>
-                        <p className="text-sm text-muted-foreground mt-2">
-                          Full-stack React framework with SSR and API routes
-                        </p>
-                      </div>
-                    </div>
+                <Link href="/templates">
+                  Explore Templates
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="backdrop-blur-sm bg-background/30 border-primary/20 hover:bg-background/50 transition-all duration-300"
+                asChild
+              >
+                <Link href="/extensions">Browse Extensions</Link>
+              </Button>
+            </>
+          }
+          sideVisual={
+            <div className="relative w-full h-[350px] perspective-800">
+              <div className="absolute inset-0 flex items-center justify-center translate-x-20 -translate-y-6">
+                <div className="w-60 h-60 bg-gradient-to-br from-primary/30 to-indigo-500/30 rounded-xl backdrop-blur-sm border border-primary/30 shadow-xl rotate-3 transform-gpu transition-transform duration-500 hover:rotate-6 hover:scale-105 floating">
+                  <div className="p-5 h-full flex flex-col">
+                    <Code className="h-7 w-7 text-primary mb-3" />
+                    <h3 className="text-base font-semibold">React Vite</h3>
+                    <p className="text-xs text-muted-foreground mt-2">Modern React setup with Vite, TypeScript</p>
                   </div>
                 </div>
               </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-60 h-60 bg-gradient-to-br from-indigo-500/30 to-purple-500/30 rounded-xl backdrop-blur-sm border border-indigo-500/30 shadow-xl transform-gpu transition-transform duration-500 hover:scale-105 floating-delay">
+                  <div className="p-5 h-full flex flex-col">
+                    <Package className="h-7 w-7 text-indigo-400 mb-3" />
+                    <h3 className="text-base font-semibold">NestJS API</h3>
+                    <p className="text-xs text-muted-foreground mt-2">Enterprise-ready Node.js server</p>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center -translate-x-20 translate-y-6">
+                <div className="w-60 h-60 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-xl backdrop-blur-sm border border-purple-500/30 shadow-xl -rotate-3 transform-gpu transition-transform duration-500 hover:-rotate-6 hover:scale-105 floating-slow">
+                  <div className="p-5 h-full flex flex-col">
+                    <Code className="h-7 w-7 text-purple-400 mb-3" />
+                    <h3 className="text-base font-semibold">Next.js Starter</h3>
+                    <p className="text-xs text-muted-foreground mt-2">Full-stack React with SSR</p>
+                  </div>
+                </div>
+              </div>
+              <ParticlesBackground className="opacity-40" particleCount={40} speed={0.4} />
             </div>
-          </div>
-        </section>
+          }
+        />
 
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/40 relative overflow-hidden">
           <div className="absolute inset-0 z-0 opacity-50">

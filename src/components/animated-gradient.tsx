@@ -1,15 +1,18 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { usePerformanceMode } from '@/components/performance-provider';
 
 interface AnimatedGradientProps {
   className?: string;
 }
 
 export function AnimatedGradient({ className }: AnimatedGradientProps) {
+  const { performanceMode } = usePerformanceMode();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    if (performanceMode) return; // Skip animation in performance mode
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -81,8 +84,11 @@ export function AnimatedGradient({ className }: AnimatedGradientProps) {
       window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [performanceMode]);
 
+  if (performanceMode) {
+    return null;
+  }
   return (
     <canvas ref={canvasRef} className={`absolute inset-0 w-full h-full ${className || ''}`} style={{ opacity: 0.8 }} />
   );

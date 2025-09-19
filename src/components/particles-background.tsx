@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { usePerformanceMode } from '@/components/performance-provider';
 
 interface ParticlesBackgroundProps {
   className?: string;
@@ -18,8 +19,10 @@ export function ParticlesBackground({
   speed = 0.5,
 }: ParticlesBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { performanceMode } = usePerformanceMode();
 
   useEffect(() => {
+    if (performanceMode) return; // skip heavy animation
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -125,7 +128,8 @@ export function ParticlesBackground({
       window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [particleCount, particleColor, linkColor, speed]);
+  }, [particleCount, particleColor, linkColor, speed, performanceMode]);
 
+  if (performanceMode) return null;
   return <canvas ref={canvasRef} className={`absolute inset-0 w-full h-full ${className || ''}`} />;
 }

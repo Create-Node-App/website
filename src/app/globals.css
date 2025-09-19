@@ -24,6 +24,30 @@
     --input: 240 5.9% 90%;
     --ring: 262.1 83.3% 57.8%;
     --radius: 0.5rem;
+    /* New semantic tokens */
+    --radius-sm: 0.375rem;
+    --radius-lg: 0.75rem;
+    --shadow-color: 262 83% 15%;
+    --shadow-elevation-low: 0 1px 2px -1px hsl(var(--shadow-color) / 0.25), 0 1px 3px hsl(var(--shadow-color) / 0.15);
+    --shadow-elevation-md:
+      0 2px 4px -2px hsl(var(--shadow-color) / 0.28), 0 4px 6px -1px hsl(var(--shadow-color) / 0.2);
+    --shadow-elevation-high:
+      0 8px 16px -4px hsl(var(--shadow-color) / 0.35), 0 6px 20px -2px hsl(var(--shadow-color) / 0.25);
+    /* Gradient tokens */
+    --gradient-primary: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(262 83% 65%) 50%, hsl(280 80% 60%) 100%);
+    --gradient-accent: linear-gradient(
+      135deg,
+      hsl(262 83% 60% / 0.9),
+      hsl(280 70% 55% / 0.9) 40%,
+      hsl(310 70% 55% / 0.8)
+    );
+    --gradient-radial:
+      radial-gradient(circle at 30% 20%, hsl(262 83% 55% / 0.35), transparent 60%),
+      radial-gradient(circle at 70% 60%, hsl(280 83% 55% / 0.25), transparent 65%);
+    /* Surface layering */
+    --surface: hsl(var(--background) / 0.75);
+    --surface-hover: hsl(var(--background) / 0.9);
+    --surface-border: hsl(var(--border));
   }
 
   .dark {
@@ -46,6 +70,9 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 262.1 83.3% 57.8%;
+    --shadow-color: 262 83% 5%;
+    --surface: hsl(var(--background) / 0.55);
+    --surface-hover: hsl(var(--background) / 0.7);
   }
 }
 
@@ -56,6 +83,74 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Focus ring utility (accessible) */
+.focus-ring {
+  @apply outline-none ring-2 ring-offset-2 ring-offset-background ring-[hsl(var(--primary))];
+}
+.focus-ring-inset {
+  @apply outline-none ring-1 ring-inset ring-[hsl(var(--primary)/0.7)];
+}
+
+/* Elevation helpers */
+.elevation-low {
+  box-shadow: var(--shadow-elevation-low);
+}
+.elevation-md {
+  box-shadow: var(--shadow-elevation-md);
+}
+.elevation-high {
+  box-shadow: var(--shadow-elevation-high);
+}
+
+/* Glass panel */
+.glass {
+  background: var(--surface);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid hsl(var(--border) / 0.4);
+}
+.glass-hover:hover {
+  background: var(--surface-hover);
+}
+
+/* Hover raise subtle */
+.hover-raise {
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0.8, 0.2, 1),
+    box-shadow 0.35s;
+}
+.hover-raise:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevation-md);
+}
+.hover-raise:active {
+  transform: translateY(-1px);
+}
+
+/* Simplified subtle gradient border variant */
+.gradient-border-subtle {
+  position: relative;
+}
+.gradient-border-subtle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, hsl(var(--primary) / 0.4), hsl(280 70% 60% / 0.4), hsl(var(--primary) / 0.4));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.6;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.gradient-border-subtle:hover::before {
+  opacity: 1;
 }
 
 .bg-grid-white {
@@ -154,6 +249,19 @@
 
 .glow-text {
   text-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+}
+
+/* Gradient text utility using token */
+.text-gradient-primary {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Radial backdrop utility */
+.radial-layer {
+  background: var(--gradient-radial);
 }
 
 /* Gradient borders */

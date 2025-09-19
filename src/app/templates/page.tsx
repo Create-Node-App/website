@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, Filter, Search, Sparkles } from 'lucide-react';
+import { Filter, Search } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import type React from 'react';
@@ -8,6 +8,8 @@ import type React from 'react';
 import { useEffect, useState } from 'react';
 
 import { AnimatedGradient } from '@/components/animated-gradient';
+import { AnnouncementBanner } from '@/components/announcement-banner';
+import { HeroSection } from '@/components/hero-section';
 import { TemplateCard } from '@/components/template-card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -89,63 +91,37 @@ export default function TemplatesPage() {
   // Handle search input change
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
-
-    // Optionally update URL with search query
     const params = new URLSearchParams(searchParams.toString());
-    if (e.target.value) {
-      params.set('search', e.target.value);
-    } else {
-      params.delete('search');
-    }
-
-    // Use replace instead of push to avoid adding to history for every keystroke
-    router.replace(`/templates?${params.toString()}`, { scroll: false });
+    if (e.target.value) params.set('search', e.target.value);
+    else params.delete('search');
+    router.replace(`/templates?${params.toString()}`);
   };
 
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1">
-        {/* New Feature Banner */}
-        <div className="w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white py-3 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] animate-pulse"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-indigo-500/20 to-blue-500/20 animate-gradient-x"></div>
-          <div className="container px-4 md:px-6 flex items-center justify-center gap-2 relative z-10">
-            <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm border border-white/20">
-              <Sparkles className="h-5 w-5 animate-pulse text-yellow-300" />
-              <span className="font-semibold bg-gradient-to-r from-yellow-300 to-yellow-100 bg-clip-text text-transparent">
-                NEW
-              </span>
-            </div>
-            <span className="text-sm md:text-base">
+        <AnnouncementBanner
+          message={
+            <>
               Built-in AGENTS.md contract for AI assistance!
-              <Link
-                href="/docs/agents-md"
-                className="ml-2 inline-flex items-center gap-1 underline hover:text-white/80 transition-colors group"
-              >
-                Learn more
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </span>
-          </div>
-        </div>
-
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background to-background/80 relative overflow-hidden">
-          <div className="absolute inset-0 z-0 opacity-50">
+              <Link href="/docs/agents-md" className="ml-1 inline-flex" />
+            </>
+          }
+          ctaHref="/docs/agents-md"
+          ctaLabel="Learn more"
+        />
+        <HeroSection
+          title={<span>Templates</span>}
+          description="Browse and discover templates to kickstart your next project"
+          subtle
+          glow={false}
+        />
+        <section className="relative -mt-12 md:-mt-20">
+          <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
             <AnimatedGradient />
           </div>
-          <div className="container px-4 md:px-6 relative z-10">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2 fade-in-up">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 animate-gradient-text glow-text">
-                  Templates
-                </h1>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Browse and discover templates to kickstart your next project
-                </p>
-              </div>
-            </div>
-
-            <div className="mx-auto max-w-5xl py-8 fade-in-up-delay-1">
+          <div className="container relative z-10">
+            <div className="mx-auto max-w-5xl py-4 fade-in-up-delay-1">
               <div className="flex flex-col gap-4 md:flex-row">
                 <div className="relative flex-1">
                   <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -182,8 +158,7 @@ export default function TemplatesPage() {
                 </div>
               </div>
             </div>
-
-            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 pb-12 md:grid-cols-2 lg:grid-cols-3">
               {isLoading ? (
                 <div className="col-span-3 text-center py-12">
                   <p className="text-muted-foreground">Loading templates...</p>
