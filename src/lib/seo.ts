@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://createawesomenode.app';
+export const SITE_URL = 'https://create-awesome-node-app.vercel.app';
 export const SITE_NAME = 'Create Awesome Node App';
 export const SITE_DESCRIPTION =
   'Discover production-ready templates and extensions to jumpstart your next Node.js project. Combine starters and add-ons to build faster.';

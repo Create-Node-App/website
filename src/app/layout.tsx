@@ -5,8 +5,7 @@ import '@/app/globals.css';
 import { LayoutShell } from '@/components/layout-shell';
 import { jsonLdScript, organizationJsonLd, websiteJsonLd } from '@/lib/seo';
 
-// Base URL – si se despliega en otro dominio cambiar aquí
-const siteUrl = 'https://createawesomenode.app';
+const siteUrl = 'https://create-awesome-node-app.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
