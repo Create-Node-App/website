@@ -36,10 +36,17 @@ export const metadata: Metadata = {
     siteName: 'Create Awesome Node App',
     images: [
       {
-        url: '/og-default.png',
+        url: '/og-default.png', // raster fallback
         width: 1200,
         height: 630,
         alt: 'Create Awesome Node App – Templates & Extensions',
+      },
+      {
+        url: '/og-default.svg', // some platforms now support SVG (fallback above covers others)
+        width: 1200,
+        height: 630,
+        alt: 'Create Awesome Node App – Templates & Extensions',
+        type: 'image/svg+xml',
       },
     ],
     locale: 'en_US',
@@ -49,7 +56,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Create Awesome Node App',
     description: 'Discover Node.js templates and extensions to accelerate your development workflow.',
-    images: ['/og-default.png'],
+    images: ['/og-default.png', '/og-default.svg'],
     creator: '@',
   },
   alternates: {

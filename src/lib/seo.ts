@@ -46,7 +46,15 @@ export function jsonLdScript(data: object) {
 }
 
 // SoftwareApplication JSON-LD for a template (acts like a starter kit)
-export function templateSoftwareJsonLd(template: { name: string; description: string; slug: string; labels: string[]; url: string; category: string; type: string }) {
+export function templateSoftwareJsonLd(template: {
+  name: string;
+  description: string;
+  slug: string;
+  labels: string[];
+  url: string;
+  category: string;
+  type: string;
+}) {
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
@@ -72,7 +80,15 @@ export function templateSoftwareJsonLd(template: { name: string; description: st
 }
 
 // SoftwareApplication JSON-LD for an extension (add-on)
-export function extensionSoftwareJsonLd(extension: { name: string; description: string; slug: string; labels: string[]; url: string; category: string; type: string | string[] }) {
+export function extensionSoftwareJsonLd(extension: {
+  name: string;
+  description: string;
+  slug: string;
+  labels: string[];
+  url: string;
+  category: string;
+  type: string | string[];
+}) {
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',

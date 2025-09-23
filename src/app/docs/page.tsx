@@ -1,13 +1,21 @@
 import { ArrowRight, Layers, Package, Settings, Sparkles, Terminal } from 'lucide-react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Documentation | Create Awesome Node App',
   description: 'Comprehensive documentation for create-awesome-node-app',
+  alternates: { canonical: '/docs' },
+  openGraph: {
+    title: 'Documentation | Create Awesome Node App',
+    description: 'Comprehensive documentation for create-awesome-node-app',
+    url: '/docs',
+    type: 'article',
+  },
 };
 
 export default function DocsPage() {
