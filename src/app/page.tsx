@@ -1,10 +1,11 @@
-import { ArrowRight, Code, Package } from 'lucide-react';
+import { ArrowRight, Bot, Code, Package } from 'lucide-react';
 import Link from 'next/link';
 import { AnimatedGradient } from '@/components/animated-gradient';
 import { AnnouncementBanner } from '@/components/announcement-banner';
 import { FeaturedTemplate } from '@/components/featured-template';
 import { HeroSection } from '@/components/hero-section';
 import { ParticlesBackground } from '@/components/particles-background';
+import { SaasAiBanner } from '@/components/saas-ai-banner';
 import { TemplateCategories } from '@/components/template-categories';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,8 +14,12 @@ import { getTemplatesData } from '@/lib/data';
 export default async function Home() {
   const { templates, categories } = await getTemplatesData();
 
-  // Get 3 featured templates (or fewer if there aren't enough)
-  const featuredTemplates = templates.slice(0, 3);
+  // Show SaaS AI Starter first, then fill remaining slots with other templates
+  const saasTemplate = templates.find(t => t.slug === 'nextjs-saas-ai-starter');
+  const otherTemplates = templates.filter(t => t.slug !== 'nextjs-saas-ai-starter');
+  const featuredTemplates = saasTemplate
+    ? [saasTemplate, ...otherTemplates].slice(0, 3)
+    : templates.slice(0, 3);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -22,12 +27,11 @@ export default async function Home() {
         <AnnouncementBanner
           message={
             <>
-              Built-in AGENTS.md contract for AI assistant guidance in every template!
-              <Link href="/docs/agents-md" className="ml-2"></Link>
+              🚀 New: NextJS SaaS AI Starter — Multi-tenant SaaS with AI, Auth.js v5, Drizzle ORM + pgvector, PBAC &amp; more!
             </>
           }
-          ctaHref="/docs/agents-md"
-          ctaLabel="Learn more"
+          ctaHref="/templates/nextjs-saas-ai-starter"
+          ctaLabel="Explore template"
         />
         <HeroSection
           title={<span>Create Awesome Node App</span>}
@@ -68,20 +72,23 @@ export default async function Home() {
                 </div>
               </div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-60 h-60 bg-gradient-to-br from-indigo-500/30 to-purple-500/30 rounded-xl backdrop-blur-sm border border-indigo-500/30 shadow-xl transform-gpu transition-transform duration-500 hover:scale-105 floating-delay">
+                <div className="w-60 h-60 bg-gradient-to-br from-amber-500/30 to-orange-500/30 rounded-xl backdrop-blur-sm border border-amber-500/30 shadow-xl transform-gpu transition-transform duration-500 hover:scale-105 floating-delay">
                   <div className="p-5 h-full flex flex-col">
-                    <Package className="h-7 w-7 text-indigo-400 mb-3" />
-                    <h3 className="text-base font-semibold">NestJS API</h3>
-                    <p className="text-xs text-muted-foreground mt-2">Enterprise-ready Node.js server</p>
+                    <Bot className="h-7 w-7 text-amber-400 mb-3" />
+                    <h3 className="text-base font-semibold">SaaS AI Starter</h3>
+                    <p className="text-xs text-muted-foreground mt-2">Multi-tenant SaaS with AI &amp; Auth</p>
+                    <span className="mt-auto inline-flex items-center rounded-full bg-amber-500/20 px-2 py-0.5 text-xs font-medium text-amber-400 w-fit">
+                      🤖 AI
+                    </span>
                   </div>
                 </div>
               </div>
               <div className="absolute inset-0 flex items-center justify-center -translate-x-20 translate-y-6">
                 <div className="w-60 h-60 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-xl backdrop-blur-sm border border-purple-500/30 shadow-xl -rotate-3 transform-gpu transition-transform duration-500 hover:-rotate-6 hover:scale-105 floating-slow">
                   <div className="p-5 h-full flex flex-col">
-                    <Code className="h-7 w-7 text-purple-400 mb-3" />
-                    <h3 className="text-base font-semibold">Next.js Starter</h3>
-                    <p className="text-xs text-muted-foreground mt-2">Full-stack React with SSR</p>
+                    <Package className="h-7 w-7 text-purple-400 mb-3" />
+                    <h3 className="text-base font-semibold">NestJS API</h3>
+                    <p className="text-xs text-muted-foreground mt-2">Enterprise-ready Node.js server</p>
                   </div>
                 </div>
               </div>
@@ -89,6 +96,8 @@ export default async function Home() {
             </div>
           }
         />
+
+        <SaasAiBanner />
 
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/40 relative overflow-hidden">
           <div className="absolute inset-0 z-0 opacity-50">
