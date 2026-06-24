@@ -1,6 +1,19 @@
 # Create Awesome Node App - Official Website
 
+[![npm](https://img.shields.io/npm/v/create-awesome-node-app?style=flat-square&color=cb3837)](https://www.npmjs.com/package/create-awesome-node-app)
+[![npm downloads](https://img.shields.io/npm/dm/create-awesome-node-app?style=flat-square&color=cb3837)](https://www.npmjs.com/package/create-awesome-node-app)
+[![Templates](https://img.shields.io/badge/templates-cna--templates-blue?style=flat-square)](https://github.com/Create-Node-App/cna-templates)
+[![GitHub org](https://img.shields.io/badge/GitHub-Create--Node--App-black?style=flat-square&logo=github)](https://github.com/Create-Node-App)
+
 This is the official website for [Create Awesome Node App](https://www.npmjs.com/package/create-awesome-node-app), a tool that helps you quickly set up Node.js projects with best practices and modern tooling.
+
+## Project Links
+
+- [Official website](https://create-awesome-node-app.vercel.app)
+- [CLI package on npm](https://www.npmjs.com/package/create-awesome-node-app)
+- [Main Create-Node-App repository](https://github.com/Create-Node-App/create-node-app)
+- [Templates and extensions catalog](https://github.com/Create-Node-App/cna-templates)
+- [Create-Node-App GitHub organization](https://github.com/Create-Node-App)
 
 > [!TIP]
 > This project was initialized with [create-awesome-node-app](https://www.npmjs.com/package/create-awesome-node-app). **DO NOT USE THIS TEMPLATE DIRECTLY!** Instead, create your own project using the command and following the interactive menu options. For more information, refer to the documentation!
