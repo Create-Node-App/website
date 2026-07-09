@@ -74,9 +74,9 @@ export function ExtensionsPageClient() {
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1">
-        <div className="w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white py-3 relative overflow-hidden">
+        <div className="w-full bg-gradient-to-r from-amber-600 via-amber-500 to-teal-600 text-white py-3 relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] animate-pulse" />
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-indigo-500/20 to-blue-500/20 animate-gradient-x" />
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 via-teal-600/20 to-blue-500/20 animate-gradient-x" />
           <div className="container px-4 md:px-6 flex items-center justify-center gap-2 relative z-10">
             <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm border border-white/20">
               <Sparkles className="h-5 w-5 animate-pulse text-yellow-300" />
@@ -104,7 +104,7 @@ export function ExtensionsPageClient() {
           <div className="container px-4 md:px-6 relative z-10">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2 fade-in-up">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500 animate-gradient-text glow-text">
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-amber-500 animate-gradient-text glow-text">
                   Extensions
                 </h1>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -119,17 +119,17 @@ export function ExtensionsPageClient() {
                   <Input
                     type="search"
                     placeholder="Search extensions..."
-                    className="w-full bg-background/50 backdrop-blur-sm pl-8 border-indigo-500/20 focus:border-indigo-500/40 transition-all duration-300"
+                    className="w-full bg-background/50 backdrop-blur-sm pl-8 border-teal-600/20 focus:border-teal-600/40 transition-all duration-300"
                     value={searchQuery}
                     onChange={handleSearchChange}
                   />
                 </div>
                 <div className="flex gap-2">
                   <Select defaultValue={typeParam || 'all'} onValueChange={handleTypeChange}>
-                    <SelectTrigger className="w-[180px] bg-background/50 backdrop-blur-sm border-indigo-500/20 focus:border-indigo-500/40 transition-all duration-300">
+                    <SelectTrigger className="w-[180px] bg-background/50 backdrop-blur-sm border-teal-600/20 focus:border-teal-600/40 transition-all duration-300">
                       <SelectValue placeholder="Type" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background/80 backdrop-blur-sm border-indigo-500/20">
+                    <SelectContent className="bg-background/80 backdrop-blur-sm border-teal-600/20">
                       <SelectItem value="all">All Types</SelectItem>
                       {templateTypes.map((type) => (
                         <SelectItem key={type} value={type}>
@@ -141,7 +141,7 @@ export function ExtensionsPageClient() {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="bg-background/50 backdrop-blur-sm border-indigo-500/20 hover:bg-background/70 transition-all duration-300"
+                    className="bg-background/50 backdrop-blur-sm border-teal-600/20 hover:bg-background/70 transition-all duration-300"
                   >
                     <Filter className="h-4 w-4" />
                     <span className="sr-only">Filter</span>

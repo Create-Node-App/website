@@ -30,7 +30,7 @@ const features = [
 
 export function SaasAiBanner() {
   return (
-    <section className="w-full py-12 md:py-20 lg:py-28 relative overflow-hidden bg-gradient-to-br from-violet-950/80 via-indigo-950/80 to-slate-950">
+    <section className="w-full py-12 md:py-20 lg:py-28 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950/80">
       {/* Animated gradient overlay */}
       <div className="absolute inset-0 z-0 opacity-40">
         <AnimatedGradient />
@@ -47,14 +47,14 @@ export function SaasAiBanner() {
           {/* Left: content */}
           <div className="space-y-6">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-violet-400/30 bg-violet-500/10 px-4 py-1.5 text-sm font-medium text-violet-300 backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/10 px-4 py-1.5 text-sm font-medium text-amber-200 backdrop-blur-sm">
               <span>✨</span>
               <span>Flagship Template</span>
             </div>
 
             {/* Heading */}
             <div className="space-y-3">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-indigo-400 leading-tight">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-teal-300 leading-tight">
                 Next.js SaaS AI Starter
               </h2>
               <p className="text-lg text-slate-300 max-w-lg">
@@ -69,7 +69,7 @@ export function SaasAiBanner() {
                   key={label}
                   className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-200 backdrop-blur-sm hover:bg-white/10 transition-colors"
                 >
-                  <Icon className="h-3 w-3 text-violet-400 shrink-0" />
+                  <Icon className="h-3 w-3 text-amber-400 shrink-0" />
                   <span>{label}</span>
                 </div>
               ))}
@@ -79,7 +79,7 @@ export function SaasAiBanner() {
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white shadow-lg shadow-violet-900/40 transition-all duration-300"
+                className="bg-gradient-to-r from-amber-500 to-teal-600 hover:from-amber-400 hover:to-teal-500 text-white shadow-lg shadow-amber-900/40 transition-all duration-300"
                 asChild
               >
                 <Link href="/templates/nextjs-saas-ai-starter">Get Started →</Link>
@@ -87,7 +87,7 @@ export function SaasAiBanner() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-violet-400/30 bg-white/5 text-slate-200 hover:bg-white/10 hover:border-violet-400/50 backdrop-blur-sm transition-all duration-300"
+                className="border-amber-400/30 bg-white/5 text-slate-200 hover:bg-white/10 hover:border-amber-400/50 backdrop-blur-sm transition-all duration-300"
                 asChild
               >
                 <a
@@ -103,7 +103,7 @@ export function SaasAiBanner() {
 
           {/* Right: code block */}
           <div className="flex items-center justify-center">
-            <div className="w-full rounded-xl border border-violet-400/20 bg-slate-900/80 shadow-2xl shadow-violet-900/30 backdrop-blur-sm overflow-hidden">
+            <div className="w-full rounded-xl border border-amber-400/20 bg-slate-900/80 shadow-2xl shadow-amber-900/30 backdrop-blur-sm overflow-hidden">
               {/* Terminal bar */}
               <div className="flex items-center gap-2 border-b border-white/10 bg-slate-800/60 px-4 py-3">
                 <div className="h-3 w-3 rounded-full bg-red-500/80" />
@@ -113,16 +113,12 @@ export function SaasAiBanner() {
               </div>
               {/* Code */}
               <div className="p-6 font-mono text-sm leading-relaxed">
-                <p className="text-green-400">
-                  $ npx create-awesome-node-app my-saas \
-                </p>
+                <p className="text-green-400">$ npx create-awesome-node-app my-saas \</p>
                 <p className="text-slate-300 pl-4">--template nextjs-saas-ai-starter</p>
-                <p className="mt-4 text-slate-500">
-                  # ✅ Multi-tenant SaaS scaffold ready
-                </p>
+                <p className="mt-4 text-slate-500"># ✅ Multi-tenant SaaS scaffold ready</p>
                 <p className="text-slate-500"># ✅ Auth, DB, AI, RBAC — all configured</p>
                 <p className="text-slate-500"># ✅ Zero-config DevContainer included</p>
-                <p className="mt-4 animate-pulse text-violet-400">▊</p>
+                <p className="mt-4 animate-pulse text-amber-400">▊</p>
               </div>
             </div>
           </div>

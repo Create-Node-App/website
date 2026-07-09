@@ -36,7 +36,7 @@ export default function DocsPage() {
               extensions that help developers quickly bootstrap projects with best practices and optimal configurations.
             </p>
 
-            <Card className="bg-gradient-to-r from-purple-600/10 via-indigo-600/10 to-blue-600/10 border-purple-500/20 hover:border-purple-500/40 transition-colors">
+            <Card className="bg-gradient-to-r from-amber-500/10 via-amber-400/10 to-teal-600/10 border-amber-500/20 hover:border-amber-500/40 transition-colors">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Sparkles className="h-5 w-5 text-yellow-400" />
@@ -56,7 +56,7 @@ export default function DocsPage() {
                 <div className="flex flex-col gap-2 sm:flex-row">
                   <Button
                     variant="outline"
-                    className="bg-white/5 hover:bg-white/10 border-purple-500/20 hover:border-purple-500/40"
+                    className="bg-white/5 hover:bg-white/10 border-amber-500/20 hover:border-amber-500/40"
                     asChild
                   >
                     <Link href="/docs/agents-md" className="group">

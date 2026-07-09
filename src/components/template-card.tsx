@@ -13,12 +13,12 @@ export function TemplateCard({ template }: TemplateCardProps) {
     <Card className="flex flex-col h-full overflow-hidden border-primary/10 transition-all duration-300 cursor-pointer group gradient-border-subtle hover-raise bg-card/70 backdrop-blur-sm">
       <CardHeader className="pb-2">
         <div className="flex items-center gap-2 mb-2">
-          <div className="h-10 w-10 rounded-md bg-gradient-to-br from-primary/20 to-indigo-500/20 flex items-center justify-center group-hover:from-primary/40 group-hover:to-indigo-500/40 transition-all duration-300">
+          <div className="h-10 w-10 rounded-md bg-gradient-to-br from-primary/20 to-teal-600/20 flex items-center justify-center group-hover:from-primary/40 group-hover:to-teal-600/40 transition-all duration-300">
             <Package className="h-5 w-5 text-primary" />
           </div>
           <div className="text-xs font-medium text-muted-foreground">{template.category}</div>
         </div>
-        <CardTitle className="text-xl group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-indigo-500 transition-all duration-300">
+        <CardTitle className="text-xl group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-teal-600 transition-all duration-300">
           {template.name}
         </CardTitle>
         <CardDescription className="line-clamp-2">{template.description}</CardDescription>

@@ -20,7 +20,7 @@ export function AnimatedGradient({ className }: AnimatedGradientProps) {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let hue = 260; // Start with violet hue
+    let hue = 38; // Start with amber nest hue
 
     const resizeCanvas = () => {
       const { width, height } = canvas.getBoundingClientRect();
@@ -33,10 +33,10 @@ export function AnimatedGradient({ className }: AnimatedGradientProps) {
     const createGradient = (x: number, y: number) => {
       const gradient = ctx.createRadialGradient(x, y, 0, x, y, Math.max(canvas.width, canvas.height) * 0.5);
 
-      // Use hues in the violet/indigo range (260-290)
-      gradient.addColorStop(0, `hsla(${hue}, 100%, 60%, 0.4)`);
-      gradient.addColorStop(0.5, `hsla(${(hue + 15) % 360}, 100%, 50%, 0.2)`);
-      gradient.addColorStop(1, 'hsla(260, 80%, 10%, 0)');
+      // Amber → teal nest range
+      gradient.addColorStop(0, `hsla(${hue}, 92%, 50%, 0.35)`);
+      gradient.addColorStop(0.5, `hsla(${(hue + 140) % 360}, 70%, 40%, 0.18)`);
+      gradient.addColorStop(1, 'hsla(222, 47%, 11%, 0)');
 
       return gradient;
     };
@@ -70,8 +70,8 @@ export function AnimatedGradient({ className }: AnimatedGradientProps) {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       });
 
-      // Slowly shift the hue
-      hue = (hue + 0.1) % 360;
+      // Slowly oscillate between amber and teal
+      hue = 38 + Math.sin(Date.now() * 0.0003) * 20;
 
       animationFrameId = requestAnimationFrame(render);
     };

@@ -21,7 +21,7 @@ export default function AgentsMdPage() {
           <div className="container relative z-10 px-4 md:px-6">
             <div className="flex flex-col items-center text-center space-y-4">
               <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 animate-gradient-text">
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-teal-600 animate-gradient-text">
                   AGENTS.md Contract
                 </h1>
                 <p className="max-w-2xl text-muted-foreground md:text-lg">
