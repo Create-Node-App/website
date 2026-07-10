@@ -4,6 +4,8 @@
 APPLY_FIXES: none
 SHOW_ELAPSED_TIME: true
 PRINT_ALL_FILES: false
+# Always lint the full tree so PR and main use the same gate.
+VALIDATE_ALL_CODEBASE: true
 FILTER_REGEX_EXCLUDE: (pnpm-lock\.yaml|megalinter-reports/|node_modules/|\.next/|tools/danger/package-lock\.json)
 
 DISABLE_LINTERS:
