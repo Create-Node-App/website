@@ -46,7 +46,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
+    # Run on non-draft PRs and on pushes to main so the default branch stays green.
+    if: >-
+      (github.event_name == 'pull_request' && github.event.pull_request.draft == false) ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/main')
 
     # Give the default GITHUB_TOKEN write permission to commit and push, comment
     # issues, and post new Pull Requests; remove the ones you do not need
