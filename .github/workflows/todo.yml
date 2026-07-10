@@ -6,6 +6,10 @@ on:
     branches:
       - main
 
+# Restrict default token; elevate only on the job that opens/updates issues.
+permissions:
+  contents: read
+
 jobs:
   todo:
     runs-on: ubuntu-latest
@@ -34,7 +38,7 @@ jobs:
       - name: Commit and Push Changes
         run: |
           git add -A
-          if [[ `git status --porcelain` ]]; then
+          if [[ $(git status --porcelain) ]]; then
             git commit -m "Automatically added GitHub issue links to TODOs"
             git push origin main
           else

@@ -36,6 +36,10 @@ concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
 
+# Restrict default token; elevate only on the MegaLinter job that needs writes.
+permissions:
+  contents: read
+
 jobs:
   megalinter:
     name: MegaLinter
