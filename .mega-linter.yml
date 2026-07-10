@@ -1,0 +1,27 @@
+# MegaLinter configuration for the Create Node App website
+# https://megalinter.io/latest/config-file/
+
+APPLY_FIXES: none
+SHOW_ELAPSED_TIME: true
+PRINT_ALL_FILES: false
+FILTER_REGEX_EXCLUDE: (pnpm-lock\.yaml|megalinter-reports/|node_modules/|\.next/|tools/danger/package-lock\.json)
+
+# Keep the javascript flavor defaults, but tune noisy scanners.
+DISABLE_LINTERS:
+  # SBOM generation is informational; keep trivy vuln scan as the gate.
+  - REPOSITORY_TRIVY_SBOM
+  - REPOSITORY_SYFT
+  # Grype duplicates Trivy on the same lockfile; one vuln gate is enough.
+  - REPOSITORY_GRYPE
+
+# Project-local configs
+COPYPASTE_JSCPD_CONFIG_FILE: .jscpd.json
+SPELL_CSPELL_CONFIG_FILE: .cspell.json
+REPOSITORY_CHECKOV_CONFIG_FILE: .checkov.yml
+
+# Trivy: fail only on HIGH/CRITICAL with available fixes.
+REPOSITORY_TRIVY_ARGUMENTS: >-
+  --scanners vuln,misconfig
+  --severity HIGH,CRITICAL
+  --ignore-unfixed
+  --exit-code 1

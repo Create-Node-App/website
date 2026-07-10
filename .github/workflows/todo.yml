@@ -6,6 +6,10 @@ on:
     branches:
       - main
 
+# Restrict default token; elevate only on the job that opens/updates issues.
+permissions:
+  contents: read
+
 jobs:
   todo:
     runs-on: ubuntu-latest
