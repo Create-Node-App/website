@@ -18,15 +18,15 @@ const recipes = [
     description: 'Next.js with Auth.js and Drizzle for a production app foundation.',
     icon: Workflow,
     command:
-      'npm create awesome-node-app@latest my-app -- --template nextjs-boilerplate --addons authjs drizzle --no-interactive',
-    href: '/templates/nextjs-boilerplate',
+      'npm create awesome-node-app@latest my-app -- --template nextjs-starter --addons nextjs-auth nextjs-drizzle-postgres --no-interactive',
+    href: '/templates/nextjs-starter',
   },
   {
     title: 'API platform',
     description: 'NestJS with Docker and GitHub Actions for a shippable backend.',
     icon: Server,
     command:
-      'npm create awesome-node-app@latest my-api -- --template nestjs-boilerplate --addons docker-compose github-actions --no-interactive',
+      'npm create awesome-node-app@latest my-api -- --template nestjs-boilerplate --addons docker-compose-setup github-setup --no-interactive',
     href: '/templates/nestjs-boilerplate',
   },
   {

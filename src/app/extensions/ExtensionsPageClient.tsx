@@ -76,7 +76,7 @@ export function ExtensionsPageClient() {
       <main className="flex-1">
         <div className="w-full bg-gradient-to-r from-amber-600 via-amber-500 to-teal-600 text-white py-3 relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] animate-pulse" />
-          <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 via-teal-600/20 to-blue-500/20 animate-gradient-x" />
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 via-amber-400/15 to-teal-500/20 animate-gradient-x" />
           <div className="container px-4 md:px-6 flex items-center justify-center gap-2 relative z-10">
             <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm border border-white/20">
               <Sparkles className="h-5 w-5 animate-pulse text-yellow-300" />
