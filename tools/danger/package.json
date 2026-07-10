@@ -17,9 +17,12 @@
   },
   "homepage": "https://github.com/Create-Node-App/create-node-app#readme",
   "dependencies": {
-    "danger": "^12.3.4"
+    "danger": "^13.0.10"
   },
   "devDependencies": {
-    "typescript": "^5.5.4"
+    "typescript": "^5.8.2"
+  },
+  "overrides": {
+    "undici": ">=6.27.0"
   }
 }
