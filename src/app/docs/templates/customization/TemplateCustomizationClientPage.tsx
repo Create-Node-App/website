@@ -101,7 +101,7 @@ export default function TemplateCustomizationClientPage() {
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    
+
     /* Paths */
     "baseUrl": ".",
     "paths": {
@@ -123,9 +123,9 @@ export default function TemplateCustomizationClientPage() {
                       <pre className="text-sm overflow-x-auto">
                         {`{
   "root": true,
-  "env": { 
-    "browser": true, 
-    "es2020": true 
+  "env": {
+    "browser": true,
+    "es2020": true
   },
   "extends": [
     "eslint:recommended",
@@ -455,13 +455,13 @@ const nextConfig = {
       resourceRegExp: /^\.\/locale$/,
       contextRegExp: /moment$/,
     }))
-    
+
     // Add a custom loader
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     })
-    
+
     return config
   },
 }
