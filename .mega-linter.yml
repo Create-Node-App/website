@@ -14,14 +14,17 @@ DISABLE_LINTERS:
   - REPOSITORY_SYFT
   # Grype duplicates Trivy on the same lockfile; one vuln gate is enough.
   - REPOSITORY_GRYPE
-  # Project uses Tailwind + ESLint flat config, not these MegaLinter defaults.
+  # Project uses Tailwind utilities; MegaLinter stylelint has no Tailwind plugin.
   - CSS_STYLELINT
-  - TYPESCRIPT_TS_STANDARD
   # External link checkers are flaky in CI (npmjs 403, cert/network noise).
   - SPELL_LYCHEE
   - MARKDOWN_MARKDOWN_LINK_CHECK
   # Schema store has no checkov schema; empty assignees fail issue-form schemas.
   - YAML_V8R
+
+# TypeScript is linted by the repo ESLint/Next CI jobs, not MegaLinter ts-standard.
+DISABLE:
+  - TYPESCRIPT
 
 # Project-local configs
 COPYPASTE_JSCPD_CONFIG_FILE: .jscpd.json
