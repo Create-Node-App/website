@@ -194,8 +194,8 @@ export default function TemplateExtensionPage({
                       <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto shimmer">
                         <p>
                           <span className="text-green-500">$ npx create-awesome-node-app</span>{' '}
-                          <span className="whitespace-nowrap">--template {template.slug}</span>{' '}
-                          <span className="whitespace-nowrap">--addons {extension.slug}</span>
+                          <span className="break-all">--template {template.slug}</span>{' '}
+                          <span className="break-all">--addons {extension.slug}</span>
                         </p>
                       </div>
 
@@ -293,8 +293,8 @@ export default function TemplateExtensionPage({
                     <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto mb-4">
                       <p>
                         <span className="text-green-500">$ npx create-awesome-node-app</span>{' '}
-                        <span className="whitespace-nowrap">--template {template.slug}</span>{' '}
-                        <span className="whitespace-nowrap">--addons {extension.slug}</span>
+                        <span className="break-all">--template {template.slug}</span>{' '}
+                        <span className="break-all">--addons {extension.slug}</span>
                       </p>
                     </div>
                   </CardContent>

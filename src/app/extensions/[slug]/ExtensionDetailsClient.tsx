@@ -204,21 +204,21 @@ export function ExtensionDetailsClient({ extension, compatibleTemplates }: Exten
                   <CardTitle>Extension Details</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Compatible with</span>
-                    <span className="font-medium">
+                  <div className="flex flex-col gap-1 sm:flex-row sm:justify-between sm:gap-4">
+                    <span className="text-muted-foreground shrink-0">Compatible with</span>
+                    <span className="font-medium min-w-0 break-words sm:text-right">
                       {Array.isArray(extension.type) ? extension.type.join(', ') : extension.type}
                     </span>
                   </div>
                   <Separator />
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Category</span>
-                    <span className="font-medium">{extension.category}</span>
+                  <div className="flex flex-col gap-1 sm:flex-row sm:justify-between sm:gap-4">
+                    <span className="text-muted-foreground shrink-0">Category</span>
+                    <span className="font-medium min-w-0 break-words sm:text-right">{extension.category}</span>
                   </div>
                   <Separator />
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Compatible Templates</span>
-                    <span className="font-medium">{compatibleTemplates.length}</span>
+                  <div className="flex flex-col gap-1 sm:flex-row sm:justify-between sm:gap-4">
+                    <span className="text-muted-foreground shrink-0">Compatible Templates</span>
+                    <span className="font-medium sm:text-right">{compatibleTemplates.length}</span>
                   </div>
                 </CardContent>
               </Card>

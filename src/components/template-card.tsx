@@ -18,10 +18,10 @@ export function TemplateCard({ template }: TemplateCardProps) {
           </div>
           <div className="text-xs font-medium text-muted-foreground">{template.category}</div>
         </div>
-        <CardTitle className="text-xl group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-teal-600 transition-all duration-300">
+        <CardTitle className="text-xl leading-snug group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-teal-600 transition-all duration-300">
           {template.name}
         </CardTitle>
-        <CardDescription className="line-clamp-2">{template.description}</CardDescription>
+        <CardDescription className="line-clamp-3">{template.description}</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pt-2">
         <div className="flex flex-wrap gap-1">

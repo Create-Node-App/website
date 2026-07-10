@@ -112,7 +112,7 @@ export function SaasAiBanner() {
                 <span className="ml-3 text-xs text-slate-400 font-mono">terminal</span>
               </div>
               {/* Code */}
-              <div className="p-6 font-mono text-sm leading-relaxed">
+              <div className="p-4 sm:p-6 font-mono text-sm leading-relaxed overflow-x-auto">
                 <p className="text-green-400">$ npx create-awesome-node-app my-saas \</p>
                 <p className="text-slate-300 pl-4">--template nextjs-saas-ai-starter</p>
                 <p className="mt-4 text-slate-500"># ✅ Multi-tenant SaaS scaffold ready</p>

@@ -7,7 +7,7 @@ import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 const bannerVariants = cva(
-  'relative overflow-hidden w-full flex items-center justify-center px-4 md:px-6 py-3 text-sm md:text-base font-medium',
+  'relative w-full flex items-center justify-center px-4 md:px-6 py-3 text-sm md:text-base font-medium',
   {
     variants: {
       variant: {
@@ -36,7 +36,7 @@ export interface AnnouncementBannerProps extends VariantProps<typeof bannerVaria
 }
 
 export function AnnouncementBanner({
-  icon = <Sparkles className="h-5 w-5 text-yellow-300" />,
+  icon = <Sparkles className="h-5 w-5 shrink-0 text-yellow-300" />,
   label = 'NEW',
   message,
   ctaHref,
@@ -47,7 +47,7 @@ export function AnnouncementBanner({
 }: AnnouncementBannerProps) {
   return (
     <div className={cn(bannerVariants({ variant, size }), className)}>
-      <div className="absolute inset-0 pointer-events-none select-none">
+      <div className="absolute inset-0 pointer-events-none select-none overflow-hidden" aria-hidden>
         {variant === 'gradient' && (
           <>
             <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-40 [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
@@ -55,18 +55,18 @@ export function AnnouncementBanner({
           </>
         )}
       </div>
-      <div className="relative z-10 flex items-center gap-2">
+      <div className="relative z-10 flex max-w-6xl flex-wrap items-center justify-center gap-x-2 gap-y-2 text-center sm:text-left">
         {icon}
         {label && (
-          <span className="font-semibold bg-gradient-to-r from-yellow-300 to-yellow-100 bg-clip-text text-transparent tracking-wide">
+          <span className="shrink-0 font-semibold bg-gradient-to-r from-yellow-300 to-yellow-100 bg-clip-text text-transparent tracking-wide">
             {label}
           </span>
         )}
-        <span className="text-balance flex items-center gap-1">{message}</span>
+        <span className="min-w-0 text-balance">{message}</span>
         {ctaHref && (
           <Link
             href={ctaHref}
-            className="ml-2 inline-flex items-center gap-1 underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors group"
+            className="inline-flex shrink-0 items-center gap-1 underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors group"
           >
             {ctaLabel}
             <svg
