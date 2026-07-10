@@ -74,17 +74,19 @@ export function ExtensionsPageClient() {
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1">
-        <div className="w-full bg-gradient-to-r from-amber-600 via-amber-500 to-teal-600 text-white py-3 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] animate-pulse" />
-          <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 via-amber-400/15 to-teal-500/20 animate-gradient-x" />
-          <div className="container px-4 md:px-6 flex items-center justify-center gap-2 relative z-10">
-            <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm border border-white/20">
+        <div className="w-full bg-gradient-to-r from-amber-600 via-amber-500 to-teal-600 text-white py-3 relative">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
+            <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] animate-pulse" />
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 via-amber-400/15 to-teal-500/20 animate-gradient-x" />
+          </div>
+          <div className="container px-4 md:px-6 flex flex-wrap items-center justify-center gap-2 relative z-10 text-center">
+            <div className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm border border-white/20 shrink-0">
               <Sparkles className="h-5 w-5 animate-pulse text-yellow-300" />
               <span className="font-semibold bg-gradient-to-r from-yellow-300 to-yellow-100 bg-clip-text text-transparent">
                 NEW
               </span>
             </div>
-            <span className="text-sm md:text-base">
+            <span className="text-sm md:text-base min-w-0 text-balance">
               Built-in AGENTS.md contract for AI assistance!
               <Link
                 href="/docs/agents-md"
@@ -114,7 +116,7 @@ export function ExtensionsPageClient() {
             </div>
             <div className="mx-auto max-w-5xl py-8 fade-in-up-delay-1">
               <div className="flex flex-col gap-4 md:flex-row">
-                <div className="relative flex-1">
+                <div className="relative flex-1 min-w-0">
                   <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                   <Input
                     type="search"
@@ -124,9 +126,9 @@ export function ExtensionsPageClient() {
                     onChange={handleSearchChange}
                   />
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 w-full md:w-auto">
                   <Select defaultValue={typeParam || 'all'} onValueChange={handleTypeChange}>
-                    <SelectTrigger className="w-[180px] bg-background/50 backdrop-blur-sm border-teal-600/20 focus:border-teal-600/40 transition-all duration-300">
+                    <SelectTrigger className="w-full md:w-[180px] bg-background/50 backdrop-blur-sm border-teal-600/20 focus:border-teal-600/40 transition-all duration-300">
                       <SelectValue placeholder="Type" />
                     </SelectTrigger>
                     <SelectContent className="bg-background/80 backdrop-blur-sm border-teal-600/20">

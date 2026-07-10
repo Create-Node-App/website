@@ -219,19 +219,19 @@ export function TemplateDetailsClient({ template, compatibleExtensions }: Templa
                   <CardTitle>Template Details</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Type</span>
-                    <span className="font-medium">{template.type}</span>
+                  <div className="flex flex-col gap-1 sm:flex-row sm:justify-between sm:gap-4">
+                    <span className="text-muted-foreground shrink-0">Type</span>
+                    <span className="font-medium min-w-0 break-words sm:text-right">{template.type}</span>
                   </div>
                   <Separator />
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Category</span>
-                    <span className="font-medium">{template.category}</span>
+                  <div className="flex flex-col gap-1 sm:flex-row sm:justify-between sm:gap-4">
+                    <span className="text-muted-foreground shrink-0">Category</span>
+                    <span className="font-medium min-w-0 break-words sm:text-right">{template.category}</span>
                   </div>
                   <Separator />
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Compatible Extensions</span>
-                    <span className="font-medium">{compatibleExtensions.length}</span>
+                  <div className="flex flex-col gap-1 sm:flex-row sm:justify-between sm:gap-4">
+                    <span className="text-muted-foreground shrink-0">Compatible Extensions</span>
+                    <span className="font-medium sm:text-right">{compatibleExtensions.length}</span>
                   </div>
                 </CardContent>
               </Card>

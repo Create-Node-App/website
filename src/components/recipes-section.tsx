@@ -62,13 +62,13 @@ export function RecipesSection() {
                 className="flex flex-col border-primary/10 bg-card/80 backdrop-blur gradient-border-subtle hover-raise"
               >
                 <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-md bg-gradient-to-br from-amber-500/20 to-teal-600/20 flex items-center justify-center">
+                  <div className="flex items-start gap-3">
+                    <div className="h-10 w-10 shrink-0 rounded-md bg-gradient-to-br from-amber-500/20 to-teal-600/20 flex items-center justify-center">
                       <Icon className="h-5 w-5 text-primary" />
                     </div>
-                    <div>
-                      <CardTitle className="text-xl">{recipe.title}</CardTitle>
-                      <CardDescription>{recipe.description}</CardDescription>
+                    <div className="min-w-0">
+                      <CardTitle className="text-xl leading-snug">{recipe.title}</CardTitle>
+                      <CardDescription className="mt-1">{recipe.description}</CardDescription>
                     </div>
                   </div>
                 </CardHeader>

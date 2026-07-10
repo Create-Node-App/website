@@ -26,10 +26,10 @@ export function ExtensionCard({ extension, templateSlug }: ExtensionCardProps) {
             </div>
             <div className="text-xs font-medium text-muted-foreground">{extension.category}</div>
           </div>
-          <CardTitle className="text-xl group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-teal-600 group-hover:to-amber-500 transition-all duration-300">
+          <CardTitle className="text-xl leading-snug group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-teal-600 group-hover:to-amber-500 transition-all duration-300">
             {extension.name}
           </CardTitle>
-          <CardDescription className="line-clamp-2">{extension.description}</CardDescription>
+          <CardDescription className="line-clamp-3">{extension.description}</CardDescription>
         </CardHeader>
         <CardContent className="flex-1 pt-2">
           <div className="flex flex-wrap gap-1">
@@ -49,8 +49,11 @@ export function ExtensionCard({ extension, templateSlug }: ExtensionCardProps) {
             )}
           </div>
         </CardContent>
-        <CardFooter className="text-xs text-muted-foreground">
-          Compatible with: {Array.isArray(extension.type) ? extension.type.join(', ') : extension.type}
+        <CardFooter className="flex flex-wrap items-start gap-x-1 gap-y-1 text-xs text-muted-foreground">
+          <span className="shrink-0">Compatible with:</span>
+          <span className="min-w-0 break-words">
+            {Array.isArray(extension.type) ? extension.type.join(', ') : extension.type}
+          </span>
         </CardFooter>
       </Card>
     </Link>
