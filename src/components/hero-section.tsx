@@ -41,8 +41,8 @@ export function HeroSection({
       </div>
       {glow && (
         <div className="pointer-events-none absolute inset-0 -z-10 mix-blend-screen opacity-30">
-          <div className="absolute -top-40 left-1/3 h-96 w-96 rounded-full bg-[hsl(var(--primary)/0.5)] blur-[130px]" />
-          <div className="absolute top-20 right-1/4 h-72 w-72 rounded-full bg-[hsl(280_83%_60%/.35)] blur-[110px]" />
+          <div className="absolute -top-40 left-1/3 h-96 w-96 rounded-full bg-[hsl(var(--primary)/0.45)] blur-[130px]" />
+          <div className="absolute top-20 right-1/4 h-72 w-72 rounded-full bg-[hsl(var(--brand-teal)/0.35)] blur-[110px]" />
         </div>
       )}
       <div className={cn('container relative', containerClassName)}>

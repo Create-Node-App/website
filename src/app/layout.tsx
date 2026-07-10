@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: '%s | Create Awesome Node App',
   },
   description:
-    'Discover production-ready templates and extensions to jumpstart your next Node.js project. Combine starters and add-ons to build faster.',
+    'One command. Any stack. Choose a template, add addons, and ship production-ready Node, Web, and AI-ready apps.',
   keywords: [
     'node templates',
     'node.js starter',
@@ -29,8 +29,7 @@ export const metadata: Metadata = {
   publisher: 'Create Awesome Node App',
   openGraph: {
     title: 'Create Awesome Node App',
-    description:
-      'Explore curated templates & extensions for building modern Node.js applications quickly and reliably.',
+    description: 'One command. Any stack. Compose templates and addons into production-ready Node.js apps.',
     url: siteUrl,
     siteName: 'Create Awesome Node App',
     images: [
@@ -75,6 +74,7 @@ export const metadata: Metadata = {
   category: 'technology',
   icons: {
     icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
       { url: '/favicon.ico' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },

@@ -41,7 +41,7 @@ export function SiteHeader({ onOpenCommand }: { onOpenCommand?: () => void }) {
     >
       <div className="container flex h-16 items-center gap-4">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="h-8 w-12 rounded-md bg-gradient-to-br from-primary to-indigo-500 flex items-center justify-center text-white font-bold shadow-sm group-hover:shadow-md transition-shadow">
+          <div className="h-8 w-12 rounded-md bg-gradient-to-br from-primary to-teal-600 flex items-center justify-center text-white font-bold shadow-sm group-hover:shadow-md transition-shadow">
             CNA
           </div>
           <span className="hidden font-semibold sm:inline-block tracking-tight">Create Awesome Node App</span>
@@ -60,7 +60,7 @@ export function SiteHeader({ onOpenCommand }: { onOpenCommand?: () => void }) {
               >
                 <span>{item.label}</span>
                 {active && (
-                  <span className="absolute left-1/2 -bottom-px h-[2px] w-8 -translate-x-1/2 rounded-full bg-gradient-to-r from-primary to-indigo-500" />
+                  <span className="absolute left-1/2 -bottom-px h-[2px] w-8 -translate-x-1/2 rounded-full bg-gradient-to-r from-primary to-teal-600" />
                 )}
               </Link>
             );

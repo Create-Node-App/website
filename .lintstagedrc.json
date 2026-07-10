@@ -1,4 +1,4 @@
 {
-  "*.{js,jsx,ts,tsx}": ["pnpm run lint:fix"],
+  "*.{js,jsx,ts,tsx}": ["eslint --fix --max-warnings=0"],
   "*": ["prettier -u --write"]
 }

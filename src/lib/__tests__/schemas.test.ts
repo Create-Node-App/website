@@ -1,10 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import {
-  templateSchema,
-  extensionSchema,
-  categorySchema,
-  templatesDataSchema,
-} from '../schemas';
+import { describe, expect, it } from 'vitest';
+import { categorySchema, extensionSchema, templateSchema, templatesDataSchema } from '../schemas';
 
 describe('categorySchema', () => {
   it('should validate a valid category', () => {

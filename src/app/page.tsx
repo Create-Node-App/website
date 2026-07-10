@@ -1,119 +1,126 @@
-import { ArrowRight, Bot, Code, Package } from 'lucide-react';
+import { ArrowRight, Layers, Puzzle, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { AnimatedGradient } from '@/components/animated-gradient';
 import { AnnouncementBanner } from '@/components/announcement-banner';
+import { ContributorsSection } from '@/components/contributors-section';
+import { CopyButton } from '@/components/copy-button';
 import { FeaturedTemplate } from '@/components/featured-template';
 import { HeroSection } from '@/components/hero-section';
-import { ParticlesBackground } from '@/components/particles-background';
+import { RecipesSection } from '@/components/recipes-section';
 import { SaasAiBanner } from '@/components/saas-ai-banner';
 import { TemplateCategories } from '@/components/template-categories';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { getTemplatesData } from '@/lib/data';
 
+const PRIMARY_COMMAND = 'npm create awesome-node-app@latest my-app';
+
 export default async function Home() {
   const { templates, categories } = await getTemplatesData();
 
-  // Show SaaS AI Starter first, then fill remaining slots with other templates
-  const saasTemplate = templates.find(t => t.slug === 'nextjs-saas-ai-starter');
-  const otherTemplates = templates.filter(t => t.slug !== 'nextjs-saas-ai-starter');
-  const featuredTemplates = saasTemplate
-    ? [saasTemplate, ...otherTemplates].slice(0, 3)
-    : templates.slice(0, 3);
+  const saasTemplate = templates.find((t) => t.slug === 'nextjs-saas-ai-starter');
+  const otherTemplates = templates.filter((t) => t.slug !== 'nextjs-saas-ai-starter');
+  const featuredTemplates = saasTemplate ? [saasTemplate, ...otherTemplates].slice(0, 3) : templates.slice(0, 3);
 
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1">
         <AnnouncementBanner
           message={
-            <>
-              🚀 New: NextJS SaaS AI Starter — Multi-tenant SaaS with AI, Auth.js v5, Drizzle ORM + pgvector, PBAC &amp; more!
-            </>
+            <>New: Next.js SaaS AI Starter — multi-tenant SaaS with AI, Auth.js v5, Drizzle + pgvector, and more.</>
           }
           ctaHref="/templates/nextjs-saas-ai-starter"
           ctaLabel="Explore template"
         />
         <HeroSection
-          title={<span>Create Awesome Node App</span>}
-          description={
-            'Discover templates and extensions to jumpstart your next project. Mix and match to create the perfect foundation.'
+          title={
+            <>
+              One command.
+              <br />
+              Any stack.
+            </>
           }
+          description="Choose a template, add addons, and ship a production-ready Node, Web, or AI-ready app from a cozy developer workbench."
           actions={
             <>
-              <Button
+              <CopyButton
+                command={PRIMARY_COMMAND}
                 size="lg"
-                className="bg-gradient-to-r from-primary to-indigo-500 hover:from-primary/90 hover:to-indigo-500/90 glow transition-all duration-300"
-                asChild
-              >
-                <Link href="/templates">
-                  Explore Templates
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+                className="bg-gradient-to-r from-primary to-teal-600 hover:from-primary/90 hover:to-teal-600/90 glow transition-all duration-300 text-primary-foreground"
+              />
               <Button
                 size="lg"
                 variant="outline"
                 className="backdrop-blur-sm bg-background/30 border-primary/20 hover:bg-background/50 transition-all duration-300"
                 asChild
               >
-                <Link href="/extensions">Browse Extensions</Link>
+                <Link href="/templates">Explore templates</Link>
               </Button>
             </>
           }
           sideVisual={
-            <div className="relative w-full h-[350px] perspective-800">
-              <div className="absolute inset-0 flex items-center justify-center translate-x-20 -translate-y-6">
-                <div className="w-60 h-60 bg-gradient-to-br from-primary/30 to-indigo-500/30 rounded-xl backdrop-blur-sm border border-primary/30 shadow-xl rotate-3 transform-gpu transition-transform duration-500 hover:rotate-6 hover:scale-105 floating">
-                  <div className="p-5 h-full flex flex-col">
-                    <Code className="h-7 w-7 text-primary mb-3" />
-                    <h3 className="text-base font-semibold">React Vite</h3>
-                    <p className="text-xs text-muted-foreground mt-2">Modern React setup with Vite, TypeScript</p>
+            <Card className="w-full max-w-md backdrop-blur-sm bg-card/70 border-primary/15 gradient-border-subtle elevation-md">
+              <CardHeader>
+                <CardTitle className="text-xl">Compose your app</CardTitle>
+                <CardDescription>Template → addons → ship</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-start gap-3 rounded-lg border border-border/60 bg-muted/40 p-3">
+                  <Layers className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                  <div>
+                    <p className="font-medium text-sm">Pick a template</p>
+                    <p className="text-xs text-muted-foreground">React, Next.js, NestJS, Astro, and more</p>
                   </div>
                 </div>
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-60 h-60 bg-gradient-to-br from-amber-500/30 to-orange-500/30 rounded-xl backdrop-blur-sm border border-amber-500/30 shadow-xl transform-gpu transition-transform duration-500 hover:scale-105 floating-delay">
-                  <div className="p-5 h-full flex flex-col">
-                    <Bot className="h-7 w-7 text-amber-400 mb-3" />
-                    <h3 className="text-base font-semibold">SaaS AI Starter</h3>
-                    <p className="text-xs text-muted-foreground mt-2">Multi-tenant SaaS with AI &amp; Auth</p>
-                    <span className="mt-auto inline-flex items-center rounded-full bg-amber-500/20 px-2 py-0.5 text-xs font-medium text-amber-400 w-fit">
-                      🤖 AI
-                    </span>
+                <div className="flex items-start gap-3 rounded-lg border border-border/60 bg-muted/40 p-3">
+                  <Puzzle className="h-5 w-5 text-teal-600 dark:text-teal-400 mt-0.5 shrink-0" />
+                  <div>
+                    <p className="font-medium text-sm">Add addons</p>
+                    <p className="text-xs text-muted-foreground">Tailwind, Auth, Drizzle, Docker, CI, AI helpers</p>
                   </div>
                 </div>
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center -translate-x-20 translate-y-6">
-                <div className="w-60 h-60 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-xl backdrop-blur-sm border border-purple-500/30 shadow-xl -rotate-3 transform-gpu transition-transform duration-500 hover:-rotate-6 hover:scale-105 floating-slow">
-                  <div className="p-5 h-full flex flex-col">
-                    <Package className="h-7 w-7 text-purple-400 mb-3" />
-                    <h3 className="text-base font-semibold">NestJS API</h3>
-                    <p className="text-xs text-muted-foreground mt-2">Enterprise-ready Node.js server</p>
+                <div className="flex items-start gap-3 rounded-lg border border-border/60 bg-muted/40 p-3">
+                  <Sparkles className="h-5 w-5 text-amber-500 mt-0.5 shrink-0" />
+                  <div>
+                    <p className="font-medium text-sm">Ship AI-ready</p>
+                    <p className="text-xs text-muted-foreground">
+                      AGENTS.md and conventions included when you need them
+                    </p>
                   </div>
                 </div>
-              </div>
-              <ParticlesBackground className="opacity-40" particleCount={40} speed={0.4} />
-            </div>
+                <div className="bg-muted rounded-md p-3 font-mono text-xs sm:text-sm overflow-x-auto">
+                  <p className="text-teal-700 dark:text-teal-300">$ {PRIMARY_COMMAND}</p>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button variant="ghost" className="w-full justify-between" asChild>
+                  <Link href="/extensions">
+                    Browse extensions
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
           }
         />
 
         <SaasAiBanner />
 
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/40 relative overflow-hidden">
-          <div className="absolute inset-0 z-0 opacity-50">
+          <div className="absolute inset-0 z-0 opacity-40">
             <AnimatedGradient />
           </div>
           <div className="container px-4 md:px-6 relative z-10">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm backdrop-blur-sm">
-                  Featured Templates
+                  Featured templates
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 glow-text">
-                  Start with the Best
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-teal-600">
+                  Start with a solid foundation
                 </h2>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Our most popular templates to kickstart your development
+                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed">
+                  Curated starters for frontend, full-stack, and SaaS — not a dump of every option.
                 </p>
               </div>
             </div>
@@ -145,7 +152,7 @@ export default async function Home() {
                 asChild
               >
                 <Link href="/templates">
-                  View All Templates
+                  View all templates
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -153,16 +160,18 @@ export default async function Home() {
           </div>
         </section>
 
+        <RecipesSection />
+
         <section className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
           <div className="container px-4 md:px-6 relative z-10">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Categories</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 glow-text">
-                  Find Your Perfect Stack
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-teal-600">
+                  Find your stack
                 </h2>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Browse templates by category to find exactly what you need
+                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed">
+                  Browse by category when you already know the shape of the project.
                 </p>
               </div>
             </div>
@@ -173,7 +182,7 @@ export default async function Home() {
         </section>
 
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/40 relative overflow-hidden">
-          <div className="absolute inset-0 z-0 opacity-50">
+          <div className="absolute inset-0 z-0 opacity-40">
             <AnimatedGradient />
           </div>
           <div className="container px-4 md:px-6 relative z-10">
@@ -181,13 +190,14 @@ export default async function Home() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm backdrop-blur-sm">
-                    How It Works
+                    How it works
                   </div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 glow-text">
-                    Build Your App in Minutes
+                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-teal-600">
+                    Compose, then generate
                   </h2>
-                  <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    Select a template, add extensions, and generate your project with a single command.
+                  <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed">
+                    Select a template, add extensions, and generate your project with a single command — interactive or
+                    headless for CI.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -197,29 +207,33 @@ export default async function Home() {
                     asChild
                   >
                     <Link href="/docs">
-                      Read the Docs
+                      Read the docs
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                <Card className="w-full backdrop-blur-sm bg-card/50 border-primary/10 gradient-border shimmer">
+                <Card className="w-full backdrop-blur-sm bg-card/50 border-primary/10 gradient-border-subtle">
                   <CardHeader>
-                    <CardTitle>Create Your Project</CardTitle>
+                    <CardTitle>Create your project</CardTitle>
                     <CardDescription>Use the CLI to generate your app</CardDescription>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="space-y-3">
                     <div className="bg-muted rounded-md p-4 font-mono text-sm overflow-x-auto">
-                      <p className="text-green-500">$ npx create-awesome-node-app my-app \</p>
+                      <p className="text-teal-700 dark:text-teal-300">$ npm create awesome-node-app@latest my-app \</p>
                       <p className="pl-4">--template react-vite-boilerplate \</p>
-                      <p className="pl-4">--addons material-ui github-setup</p>
+                      <p className="pl-4">--addons tailwind-css zustand github-setup</p>
                     </div>
+                    <CopyButton
+                      command="npm create awesome-node-app@latest my-app -- --template react-vite-boilerplate --addons tailwind-css zustand github-setup --no-interactive"
+                      variant="outline"
+                      className="w-full"
+                    />
                   </CardContent>
                   <CardFooter>
                     <p className="text-sm text-muted-foreground">
-                      This will create a React app with Material UI, GitHub setup, and an autogenerated AGENTS.md
-                      contract for AI assistants
+                      Generates a React app with Tailwind, Zustand, GitHub setup, and AI-ready conventions when enabled.
                     </p>
                   </CardFooter>
                 </Card>
@@ -228,38 +242,32 @@ export default async function Home() {
           </div>
         </section>
 
+        <ContributorsSection />
+
         <section className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <ParticlesBackground particleCount={30} speed={0.3} />
-          </div>
           <div className="container px-4 md:px-6 relative z-10">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 animate-gradient-text glow-text">
-                  Ready to Get Started?
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-teal-600 animate-gradient-text">
+                  Ready when you are
                 </h2>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Explore our templates and extensions to build your next awesome Node.js app
+                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed">
+                  One command to scaffold. Browse templates when you want inspiration.
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button
+                <CopyButton
+                  command={PRIMARY_COMMAND}
                   size="lg"
-                  className="bg-gradient-to-r from-primary to-indigo-500 hover:from-primary/90 hover:to-indigo-500/90 glow transition-all duration-300"
-                  asChild
-                >
-                  <Link href="/templates">
-                    Explore Templates
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
+                  className="bg-gradient-to-r from-primary to-teal-600 hover:from-primary/90 hover:to-teal-600/90 glow transition-all duration-300 text-primary-foreground"
+                />
                 <Button
                   size="lg"
                   variant="outline"
                   className="backdrop-blur-sm bg-background/30 border-primary/20 hover:bg-background/50 transition-all duration-300"
                   asChild
                 >
-                  <Link href="/extensions">Browse Extensions</Link>
+                  <Link href="/templates">Explore templates</Link>
                 </Button>
               </div>
             </div>

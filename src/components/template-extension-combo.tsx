@@ -15,7 +15,7 @@ export function TemplateExtensionCombo({ template, extension }: TemplateExtensio
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-md bg-gradient-to-br from-primary/20 to-indigo-500/20 flex items-center justify-center">
+                <div className="h-10 w-10 rounded-md bg-gradient-to-br from-primary/20 to-teal-600/20 flex items-center justify-center">
                   <span className="text-sm font-semibold text-primary">T</span>
                 </div>
                 <div>
@@ -25,8 +25,8 @@ export function TemplateExtensionCombo({ template, extension }: TemplateExtensio
               </div>
               <ArrowRight className="h-4 w-4 text-muted-foreground" />
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-md bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center">
-                  <span className="text-sm font-semibold text-indigo-500">E</span>
+                <div className="h-10 w-10 rounded-md bg-gradient-to-br from-teal-600/20 to-amber-500/20 flex items-center justify-center">
+                  <span className="text-sm font-semibold text-teal-600">E</span>
                 </div>
                 <div>
                   <h3 className="text-sm font-medium">{extension.name}</h3>
@@ -43,7 +43,7 @@ export function TemplateExtensionCombo({ template, extension }: TemplateExtensio
           </div>
         </CardContent>
       </Card>
-      <div className="absolute -inset-px rounded-lg bg-gradient-to-r from-primary/20 via-indigo-500/20 to-purple-500/20 -z-10 animate-pulse"></div>
+      <div className="absolute -inset-px rounded-lg bg-gradient-to-r from-primary/20 via-teal-600/20 to-amber-500/20 -z-10 animate-pulse"></div>
     </div>
   );
 }
