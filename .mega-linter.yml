@@ -6,13 +6,20 @@ SHOW_ELAPSED_TIME: true
 PRINT_ALL_FILES: false
 FILTER_REGEX_EXCLUDE: (pnpm-lock\.yaml|megalinter-reports/|node_modules/|\.next/|tools/danger/package-lock\.json)
 
-# Keep the javascript flavor defaults, but tune noisy scanners.
 DISABLE_LINTERS:
   # SBOM generation is informational; keep trivy vuln scan as the gate.
   - REPOSITORY_TRIVY_SBOM
   - REPOSITORY_SYFT
   # Grype duplicates Trivy on the same lockfile; one vuln gate is enough.
   - REPOSITORY_GRYPE
+  # Project uses Tailwind + ESLint flat config, not these MegaLinter defaults.
+  - CSS_STYLELINT
+  - TYPESCRIPT_TS_STANDARD
+  # External link checkers are flaky in CI (npmjs 403, cert/network noise).
+  - SPELL_LYCHEE
+  - MARKDOWN_MARKDOWN_LINK_CHECK
+  # Schema store has no checkov schema; empty assignees fail issue-form schemas.
+  - YAML_V8R
 
 # Project-local configs
 COPYPASTE_JSCPD_CONFIG_FILE: .jscpd.json
