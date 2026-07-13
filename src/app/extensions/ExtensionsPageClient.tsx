@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { getTemplatesData } from '@/lib/data';
 import type { Extension } from '@/lib/schemas';
+import { cn } from '@/lib/utils';
 
 export function ExtensionsPageClient() {
   const router = useRouter();
@@ -18,9 +19,11 @@ export function ExtensionsPageClient() {
 
   const [extensions, setExtensions] = useState<Extension[]>([]);
   const [templateTypes, setTemplateTypes] = useState<string[]>([]);
+  const [extensionCategories, setExtensionCategories] = useState<string[]>([]);
   const [filteredExtensions, setFilteredExtensions] = useState<Extension[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
     async function fetchData() {
@@ -31,6 +34,8 @@ export function ExtensionsPageClient() {
         new Set(data.extensions.flatMap((ext) => (Array.isArray(ext.type) ? ext.type : [ext.type]))),
       );
       setTemplateTypes(types);
+      const categories = [...new Set(data.extensions.map((e) => e.category))].sort();
+      setExtensionCategories(categories);
       setIsLoading(false);
     }
     fetchData();
@@ -39,7 +44,9 @@ export function ExtensionsPageClient() {
   useEffect(() => {
     if (extensions.length === 0) return;
     let filtered = [...extensions];
-    if (typeParam && typeParam !== 'all') {
+    if (selectedCategory) {
+      filtered = filtered.filter((extension) => extension.category === selectedCategory);
+    } else if (typeParam && typeParam !== 'all') {
       filtered = filtered.filter((extension) =>
         Array.isArray(extension.type) ? extension.type.includes(typeParam) : extension.type === typeParam,
       );
@@ -54,7 +61,7 @@ export function ExtensionsPageClient() {
       );
     }
     setFilteredExtensions(filtered);
-  }, [typeParam, searchQuery, extensions]);
+  }, [typeParam, selectedCategory, searchQuery, extensions]);
 
   const handleTypeChange = (value: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -115,6 +122,33 @@ export function ExtensionsPageClient() {
               </div>
             </div>
             <div className="mx-auto max-w-5xl py-8 fade-in-up-delay-1">
+              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide mb-4">
+                <button
+                  onClick={() => setSelectedCategory('')}
+                  className={cn(
+                    'shrink-0 rounded-full px-3 py-1 text-xs font-medium transition-colors',
+                    selectedCategory === ''
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+                  )}
+                >
+                  All
+                </button>
+                {extensionCategories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={cn(
+                      'shrink-0 rounded-full px-3 py-1 text-xs font-medium transition-colors',
+                      selectedCategory === cat
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+                    )}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
               <div className="flex flex-col gap-4 md:flex-row">
                 <div className="relative flex-1 min-w-0">
                   <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />

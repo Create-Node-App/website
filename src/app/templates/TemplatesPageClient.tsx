@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { getTemplatesData } from '@/lib/data';
 import type { Category, Template } from '@/lib/schemas';
+import { cn } from '@/lib/utils';
 
 export function TemplatesPageClient() {
   const router = useRouter();
@@ -23,6 +24,7 @@ export function TemplatesPageClient() {
   const [filteredTemplates, setFilteredTemplates] = useState<Template[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(categoryParam || '');
 
   useEffect(() => {
     async function fetchData() {
@@ -38,7 +40,9 @@ export function TemplatesPageClient() {
   useEffect(() => {
     if (templates.length === 0) return;
     let filtered = [...templates];
-    if (categoryParam && categoryParam !== 'all') {
+    if (selectedCategory) {
+      filtered = filtered.filter((template) => template.category === selectedCategory);
+    } else if (categoryParam && categoryParam !== 'all') {
       const category = categories.find((cat) => cat.slug === categoryParam);
       if (category) {
         filtered = filtered.filter((template) =>
@@ -60,7 +64,7 @@ export function TemplatesPageClient() {
       );
     }
     setFilteredTemplates(filtered);
-  }, [categoryParam, searchQuery, templates, categories]);
+  }, [categoryParam, selectedCategory, searchQuery, templates, categories]);
 
   const handleCategoryChange = (value: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -102,6 +106,33 @@ export function TemplatesPageClient() {
           </div>
           <div className="container relative z-10">
             <div className="mx-auto max-w-5xl py-4 fade-in-up-delay-1">
+              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide mb-4">
+                <button
+                  onClick={() => setSelectedCategory('')}
+                  className={cn(
+                    'shrink-0 rounded-full px-3 py-1 text-xs font-medium transition-colors',
+                    selectedCategory === ''
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+                  )}
+                >
+                  All
+                </button>
+                {categories.map((cat) => (
+                  <button
+                    key={cat.slug}
+                    onClick={() => setSelectedCategory(cat.slug)}
+                    className={cn(
+                      'shrink-0 rounded-full px-3 py-1 text-xs font-medium transition-colors',
+                      selectedCategory === cat.slug
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+                    )}
+                  >
+                    {cat.name}
+                  </button>
+                ))}
+              </div>
               <div className="flex flex-col gap-4 md:flex-row">
                 <div className="relative flex-1">
                   <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />

@@ -3,14 +3,30 @@ import { Package } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import type { Template } from '@/lib/schemas';
+import { cn } from '@/lib/utils';
 
 interface TemplateCardProps {
   template: Template;
 }
 
+const categoryColors: Record<string, string> = {
+  'frontend-applications': 'border-l-amber-500',
+  'backend-applications': 'border-l-teal-500',
+  'full-stack-applications': 'border-l-violet-500',
+  'monorepo-boilerplate': 'border-l-blue-500',
+  'user-acceptance-testing': 'border-l-orange-500',
+  'web-extension': 'border-l-cyan-500',
+};
+
 export function TemplateCard({ template }: TemplateCardProps) {
+  const accentColor = categoryColors[template.category] ?? 'border-l-primary';
   return (
-    <Card className="flex flex-col h-full overflow-hidden border-primary/10 transition-all duration-300 cursor-pointer group gradient-border-subtle hover-raise bg-card/70 backdrop-blur-sm">
+    <Card
+      className={cn(
+        'flex flex-col h-full overflow-hidden border-primary/10 transition-all duration-300 cursor-pointer group gradient-border-subtle hover-raise bg-card/70 backdrop-blur-sm border-l-4',
+        accentColor,
+      )}
+    >
       <CardHeader className="pb-2">
         <div className="flex items-center gap-2 mb-2">
           <div className="h-10 w-10 rounded-md bg-gradient-to-br from-primary/20 to-teal-600/20 flex items-center justify-center group-hover:from-primary/40 group-hover:to-teal-600/40 transition-all duration-300">
