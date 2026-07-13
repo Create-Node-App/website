@@ -1,6 +1,7 @@
-import { ArrowRight, Layers, Puzzle, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { AnimatedGradient } from '@/components/animated-gradient';
+import { AnimatedTerminal } from '@/components/animated-terminal';
 import { AnnouncementBanner } from '@/components/announcement-banner';
 import { ContributorsSection } from '@/components/contributors-section';
 import { CopyButton } from '@/components/copy-button';
@@ -8,6 +9,7 @@ import { FeaturedTemplate } from '@/components/featured-template';
 import { HeroSection } from '@/components/hero-section';
 import { RecipesSection } from '@/components/recipes-section';
 import { SaasAiBanner } from '@/components/saas-ai-banner';
+import { StatsBar } from '@/components/stats-bar';
 import { TemplateCategories } from '@/components/template-categories';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -35,9 +37,9 @@ export default async function Home() {
         <HeroSection
           title={
             <>
-              One command.
+              From zero to stack
               <br />
-              Any stack.
+              <span className="text-gradient-primary animate-gradient-text">in one command.</span>
             </>
           }
           description="Choose a template, add addons, and ship a production-ready Node, Web, or AI-ready app from a cozy developer workbench."
@@ -58,51 +60,10 @@ export default async function Home() {
               </Button>
             </>
           }
-          sideVisual={
-            <Card className="w-full max-w-md backdrop-blur-sm bg-card/70 border-primary/15 gradient-border-subtle elevation-md">
-              <CardHeader>
-                <CardTitle className="text-xl">Compose your app</CardTitle>
-                <CardDescription>Template → addons → ship</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start gap-3 rounded-lg border border-border/60 bg-muted/40 p-3">
-                  <Layers className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                  <div>
-                    <p className="font-medium text-sm">Pick a template</p>
-                    <p className="text-xs text-muted-foreground">React, Next.js, NestJS, Astro, and more</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 rounded-lg border border-border/60 bg-muted/40 p-3">
-                  <Puzzle className="h-5 w-5 text-teal-600 dark:text-teal-400 mt-0.5 shrink-0" />
-                  <div>
-                    <p className="font-medium text-sm">Add addons</p>
-                    <p className="text-xs text-muted-foreground">Tailwind, Auth, Drizzle, Docker, CI, AI helpers</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 rounded-lg border border-border/60 bg-muted/40 p-3">
-                  <Sparkles className="h-5 w-5 text-amber-500 mt-0.5 shrink-0" />
-                  <div>
-                    <p className="font-medium text-sm">Ship AI-ready</p>
-                    <p className="text-xs text-muted-foreground">
-                      AGENTS.md and conventions included when you need them
-                    </p>
-                  </div>
-                </div>
-                <div className="bg-muted rounded-md p-3 font-mono text-xs sm:text-sm overflow-x-auto">
-                  <p className="text-teal-700 dark:text-teal-300">$ {PRIMARY_COMMAND}</p>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button variant="ghost" className="w-full justify-between" asChild>
-                  <Link href="/extensions">
-                    Browse extensions
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-          }
+          sideVisual={<AnimatedTerminal />}
         />
+
+        <StatsBar />
 
         <SaasAiBanner />
 
