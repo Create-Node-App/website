@@ -41,16 +41,51 @@ export function SiteHeader({ onOpenCommand }: { onOpenCommand?: () => void }) {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 w-full border-b transition-colors backdrop-blur supports-[backdrop-filter]:bg-background/60',
-        scrolled ? 'bg-background/80 shadow-sm' : 'bg-background/40',
+        'sticky top-0 z-50 w-full transition-colors backdrop-blur supports-[backdrop-filter]:bg-background/60',
+        scrolled
+          ? 'bg-background/85 shadow-sm border-b border-primary/10'
+          : 'bg-background/40 border-b border-transparent',
       )}
     >
       <div className="container flex h-16 items-center gap-2 sm:gap-4">
-        <Link href="/" className="flex min-w-0 items-center gap-2 group">
-          <div className="h-8 w-12 shrink-0 rounded-md bg-gradient-to-br from-primary to-teal-600 flex items-center justify-center text-white font-bold shadow-sm group-hover:shadow-md transition-shadow">
-            CNA
+        <Link href="/" className="flex min-w-0 items-center gap-2.5 group" aria-label="Create Node App home">
+          <svg
+            width="36"
+            height="36"
+            viewBox="0 0 36 36"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            className="shrink-0"
+          >
+            <defs>
+              <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#f59e0b" />
+                <stop offset="55%" stopColor="#d97706" />
+                <stop offset="100%" stopColor="#0d9488" />
+              </linearGradient>
+            </defs>
+            {/* Center node */}
+            <circle cx="18" cy="18" r="5" fill="url(#logoGrad)" />
+            {/* Top-left node */}
+            <circle cx="7" cy="9" r="3.5" fill="#f59e0b" fillOpacity="0.85" />
+            {/* Top-right node */}
+            <circle cx="29" cy="9" r="3.5" fill="#0d9488" fillOpacity="0.85" />
+            {/* Bottom node */}
+            <circle cx="18" cy="30" r="3.5" fill="#0d9488" fillOpacity="0.7" />
+            {/* Edges */}
+            <line x1="9.5" y1="11" x2="14.5" y2="15" stroke="#f59e0b" strokeOpacity="0.5" strokeWidth="1.5" />
+            <line x1="26.5" y1="11" x2="21.5" y2="15" stroke="#0d9488" strokeOpacity="0.5" strokeWidth="1.5" />
+            <line x1="18" y1="23" x2="18" y2="26.5" stroke="#0d9488" strokeOpacity="0.5" strokeWidth="1.5" />
+          </svg>
+          <div className="hidden min-w-0 flex-col sm:flex">
+            <span className="font-display text-sm font-semibold leading-tight tracking-tight truncate">
+              create-node-app
+            </span>
+            <span className="text-[10px] text-muted-foreground leading-tight hidden md:block">
+              one command · any stack
+            </span>
           </div>
-          <span className="hidden font-semibold truncate sm:inline-block tracking-tight">Create Awesome Node App</span>
         </Link>
         <nav className="ml-auto hidden md:flex items-center gap-1">
           {navItems.map((item) => {
@@ -66,13 +101,20 @@ export function SiteHeader({ onOpenCommand }: { onOpenCommand?: () => void }) {
               >
                 <span>{item.label}</span>
                 {active && (
-                  <span className="absolute left-1/2 -bottom-px h-[2px] w-8 -translate-x-1/2 rounded-full bg-gradient-to-r from-primary to-teal-600" />
+                  <span className="absolute left-1/2 -bottom-px h-1 w-1 -translate-x-1/2 rounded-full bg-primary animate-pulse" />
                 )}
               </Link>
             );
           })}
         </nav>
-        <div className="ml-auto flex items-center gap-0.5 sm:gap-1 md:gap-2">
+        <Button
+          size="sm"
+          className="hidden lg:inline-flex bg-gradient-to-r from-primary to-[hsl(var(--brand-teal))] text-white border-0 hover:opacity-90 transition-opacity glow text-xs font-medium"
+          asChild
+        >
+          <Link href="/templates">Get started</Link>
+        </Button>
+        <div className="ml-auto flex items-center gap-0.5 sm:gap-1 md:gap-2 lg:ml-0">
           <Button
             variant={performanceMode ? 'secondary' : 'ghost'}
             size="icon"
