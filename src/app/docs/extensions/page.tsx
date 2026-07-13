@@ -1,4 +1,19 @@
-import { ArrowLeft, ArrowRight, Layers, Package, Palette, Shield, TestTube, Zap } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Cloud,
+  Code,
+  Database,
+  Globe,
+  Layers,
+  Monitor,
+  Package,
+  Palette,
+  Shield,
+  TestTube,
+  Wrench,
+  Zap,
+} from 'lucide-react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
@@ -21,16 +36,16 @@ export const metadata: Metadata = {
 
 const categories = [
   {
-    name: 'UI Libraries',
+    name: 'UI',
     description: 'Component libraries and design systems.',
     icon: <Palette className="h-5 w-5 text-primary" />,
-    examples: ['Material UI', 'Tailwind CSS', 'Shadcn/UI', 'Semantic UI'],
+    examples: ['Material UI', 'Tailwind CSS', 'Shadcn/UI', 'Semantic UI', 'Mantine'],
   },
   {
     name: 'State Management',
     description: 'Client-side state solutions.',
     icon: <Layers className="h-5 w-5 text-primary" />,
-    examples: ['Zustand', 'Redux Toolkit', 'Recoil', 'React Query'],
+    examples: ['Zustand', 'Redux Toolkit', 'Recoil', 'Jotai'],
   },
   {
     name: 'Testing',
@@ -39,22 +54,58 @@ const categories = [
     examples: ['Vitest + Testing Library', 'Jest + Testing Library', 'Playwright'],
   },
   {
-    name: 'Database & Backend',
-    description: 'ORM, database adapters, and backend utilities.',
-    icon: <Package className="h-5 w-5 text-primary" />,
-    examples: ['Drizzle + PostgreSQL', 'Drizzle + SQLite', 'Mongoose', 'Serverless'],
+    name: 'Database',
+    description: 'ORM, database adapters, and data persistence utilities.',
+    icon: <Database className="h-5 w-5 text-primary" />,
+    examples: ['Drizzle + PostgreSQL', 'Drizzle + SQLite', 'Mongoose', 'Prisma'],
   },
   {
     name: 'Data Fetching',
     description: 'API and data synchronisation layers.',
     icon: <Zap className="h-5 w-5 text-primary" />,
-    examples: ['React Query', 'Apollo Client', 'i18n'],
+    examples: ['React Query', 'Apollo Client', 'SWR', 'tRPC'],
   },
   {
-    name: 'Tooling & DX',
-    description: 'Developer experience and workflow extensions.',
+    name: 'Auth',
+    description: 'Authentication and authorisation integrations.',
     icon: <Shield className="h-5 w-5 text-primary" />,
+    examples: ['NextAuth.js', 'Clerk', 'Auth0', 'Supabase Auth'],
+  },
+  {
+    name: 'Tooling',
+    description: 'Developer experience and workflow extensions.',
+    icon: <Wrench className="h-5 w-5 text-primary" />,
     examples: ['Storybook', 'GitHub Setup', 'Million.js', 'Electron'],
+  },
+  {
+    name: 'Deployment',
+    description: 'Hosting, CI/CD, and infrastructure configurations.',
+    icon: <Cloud className="h-5 w-5 text-primary" />,
+    examples: ['Vercel', 'Docker', 'GitHub Actions', 'Serverless'],
+  },
+  {
+    name: 'Monitoring',
+    description: 'Error tracking, logging, and observability.',
+    icon: <Monitor className="h-5 w-5 text-primary" />,
+    examples: ['Sentry', 'OpenTelemetry', 'Datadog', 'LogRocket'],
+  },
+  {
+    name: 'Localization',
+    description: 'Internationalisation and translation tooling.',
+    icon: <Globe className="h-5 w-5 text-primary" />,
+    examples: ['i18next', 'react-intl', 'next-intl', 'Lingui'],
+  },
+  {
+    name: 'API',
+    description: 'API clients, code generation, and integration utilities.',
+    icon: <Code className="h-5 w-5 text-primary" />,
+    examples: ['Axios', 'Ky', 'OpenAPI Generator', 'GraphQL Codegen'],
+  },
+  {
+    name: 'Cross Platform',
+    description: 'Extensions targeting multiple platforms simultaneously.',
+    icon: <Package className="h-5 w-5 text-primary" />,
+    examples: ['Electron', 'Tauri', 'Capacitor', 'React Native Web'],
   },
 ];
 
@@ -99,6 +150,10 @@ export default function DocsExtensionsPage() {
 
           <section id="extension-categories" className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">Extension categories</h2>
+            <p>
+              Extensions are organised into <strong>{categories.length} categories</strong> covering the most common
+              project needs.
+            </p>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-4">
               {categories.map((cat) => (
                 <Card key={cat.name}>

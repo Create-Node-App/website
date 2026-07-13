@@ -74,7 +74,7 @@ export default function TemplateCustomizationClientPage() {
                 <Tabs defaultValue="tsconfig" className="w-full mt-4">
                   <TabsList className="grid w-full grid-cols-3">
                     <TabsTrigger value="tsconfig">tsconfig.json</TabsTrigger>
-                    <TabsTrigger value="eslint">.eslintrc</TabsTrigger>
+                    <TabsTrigger value="eslint">eslint.config.mjs</TabsTrigger>
                     <TabsTrigger value="vite">vite.config.ts</TabsTrigger>
                   </TabsList>
                   <TabsContent value="tsconfig" className="mt-2">
@@ -82,108 +82,133 @@ export default function TemplateCustomizationClientPage() {
                       <pre className="text-sm overflow-x-auto">
                         {`{
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
     "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "ignoreDeprecations": "6.0",
     "noEmit": true,
     "jsx": "react-jsx",
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-
-    /* Paths */
     "baseUrl": ".",
+    "types": ["node"],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "exclude": ["./tools/**/*", "./electron/**/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }`}
                       </pre>
                     </div>
                     <p className="mt-2 text-sm text-muted-foreground">
-                      You can customize the TypeScript configuration to adjust compiler options, add path aliases, or
-                      change included files.
+                      The React Vite template uses <code>moduleResolution: "Bundler"</code> and{' '}
+                      <code>module: "esnext"</code> with <code>ignoreDeprecations: "6.0"</code> for TypeScript 5.x
+                      compatibility. You can customize path aliases, compiler options, or add additional include/exclude
+                      patterns.
                     </p>
                   </TabsContent>
                   <TabsContent value="eslint" className="mt-2">
                     <div className="rounded-md bg-muted p-4">
                       <pre className="text-sm overflow-x-auto">
-                        {`{
-  "root": true,
-  "env": {
-    "browser": true,
-    "es2020": true
-  },
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended"
-  ],
-  "ignorePatterns": ["dist", ".eslintrc.cjs"],
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["react-refresh"],
-  "rules": {
-    "react-refresh/only-export-components": [
-      "warn",
-      { "allowConstantExport": true }
+                        {`import globals from 'globals';
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import react from 'eslint-plugin-react';
+import prettier from 'eslint-plugin-prettier';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import importPlugin from 'eslint-plugin-import';
+
+export default [
+  {
+    ignores: [
+      'node_modules/', 'coverage/', 'dist/', 'build/',
+      'dev-dist/', 'public/', '__mocks__/', 'tools/',
+      '**/*.d.ts', 'dist-electron/', 'release/',
     ],
-    "prettier/prettier": ["error", {
-      "singleQuote": true,
-      "semi": false,
-      "trailingComma": "all"
-    }]
-  }
-}`}
+  },
+  {
+    files: ['**/*.{ts,tsx}'],
+    ignores: ['vite.config.ts', 'vitest.config.ts'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      sourceType: 'module',
+      parserOptions: {
+        project: './tsconfig.json',
+        tsconfigRootDir: import.meta.dirname,
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.commonjs,
+        ...globals.node,
+        ...globals.es2020,
+      },
+    },
+  },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    plugins: { react, prettier, 'jsx-a11y': jsxA11y, import: importPlugin },
+    settings: { react: { version: 'detect' } },
+    rules: {
+      ...react.configs.recommended.rules,
+      ...react.configs['jsx-runtime'].rules,
+      'prettier/prettier': 'error',
+      'react/prop-types': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+    },
+  },
+];`}
                       </pre>
                     </div>
                     <p className="mt-2 text-sm text-muted-foreground">
-                      Modify ESLint configuration to adjust linting rules, add plugins, or change code style
+                      Templates use the ESLint flat config format (<code>eslint.config.mjs</code>), which is the
+                      standard from ESLint v9+. Modify rules, add plugins, or adjust ignored paths to match your team's
                       preferences.
                     </p>
                   </TabsContent>
                   <TabsContent value="vite" className="mt-2">
                     <div className="rounded-md bg-muted p-4">
                       <pre className="text-sm overflow-x-auto">
-                        {`import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+                        {`import { defineConfig } from 'vite';
+import path from 'path';
+import react from '@vitejs/plugin-react';
+import eslint from 'vite-plugin-eslint';
+import { VitePWA } from 'vite-plugin-pwa';
 
-// https://vitejs.dev/config/
+const { PORT = '3000' } = process.env;
+const root = path.resolve(__dirname, 'src');
+
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
+  plugins: [react(), eslint(), VitePWA({ registerType: 'autoUpdate' })],
+  css: {
+    preprocessorOptions: {
+      less: { math: 'always' },
     },
   },
   server: {
-    port: 3000,
-    open: true,
+    host: '0.0.0.0',
+    port: parseInt(PORT, 10),
+  },
+  resolve: {
+    alias: { '@/': root + '/' },
   },
   build: {
-    outDir: 'dist',
-    sourcemap: true,
+    cssMinify: false,
   },
-})`}
+});`}
                       </pre>
                     </div>
                     <p className="mt-2 text-sm text-muted-foreground">
-                      Customize Vite configuration to adjust build settings, add plugins, or configure the development
-                      server.
+                      Customize Vite configuration to adjust build settings, add plugins (e.g. PWA, SVG), or configure
+                      the development server port and host.
                     </p>
                   </TabsContent>
                 </Tabs>
@@ -412,63 +437,6 @@ export class UsersModule {}`}
                     build customization.
                   </li>
                 </ul>
-
-                <div className="rounded-md bg-muted p-4 mt-4">
-                  <pre className="text-sm overflow-x-auto">
-                    {`// Example of customizing Next.js config
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: {
-    domains: ['example.com', 'cdn.example.com'],
-  },
-  experimental: {
-    serverActions: true,
-  },
-  async redirects() {
-    return [
-      {
-        source: '/old-page',
-        destination: '/new-page',
-        permanent: true,
-      },
-    ]
-  },
-}
-
-module.exports = nextConfig`}
-                  </pre>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <h3 className="text-xl font-semibold">Custom Webpack Configurations</h3>
-                <p>For templates that use Webpack, you can customize the Webpack configuration:</p>
-
-                <div className="rounded-md bg-muted p-4 mt-4">
-                  <pre className="text-sm overflow-x-auto">
-                    {`// Example of customizing Next.js Webpack config
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    // Add a custom webpack plugin
-    config.plugins.push(new webpack.IgnorePlugin({
-      resourceRegExp: /^\.\/locale$/,
-      contextRegExp: /moment$/,
-    }))
-
-    // Add a custom loader
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    })
-
-    return config
-  },
-}
-
-module.exports = nextConfig`}
-                  </pre>
-                </div>
               </div>
 
               <div className="space-y-2">
@@ -494,8 +462,7 @@ NEXT_PUBLIC_SITE_URL=https://example.com`}
                     {`// In Node.js (server-side)
 const apiUrl = process.env.API_URL
 
-// In React (client-side)
-// Note: In Vite, use import.meta.env instead of process.env
+// In React (client-side, Vite)
 const siteUrl = import.meta.env.VITE_SITE_URL
 
 // In Next.js (client-side)

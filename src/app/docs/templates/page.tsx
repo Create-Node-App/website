@@ -1,9 +1,10 @@
-import { ArrowLeft, ArrowRight, Layers, Package, Settings, Terminal, Wrench } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Globe, Layers, Package, Server, Settings, Terminal, Wrench, Zap } from 'lucide-react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { getTemplatesData } from '@/lib/data';
 
 export const metadata: Metadata = {
   title: 'Templates | Create Awesome Node App Documentation',
@@ -17,46 +18,23 @@ export const metadata: Metadata = {
   },
 };
 
-const templates = [
-  {
-    name: 'React Vite Boilerplate',
-    slug: 'react-vite-boilerplate',
-    description: 'A fast and lightweight React boilerplate powered by Vite.',
-    details: 'Includes TypeScript, React Router, ESLint, Prettier, and modern tooling for frontend development.',
-    icon: <Terminal className="h-5 w-5 text-primary" />,
-  },
-  {
-    name: 'NestJS Boilerplate',
-    slug: 'nestjs-boilerplate',
-    description: 'A scalable, opinionated backend application built with NestJS.',
-    details:
-      'Includes TypeScript, ESLint, Prettier, and best-practice configuration for maintainable backend services.',
-    icon: <Package className="h-5 w-5 text-primary" />,
-  },
-  {
-    name: 'NextJS Starter',
-    slug: 'nextjs-starter',
-    description: 'A production-ready Next.js starter for full-stack apps.',
-    details: 'Includes TypeScript, ESLint, and Prettier for rapid full-stack development with App Router.',
-    icon: <Layers className="h-5 w-5 text-primary" />,
-  },
-  {
-    name: 'Turborepo Boilerplate',
-    slug: 'turborepo-boilerplate',
-    description: 'A modern monorepo boilerplate powered by Turborepo.',
-    details: 'Includes Turborepo, TypeScript, Changesets, and Workspaces for efficient multi-package management.',
-    icon: <Settings className="h-5 w-5 text-primary" />,
-  },
-  {
-    name: 'Web Extension React',
-    slug: 'web-extension-react',
-    description: 'A boilerplate for building cross-browser WebExtensions with React.',
-    details: 'Includes React, Vite, TypeScript, and hot module replacement for rapid browser extension development.',
-    icon: <Wrench className="h-5 w-5 text-primary" />,
-  },
-];
+const typeIcons: Record<string, React.ReactNode> = {
+  'nestjs-backend': <Server className="h-5 w-5 text-primary" />,
+  nextjs: <Layers className="h-5 w-5 text-primary" />,
+  monorepo: <Settings className="h-5 w-5 text-primary" />,
+  react: <Terminal className="h-5 w-5 text-primary" />,
+  'webextension-react': <Wrench className="h-5 w-5 text-primary" />,
+  webdriverio: <Package className="h-5 w-5 text-primary" />,
+  'nextjs-saas-ai': <Zap className="h-5 w-5 text-primary" />,
+  remix: <Globe className="h-5 w-5 text-primary" />,
+  astro: <Globe className="h-5 w-5 text-primary" />,
+  hono: <Server className="h-5 w-5 text-primary" />,
+};
 
-export default function DocsTemplatesPage() {
+export default async function DocsTemplatesPage() {
+  const data = await getTemplatesData();
+  const templates = data.templates;
+
   return (
     <div className="container py-10">
       <div className="mx-auto max-w-5xl space-y-6">
@@ -107,7 +85,7 @@ export default function DocsTemplatesPage() {
               >
                 cna-templates
               </a>{' '}
-              repository.
+              repository. There are currently <strong>{templates.length} templates</strong> available.
             </p>
 
             <div className="grid gap-4 md:grid-cols-2 mt-4">
@@ -115,13 +93,13 @@ export default function DocsTemplatesPage() {
                 <Card key={t.slug}>
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2">
-                      {t.icon}
+                      {typeIcons[t.type] ?? <Layers className="h-5 w-5 text-primary" />}
                       {t.name}
                     </CardTitle>
                     <CardDescription>{t.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-muted-foreground mb-3">{t.details}</p>
+                    <p className="text-xs text-muted-foreground mb-3 font-mono">type: {t.type}</p>
                     <Button variant="outline" size="sm" asChild>
                       <Link href={`/templates/${t.slug}`}>
                         View template

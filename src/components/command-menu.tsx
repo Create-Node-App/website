@@ -105,6 +105,57 @@ export function CommandMenu({ open, onOpenChange, templates = [], extensions = [
               <Package className="h-4 w-4 text-primary" /> Extensions
             </Command.Item>
           </Command.Group>
+          <Command.Group heading="Docs">
+            <Command.Item
+              value="docs-introduction"
+              onSelect={() => run(() => router.push('/docs'))}
+              className="flex items-center gap-2 px-3 py-2 rounded-md aria-selected:bg-primary/10 aria-selected:text-foreground cursor-pointer"
+            >
+              <BookOpen className="h-4 w-4 text-primary" /> Docs — Introduction
+            </Command.Item>
+            <Command.Item
+              value="docs-agents-md"
+              onSelect={() => run(() => router.push('/docs/agents-md'))}
+              className="flex items-center gap-2 px-3 py-2 rounded-md aria-selected:bg-primary/10 aria-selected:text-foreground cursor-pointer"
+            >
+              <BookOpen className="h-4 w-4 text-primary" /> Docs — AGENTS.md
+            </Command.Item>
+            <Command.Item
+              value="docs-templates"
+              onSelect={() => run(() => router.push('/docs/templates'))}
+              className="flex items-center gap-2 px-3 py-2 rounded-md aria-selected:bg-primary/10 aria-selected:text-foreground cursor-pointer"
+            >
+              <BookOpen className="h-4 w-4 text-primary" /> Docs — Templates
+            </Command.Item>
+            <Command.Item
+              value="docs-templates-customization"
+              onSelect={() => run(() => router.push('/docs/templates/customization'))}
+              className="flex items-center gap-2 px-3 py-2 rounded-md aria-selected:bg-primary/10 aria-selected:text-foreground cursor-pointer"
+            >
+              <BookOpen className="h-4 w-4 text-primary" /> Docs — Template Customization
+            </Command.Item>
+            <Command.Item
+              value="docs-extensions"
+              onSelect={() => run(() => router.push('/docs/extensions'))}
+              className="flex items-center gap-2 px-3 py-2 rounded-md aria-selected:bg-primary/10 aria-selected:text-foreground cursor-pointer"
+            >
+              <BookOpen className="h-4 w-4 text-primary" /> Docs — Extensions
+            </Command.Item>
+            <Command.Item
+              value="docs-contributing"
+              onSelect={() => run(() => router.push('/docs/contributing'))}
+              className="flex items-center gap-2 px-3 py-2 rounded-md aria-selected:bg-primary/10 aria-selected:text-foreground cursor-pointer"
+            >
+              <BookOpen className="h-4 w-4 text-primary" /> Docs — Contributing
+            </Command.Item>
+            <Command.Item
+              value="docs-advanced-usage"
+              onSelect={() => run(() => router.push('/docs/advanced/usage'))}
+              className="flex items-center gap-2 px-3 py-2 rounded-md aria-selected:bg-primary/10 aria-selected:text-foreground cursor-pointer"
+            >
+              <BookOpen className="h-4 w-4 text-primary" /> Docs — Advanced Usage
+            </Command.Item>
+          </Command.Group>
           <Command.Group heading="System">
             <Command.Item
               value="toggle-performance"
