@@ -302,84 +302,16 @@ export default function DocsPage() {
             <h2 className="text-2xl font-bold tracking-tight">Available Templates</h2>
             <p>create-awesome-node-app offers a variety of templates for different types of applications:</p>
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-4">
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle>React Vite Boilerplate</CardTitle>
-                  <CardDescription>A fast and lightweight React boilerplate with Vite</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Includes TypeScript, React Router, and modern tooling for frontend development.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle>NestJS Boilerplate</CardTitle>
-                  <CardDescription>A scalable backend application with NestJS</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Includes TypeScript, ESLint, and Prettier for building maintainable backend services.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle>NextJS Starter</CardTitle>
-                  <CardDescription>A production-ready Next.js starter</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Includes TypeScript, ESLint, and Prettier for rapid full-stack development.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle>Turborepo Boilerplate</CardTitle>
-                  <CardDescription>A modern monorepo boilerplate</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Includes Turborepo, TypeScript, Changesets, and Workspaces for efficient multi-package management.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle>Web Extension React</CardTitle>
-                  <CardDescription>A boilerplate for building WebExtensions</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Includes React, Vite, TypeScript, and features like hot module replacement.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle>WebdriverIO Boilerplate</CardTitle>
-                  <CardDescription>A comprehensive testing boilerplate</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Includes WebdriverIO, TypeScript, and Selenoid for automated user acceptance testing.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="flex justify-center mt-6">
+            <div className="rounded-lg border bg-muted/40 p-6 flex items-center justify-between">
+              <div>
+                <p className="font-semibold">10 production-ready templates</p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Frontend, backend, fullstack, monorepo, testing, and web extension starters.
+                </p>
+              </div>
               <Button asChild>
-                <Link href="/docs/templates">
-                  View All Templates
+                <Link href="/templates">
+                  Browse templates
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
