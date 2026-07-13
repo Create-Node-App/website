@@ -12,7 +12,6 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { AnimatedGradient } from '@/components/animated-gradient';
-import { ParticlesBackground } from '@/components/particles-background';
 import { Button } from '@/components/ui/button';
 
 const features = [
@@ -35,10 +34,8 @@ export function SaasAiBanner() {
       <div className="absolute inset-0 z-0 opacity-40">
         <AnimatedGradient />
       </div>
-      {/* Particles */}
-      <div className="absolute inset-0 z-0 opacity-30">
-        <ParticlesBackground particleCount={40} speed={0.3} />
-      </div>
+      {/* Node-graph dot pattern background */}
+      <div className="node-graph-bg absolute inset-0 z-0 opacity-20" />
       {/* Subtle grid */}
       <div className="absolute inset-0 bg-grid-white/5 bg-[size:30px_30px] [mask-image:radial-gradient(white,transparent_80%)] z-0" />
 
