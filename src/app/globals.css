@@ -56,6 +56,14 @@
     --surface: hsl(var(--background) / 0.75);
     --surface-hover: hsl(var(--background) / 0.9);
     --surface-border: hsl(var(--border));
+    /* Glow tokens */
+    --amber-glow: rgba(245, 158, 11, 0.12);
+    --teal-glow: rgba(13, 148, 136, 0.1);
+    /* Node-graph motif */
+    --node-dot: rgba(245, 158, 11, 0.6);
+    /* Font variables */
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-display: 'Space Grotesk', var(--font-sans);
   }
 
   .dark {
@@ -82,6 +90,9 @@
     --shadow-color: 38 60% 8%;
     --surface: hsl(var(--background) / 0.55);
     --surface-hover: hsl(var(--background) / 0.7);
+    --amber-glow: rgba(245, 158, 11, 0.08);
+    --teal-glow: rgba(13, 148, 136, 0.07);
+    --node-dot: rgba(245, 158, 11, 0.35);
   }
 }
 
@@ -91,7 +102,45 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans), system-ui, sans-serif;
   }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* ─── Display font helper ─────────────────────────────── */
+.font-display {
+  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Noise texture overlay ───────────────────────────── */
+.bg-noise {
+  position: relative;
+}
+.bg-noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+
+/* ─── Node-graph dot pattern ─────────────────────────── */
+.node-graph-bg {
+  background-image: radial-gradient(circle, hsl(var(--primary) / 0.18) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.dark .node-graph-bg {
+  background-image: radial-gradient(circle, hsl(var(--primary) / 0.12) 1px, transparent 1px);
 }
 
 /* Focus ring utility (accessible) */
