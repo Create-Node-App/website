@@ -61,13 +61,13 @@ const categories = [
   },
   {
     name: 'Data Fetching',
-    description: 'API and data synchronisation layers.',
+    description: 'API and data synchronization layers.',
     icon: <Zap className="h-5 w-5 text-primary" />,
     examples: ['React Query', 'Apollo Client', 'SWR', 'tRPC'],
   },
   {
     name: 'Auth',
-    description: 'Authentication and authorisation integrations.',
+    description: 'Authentication and authorization integrations.',
     icon: <Shield className="h-5 w-5 text-primary" />,
     examples: ['NextAuth.js', 'Clerk', 'Auth0', 'Supabase Auth'],
   },
@@ -91,7 +91,7 @@ const categories = [
   },
   {
     name: 'Localization',
-    description: 'Internationalisation and translation tooling.',
+    description: 'Internationalization and translation tooling.',
     icon: <Globe className="h-5 w-5 text-primary" />,
     examples: ['i18next', 'react-intl', 'next-intl', 'Lingui'],
   },
@@ -151,7 +151,7 @@ export default function DocsExtensionsPage() {
           <section id="extension-categories" className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">Extension categories</h2>
             <p>
-              Extensions are organised into <strong>{categories.length} categories</strong> covering the most common
+              Extensions are organized into <strong>{categories.length} categories</strong> covering the most common
               project needs.
             </p>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-4">
