@@ -38,9 +38,9 @@ export function LayoutShell({ children }: { children: ReactNode }) {
                 <span>TypeScript-first</span>
               </div>
             </div>
-            {/* 3-column content */}
+            {/* 4-column content */}
             <div className="container py-10">
-              <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+              <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
                 {/* Col 1 — Brand */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
@@ -144,6 +144,48 @@ export function LayoutShell({ children }: { children: ReactNode }) {
                         {item.label}
                       </Link>
                     ))}
+                  </nav>
+                </div>
+                {/* Col 4 — Ecosystem */}
+                <div className="space-y-3">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Ecosystem</p>
+                  <nav className="flex flex-col gap-2">
+                    <Link
+                      href="https://github.com/Create-Node-App"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2 text-sm transition-colors hover:text-foreground"
+                    >
+                      <span className="h-2 w-2 rounded-full bg-primary shrink-0" />
+                      <span className="text-muted-foreground hover:text-foreground transition-colors">
+                        Node.js
+                        <span className="ml-1.5 text-[10px] font-medium text-primary/80">live</span>
+                      </span>
+                    </Link>
+                    <Link
+                      href="https://github.com/Create-Python-App"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2 text-sm transition-colors hover:text-foreground"
+                    >
+                      <span className="h-2 w-2 rounded-full bg-blue-500 shrink-0" />
+                      <span className="text-muted-foreground hover:text-foreground transition-colors">
+                        Python
+                        <span className="ml-1.5 text-[10px] font-medium text-muted-foreground">soon</span>
+                      </span>
+                    </Link>
+                    <Link
+                      href="https://github.com/Create-Vlang-App"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2 text-sm transition-colors hover:text-foreground"
+                    >
+                      <span className="h-2 w-2 rounded-full bg-violet-500 shrink-0" />
+                      <span className="text-muted-foreground hover:text-foreground transition-colors">
+                        V language
+                        <span className="ml-1.5 text-[10px] font-medium text-muted-foreground">soon</span>
+                      </span>
+                    </Link>
                   </nav>
                 </div>
               </div>
