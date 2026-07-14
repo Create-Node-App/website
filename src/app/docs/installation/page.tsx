@@ -321,7 +321,7 @@ makepkg -si`}</pre>
                     <div className="rounded-md bg-muted p-4">
                       <pre className="text-sm font-mono overflow-x-auto">{`docker run --rm -it \\
   -v "\${PWD}:/app" -w /app \\
-  create-awesome-node-app/cli:latest \\
+  ulisesjeremias/create-awesome-node-app:latest \\
   my-app --template react-vite-boilerplate`}</pre>
                     </div>
                   </div>
@@ -330,7 +330,7 @@ makepkg -si`}</pre>
                     <div className="rounded-md bg-muted p-4">
                       <pre className="text-sm font-mono overflow-x-auto">{`docker run --rm -it \\
   -v "\${PWD}:/app" -w /app \\
-  create-awesome-node-app/cli:0.12.0 \\
+  ulisesjeremias/create-awesome-node-app:0.12.0 \\
   my-app --template nestjs-boilerplate --addons drizzle-orm-postgresql`}</pre>
                     </div>
                   </div>
