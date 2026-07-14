@@ -30,6 +30,16 @@ export function ExtensionCard({ extension, templateSlug }: ExtensionCardProps) {
             {extension.name}
           </CardTitle>
           <CardDescription className="line-clamp-3">{extension.description}</CardDescription>
+          <div className="flex flex-wrap gap-1 mt-2">
+            {(Array.isArray(extension.type) ? extension.type : [extension.type]).map((t) => (
+              <span
+                key={t}
+                className="text-[10px] rounded border border-border/60 px-1.5 py-0.5 text-muted-foreground font-mono"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
         </CardHeader>
         <CardContent className="flex-1 pt-2">
           <div className="flex flex-wrap gap-1">
