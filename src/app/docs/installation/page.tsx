@@ -211,7 +211,7 @@ export default function InstallationPage() {
                     <div>
                       <p className="text-sm font-medium">git</p>
                       <p className="text-xs text-muted-foreground">
-                        Used to initialise the project repository after scaffolding.
+                        Used to initialize the project repository after scaffolding.
                       </p>
                     </div>
                   </div>
