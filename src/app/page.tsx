@@ -5,6 +5,7 @@ import { AnimatedTerminal } from '@/components/animated-terminal';
 import { AnnouncementBanner } from '@/components/announcement-banner';
 import { ContributorsSection } from '@/components/contributors-section';
 import { CopyButton } from '@/components/copy-button';
+import { EcosystemSection } from '@/components/ecosystem-section';
 import { FeaturedTemplate } from '@/components/featured-template';
 import { HeroSection } from '@/components/hero-section';
 import { RecipesSection } from '@/components/recipes-section';
@@ -204,6 +205,8 @@ export default async function Home() {
         </section>
 
         <ContributorsSection />
+
+        <EcosystemSection />
 
         <section className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden">
           <div className="container px-4 md:px-6 relative z-10">
