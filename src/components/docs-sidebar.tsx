@@ -1,6 +1,6 @@
 'use client';
 
-import { BookOpen, ChevronRight, Code, FileText, Home, Layers, Menu, Package, Search, X } from 'lucide-react';
+import { BookOpen, ChevronRight, Code, Download, FileText, Home, Layers, Menu, Package, Search, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -29,6 +29,7 @@ const navGroups: NavGroup[] = [
     title: 'Getting Started',
     items: [
       { label: 'Introduction', href: '/docs', icon: <Home className="h-4 w-4" /> },
+      { label: 'Installation', href: '/docs/installation', icon: <Download className="h-4 w-4" /> },
       { label: 'AGENTS.md', href: '/docs/agents-md', icon: <FileText className="h-4 w-4" />, badge: 'NEW' },
     ],
   },

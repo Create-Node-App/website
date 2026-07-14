@@ -323,6 +323,20 @@ export default function DocsPage() {
             <div className="grid gap-4 md:grid-cols-2">
               <Card>
                 <CardHeader className="pb-2">
+                  <CardTitle>Installation</CardTitle>
+                  <CardDescription>npm, Homebrew, AUR, and Docker install options</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button asChild className="w-full">
+                    <Link href="/docs/installation">
+                      Install Guide
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="pb-2">
                   <CardTitle>Templates</CardTitle>
                   <CardDescription>Learn about available templates and how to use them</CardDescription>
                 </CardHeader>
