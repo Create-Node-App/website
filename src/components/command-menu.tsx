@@ -114,6 +114,13 @@ export function CommandMenu({ open, onOpenChange, templates = [], extensions = [
               <BookOpen className="h-4 w-4 text-primary" /> Docs — Introduction
             </Command.Item>
             <Command.Item
+              value="docs-installation"
+              onSelect={() => run(() => router.push('/docs/installation'))}
+              className="flex items-center gap-2 px-3 py-2 rounded-md aria-selected:bg-primary/10 aria-selected:text-foreground cursor-pointer"
+            >
+              <BookOpen className="h-4 w-4 text-primary" /> Docs — Installation
+            </Command.Item>
+            <Command.Item
               value="docs-agents-md"
               onSelect={() => run(() => router.push('/docs/agents-md'))}
               className="flex items-center gap-2 px-3 py-2 rounded-md aria-selected:bg-primary/10 aria-selected:text-foreground cursor-pointer"
