@@ -8,7 +8,7 @@ interface EcosystemEntry {
   name: string;
   slug: string;
   description: string;
-  status: 'production' | 'planned';
+  status: 'production' | 'beta' | 'planned';
   href: string;
   colors: {
     node1: string;
@@ -44,9 +44,10 @@ const ECOSYSTEM: EcosystemEntry[] = [
   {
     name: 'Create Python App',
     slug: 'create-python-app',
-    description: 'The same composition-first philosophy for Python — FastAPI, Django, Flask, and more. Coming soon.',
-    status: 'planned',
-    href: 'https://github.com/Create-Python-App',
+    description:
+      'Composition-first scaffolding for Python — FastAPI, Django, Celery, CLIs, and uv workspaces. Public Beta — live at create-awesome-python-app.vercel.app.',
+    status: 'beta',
+    href: 'https://create-awesome-python-app.vercel.app',
     colors: {
       node1: '#3b82f6',
       node2: '#16a34a',
@@ -147,8 +148,8 @@ export function EcosystemSection() {
             </span>
           </h2>
           <p className="max-w-2xl text-muted-foreground md:text-lg">
-            The composition-first scaffolding approach is coming to more ecosystems. Start with Node.js today — Python
-            and V are on the way.
+            The composition-first scaffolding approach spans ecosystems. Start with Node.js today — Python is in public
+            Beta, and V is on the way.
           </p>
         </div>
 
@@ -177,7 +178,11 @@ export function EcosystemSection() {
                       color: entry.colors.badgeText,
                     }}
                   >
-                    {entry.status === 'production' ? '✅ Production' : '🔜 Planned'}
+                    {entry.status === 'production'
+                      ? '✅ Production'
+                      : entry.status === 'beta'
+                        ? '🧪 Beta'
+                        : '🔜 Planned'}
                   </span>
                 </div>
                 <CardTitle className="text-base font-display mt-2">{entry.name}</CardTitle>
@@ -192,15 +197,15 @@ export function EcosystemSection() {
                   asChild
                 >
                   <Link href={entry.href} target="_blank" rel="noreferrer">
-                    {entry.status === 'production' ? (
-                      <>
-                        Explore
-                        <ArrowRight className="h-3 w-3" />
-                      </>
-                    ) : (
+                    {entry.status === 'planned' ? (
                       <>
                         Follow on GitHub
                         <ExternalLink className="h-3 w-3" />
+                      </>
+                    ) : (
+                      <>
+                        Explore
+                        <ArrowRight className="h-3 w-3" />
                       </>
                     )}
                   </Link>
