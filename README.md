@@ -71,7 +71,7 @@ Bug reports, feature requests, and pull requests are welcome on the [Create-Node
 ## 👥 Contributors
 
 <a href="https://github.com/Create-Node-App/website/contributors">
-  <img src="https://contrib.rocks/image?repo=Create-Node-App/website"/>
+  <img src="https://contrib.rocks/image?repo=Create-Node-App/website" alt="Contributors to Create-Node-App/website"/>
 </a>
 
 Made with [contributors-img](https://contrib.rocks).
