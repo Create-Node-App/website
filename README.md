@@ -4,6 +4,7 @@
 [![npm downloads](https://img.shields.io/npm/dm/create-awesome-node-app?style=flat-square&color=cb3837)](https://www.npmjs.com/package/create-awesome-node-app)
 [![Templates](https://img.shields.io/badge/templates-cna--templates-blue?style=flat-square)](https://github.com/Create-Node-App/cna-templates)
 [![GitHub org](https://img.shields.io/badge/GitHub-Create--Node--App-black?style=flat-square&logo=github)](https://github.com/Create-Node-App)
+[![Discord](https://img.shields.io/discord/1527933660764831825?style=flat-square&label=Discord&logo=discord&logoColor=white)](https://discord.gg/dwFTsR7fK2)
 
 This is the official website for [Create Awesome Node App](https://www.npmjs.com/package/create-awesome-node-app), a tool that helps you quickly set up Node.js projects with best practices and modern tooling.
 
