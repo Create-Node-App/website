@@ -5,6 +5,7 @@ import { AnimatedTerminal } from '@/components/animated-terminal';
 import { AnnouncementBanner } from '@/components/announcement-banner';
 import { ContributorsSection } from '@/components/contributors-section';
 import { CopyButton } from '@/components/copy-button';
+import { DiscordIcon } from '@/components/discord-icon';
 import { EcosystemSection } from '@/components/ecosystem-section';
 import { FeaturedTemplate } from '@/components/featured-template';
 import { HeroSection } from '@/components/hero-section';
@@ -14,6 +15,7 @@ import { StatsBar } from '@/components/stats-bar';
 import { TemplateCategories } from '@/components/template-categories';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { DISCORD_INVITE_URL } from '@/lib/community';
 import { getTemplatesData } from '@/lib/data';
 
 const PRIMARY_COMMAND = 'npm create awesome-node-app@latest my-app';
@@ -29,11 +31,14 @@ export default async function Home() {
     <div className="flex min-h-screen flex-col">
       <main className="flex-1">
         <AnnouncementBanner
+          icon={<DiscordIcon className="h-5 w-5 shrink-0 text-yellow-200" />}
+          label="NEW"
           message={
-            <>New: Next.js SaaS AI Starter — multi-tenant SaaS with AI, Auth.js v5, Drizzle + pgvector, and more.</>
+            <>Join Create Awesome on Discord — chat, good first issues, and collaboration across Node / Python / V.</>
           }
-          ctaHref="/templates/nextjs-saas-ai-starter"
-          ctaLabel="Explore template"
+          ctaHref={DISCORD_INVITE_URL}
+          ctaLabel="Join Discord"
+          ctaExternal
         />
         <HeroSection
           title={
