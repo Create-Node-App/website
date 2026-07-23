@@ -46,7 +46,7 @@ export function SaasAiBanner() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/10 px-4 py-1.5 text-sm font-medium text-amber-200 backdrop-blur-sm">
               <span>✨</span>
-              <span>Flagship Template</span>
+              <span>NEW · Flagship</span>
             </div>
 
             {/* Heading */}
