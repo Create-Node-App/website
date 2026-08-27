@@ -26,14 +26,16 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
 
       - name: Setup Danger Files
         run: |
           echo "Setting up Danger files..."
           mv tools/danger/* .
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
           node-version-file: .node-version
 
@@ -41,7 +43,7 @@ jobs:
         run: npm install
 
       - name: Danger JS Action
-        uses: danger/danger-js@11.2.0
+        uses: danger/danger-js@14.0.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
