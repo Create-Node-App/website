@@ -1,0 +1,24 @@
+name: Sync templates
+
+on:
+  repository_dispatch:
+    types: [templates-updated]
+  workflow_dispatch:
+  schedule:
+    # Fallback: daily at 02:00 UTC in case dispatch misses
+    - cron: '0 2 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Verify templates fetch
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/Create-Node-App/cna-templates/main/templates.json | head -c 200
+          echo "templates.json reachable"
+          # Trigger Vercel rebuild via deployment hook if needed (no-op if fetch with revalidate is used)

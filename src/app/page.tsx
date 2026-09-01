@@ -22,7 +22,7 @@ import { getTemplatesData } from '@/lib/data';
 const PRIMARY_COMMAND = 'npm create awesome-node-app@latest my-app';
 
 export default async function Home() {
-  const { templates, categories } = await getTemplatesData();
+  const { templates, categories, extensions } = await getTemplatesData();
 
   const saasTemplate = templates.find((t) => t.slug === 'nextjs-saas-ai-starter');
   const otherTemplates = templates.filter((t) => t.slug !== 'nextjs-saas-ai-starter');
@@ -70,7 +70,7 @@ export default async function Home() {
           sideVisual={<AnimatedTerminal />}
         />
 
-        <StatsBar />
+        <StatsBar templatesCount={templates.length} extensionsCount={extensions.length} categoriesCount={categories.length} />
 
         <SaasAiBanner />
 
