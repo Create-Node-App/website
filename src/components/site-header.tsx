@@ -124,7 +124,7 @@ export function SiteHeader({ onOpenCommand }: { onOpenCommand?: () => void }) {
             onClick={togglePerformanceMode}
             className={cn('hidden sm:inline-flex', performanceMode && 'text-primary')}
           >
-            <Gauge className="h-5 w-5" />
+            <Gauge className="h-5 w-5" aria-hidden="true" />
           </Button>
           <Button
             variant="ghost"
@@ -133,31 +133,31 @@ export function SiteHeader({ onOpenCommand }: { onOpenCommand?: () => void }) {
             aria-label="Open command palette (Ctrl+K)"
             onClick={onOpenCommand}
           >
-            <Search className="h-5 w-5" />
+            <Search className="h-5 w-5" aria-hidden="true" />
           </Button>
           <ThemeToggle />
           <Link href="https://www.npmjs.com/package/create-awesome-node-app" target="_blank" aria-label="NPM Package">
-            <Button variant="ghost" size="icon" className="hidden sm:inline-flex">
-              <Package className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="hidden sm:inline-flex" aria-label="NPM Package">
+              <Package className="h-5 w-5" aria-hidden="true" />
             </Button>
           </Link>
           <Link href={DISCORD_INVITE_URL} target="_blank" rel="noreferrer" aria-label="Discord Community">
-            <Button variant="ghost" size="icon" className="hidden sm:inline-flex">
-              <CommunityLogo size={20} className="rounded" />
+            <Button variant="ghost" size="icon" className="hidden sm:inline-flex" aria-label="Discord Community">
+              <CommunityLogo size={20} className="rounded" aria-hidden="true" />
             </Button>
           </Link>
           <Link href="https://github.com/Create-Node-App" target="_blank" aria-label="GitHub">
-            <Button variant="ghost" size="icon">
-              <Github className="h-5 w-5" />
+            <Button variant="ghost" size="icon" aria-label="GitHub">
+              <Github className="h-5 w-5" aria-hidden="true" />
             </Button>
           </Link>
           <Button variant="outline" size="icon" className="md:hidden" aria-label="Search" onClick={onOpenCommand}>
-            <Search className="h-4 w-4" />
+            <Search className="h-4 w-4" aria-hidden="true" />
           </Button>
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon" className="md:hidden" aria-label="Open menu">
-                <Menu className="h-4 w-4" />
+                <Menu className="h-4 w-4" aria-hidden="true" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[min(100%,20rem)]">
