@@ -43,7 +43,7 @@ jobs:
         run: npm install
 
       - name: Danger JS Action
-        uses: danger/danger-js@afbc4c7b224879449ccdf8e23d622c925f96b0f9 # 14.0.4
+        uses: danger/danger-js@279443b7b3fdf4488d79546b3d40dbd76c51d83a # 14.0.6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
