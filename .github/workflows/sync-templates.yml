@@ -5,7 +5,6 @@ on:
     types: [templates-updated]
   workflow_dispatch:
   schedule:
-    # Fallback: daily at 02:00 UTC in case dispatch misses
     - cron: '0 2 * * *'
 
 permissions:
@@ -16,9 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
       - name: Verify templates fetch
         run: |
           curl -fsSL https://raw.githubusercontent.com/Create-Node-App/cna-templates/main/templates.json | head -c 200
           echo "templates.json reachable"
-          # Trigger Vercel rebuild via deployment hook if needed (no-op if fetch with revalidate is used)
