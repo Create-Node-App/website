@@ -1,55 +1,233 @@
 # ⚙️ Project Configuration
 
-The application has been bootstrapped using [create-awesome-node-app](https://www.npmjs.com/package/create-awesome-node-app) for simplicity reasons. It allows us to create applications quickly without dealing with a complex tooling setup such as bundling, transpiling etc.
+This document describes all configuration files in the repository root, their purpose, and examples.
 
-You should always configure and use the following tools:
+> Stack: **Next.js 15 (App Router)** + TypeScript + Tailwind + shadcn/ui. Bootstrapped with [create-awesome-node-app](https://www.npmjs.com/package/create-awesome-node-app).
 
-## ESLint
+## Config Files Overview
 
-ESLint is a linting tool for JavaScript. By providing specific configuration defined in the`eslint.config.mjs` file it prevents developers from making silly mistakes in their code and enforces consistency in the codebase.
+| File | Purpose |
+|------|---------|
+| `eslint.config.mjs` | Flat ESLint config (typescript-eslint, next, import) |
+| `tsconfig.json` | TypeScript paths (`@/*` → `src/*`), strict mode |
+| `next.config.mjs` | Next.js experimental webpack workers |
+| `tailwind.config.ts` | Tailwind theme (CSS variables, shadcn) |
+| `postcss.config.mjs` | PostCSS (tailwindcss + autoprefixer) |
+| `components.json` | shadcn/ui generator (style, aliases, baseColor) |
+| `vitest.config.mjs` | Vitest: happy-dom, `@` alias, coverage |
+| `.prettierrc.js` | Prettier formatting (requires `prettier-plugin-tailwindcss` if used) |
+| `commitlint.config.ts` | Conventional Commits linting |
+| `.cspell.json` | Spell check dictionary |
+| `.jscpd.json` | Copy-paste detection threshold |
+| `.lintstagedrc.json` | lint-staged: eslint --fix + prettier on staged |
+| `.markdownlint.json` | Markdown lint rules |
+| `.mega-linter.yml` | MegaLinter (all linters) on push/PR to main |
+| `.checkov.yml` | Checkov IaC scan skip rules |
+| `.editorconfig` | Editor whitespace (2 spaces, LF) |
+| `.node-version` | Pinned Node version (>=24.17.0, see `package.json#engines`) |
+| `.husky/` | Git hooks (pre-commit: lint-staged, commit-msg: commitlint) |
 
-[ESLint Configuration](../eslint.config.mjs)
+## Detailed
 
-## Prettier
+### ESLint — `eslint.config.mjs`
 
-This is a great tool for formatting code. It enforces a consistent code style across your entire codebase. By utilizing the "format on save" feature in your IDE you can automatically format the code based on the configuration provided in the `.prettierrc.js` file. It will also give you good feedback when something is wrong with the code. If the auto-format doesn't work, something is wrong with the code.
+Flat config with `typescript-eslint` recommended, `eslint-plugin-import`, and `@next/eslint-plugin-next` (recommended + core-web-vitals). Ignores `.next/`, `node_modules/`, `dist/`.
 
-[Prettier Configuration](../.prettierrc.js)
-
-## TypeScript
-
-ESLint is great for catching some of the bugs related to the language, but since JavaScript is a dynamic language ESLint cannot check data that run through the applications, which can lead to bugs, especially on larger projects. That is why TypeScript should be used. It is very useful during large refactors because it reports any issues you might miss otherwise. When refactoring, change the type declaration first, then fix all the TypeScript errors throughout the project and you are done. One thing you should keep in mind is that TypeScript does not protect your application from failing during runtime, it only does type checking during build time, but it increases development confidence drastically anyways. Here is a [great resource on using TypeScript with React](https://react-typescript-cheatsheet.netlify.app/).
-
-## Husky
-
-Husky is a tool for executing git hooks. Use Husky to run your code validations before every commit, thus making sure the code is in the best shape possible at any point of time and no faulty commits get into the repo. It can run linting, code formatting and type checking, etc. before it allows pushing the code. You can check how to configure it [Husky documentation](https://typicode.github.io/husky/#/?id=usage).
-
-## Absolute imports
-
-Absolute imports should always be configured and used because it makes it easier to move files around and avoid messy import paths such as `../../../Component`. Wherever you move the file, all the imports will remain intact. Here is how to configure it:
-
-For JavaScript (`jsconfig.json`) projects:
-
-```json
-"compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
+```js
+// eslint.config.mjs (excerpt)
+import typescriptEslint from 'typescript-eslint';
+export default typescriptEslint.config(
+  { ignores: ['.git/', '.next/', 'node_modules/'] },
+  typescriptEslint.configs.recommended,
+  // ... next + import
+);
 ```
 
-For TypeScript (`tsconfig.json`) projects:
+Run: `pnpm lint` / `pnpm lint:fix`
 
-```json
-"compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
+### Prettier — `.prettierrc.js`
+
+```js
+module.exports = { semi: true, singleQuote: true, trailingComma: 'all' };
 ```
 
-[Paths Configuration](../tsconfig.json)
+Run: `pnpm format` (writes), `pnpm format:check` equivalent via `prettier --check`.
 
-It is also possible to define multiple paths for various folders(such as `@/components`, `@/hooks`, etc.), but using `@/*` works very well because it is short enough so there is no need to configure multiple paths and it differs from other dependency modules so there is no confusion in what comes from `node_modules` and what is our source folder. That means that anything in the `src` folder can be accessed via `@`, e.g some file that lives in `src/components/MyComponent` can be accessed using `@/components/MyComponents`.
+### TypeScript — `tsconfig.json`
+
+Absolute imports:
+
+```json
+{ "compilerOptions": { "baseUrl": ".", "paths": { "@/*": ["./src/*"] } } }
+```
+
+Example: `import { cn } from '@/lib/utils'` anywhere in `src/`. Strict, `noEmit`, `jsx: preserve` (Next).
+
+Run: `pnpm type-check` (`tsc --noEmit`)
+
+### Next.js — `next.config.mjs`
+
+```js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: { webpackBuildWorker: true, parallelServerBuildTraces: true, parallelServerCompiles: true },
+};
+export default nextConfig;
+```
+
+### Tailwind — `tailwind.config.ts`
+
+```ts
+import type { Config } from 'tailwindcss';
+const config: Config = {
+  darkMode: ['class'],
+  content: ['./src/**/*.{ts,tsx}', './app/**/*.{ts,tsx}'],
+  // theme.extend: colors via hsl(var(--border)) etc., from src/app/globals.css
+};
+```
+
+Theme via CSS variables (`--background`, `--primary`, etc.) and `shadcn` design tokens. See `src/app/globals.css`.
+
+### shadcn/ui — `components.json`
+
+```json
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "default", "rsc": true, "tsx": true,
+  "tailwind": { "config": "tailwind.config.ts", "css": "src/app/globals.css", "baseColor": "neutral", "cssVariables": true },
+  "aliases": { "components": "@/components", "utils": "@/lib/utils", "ui": "@/components/ui" },
+  "iconLibrary": "lucide"
+}
+```
+
+Generate: `pnpm dlx shadcn@latest add button`
+
+### Vitest — `vitest.config.mjs`
+
+```js
+import { defineConfig } from 'vitest/config';
+export default defineConfig({
+  plugins: [react()],
+  test: { environment: 'happy-dom', include: ['src/**/*.{test,spec}.{js,ts,jsx,tsx}'] },
+  resolve: { alias: { '@': '/src' } },
+});
+```
+
+Run: `pnpm test` / `pnpm test:coverage`
+
+### Commitlint — `commitlint.config.ts`
+
+```ts
+import { RuleConfigSeverity } from '@commitlint/types';
+export default { extends: ['@commitlint/config-conventional'] };
+```
+
+Enforces Conventional Commits via Husky `commit-msg` hook.
+
+### CSpell — `.cspell.json`
+
+```json
+{ "version": "0.2", "language": "en", "words": ["AGENTS", "alstr", "cspell"] }
+```
+
+Run: `pnpm cspell` (if added) or MegaLinter.
+
+### JSCPD — `.jscpd.json`
+
+```json
+{ "threshold": 2, "reporters": ["console"] }
+```
+
+Flags copy-paste >2% (MegaLinter).
+
+### lint-staged — `.lintstagedrc.json`
+
+```json
+{ "*.{js,jsx,ts,tsx,astro}": ["eslint --fix --max-warnings=0", "prettier --write"] }
+```
+
+Triggered by Husky `pre-commit`.
+
+### markdownlint — `.markdownlint.json`
+
+```json
+{ "MD013": false, "MD033": false }
+```
+
+### MegaLinter — `.mega-linter.yml`
+
+Runs on `push`/`pull_request` to `main` (see `.github/workflows/mega-linter.yml`). Applies fixes on PR.
+
+### Husky — `.husky/`
+
+- `pre-commit`: `lint-staged`
+- `commit-msg`: `commitlint`
+- `pre-push`: `pnpm type-check` (optional)
+
+Install: `pnpm prepare` (auto via `prepare` script).
+
+### EditorConfig — `.editorconfig`
+
+```
+root = true
+[*] { charset = utf-8, end_of_line = lf, indent_style = space, indent_size = 2 }
+```
+
+### Node Version — `.node-version` + `package.json#engines`
+
+```
+24.17.0
+```
+
+```json
+{ "engines": { "node": ">=24.17.0", "pnpm": ">=10.0.0" }, "packageManager": "pnpm@10.32.0" }
+```
+
+Use `fnm use` or `nvm use`.
+
+## Environment Variables
+
+| Var | Required | Example | Description |
+|-----|----------|---------|-------------|
+| `NEXT_PUBLIC_VERCEL_URL` | No | `https://website.vercel.app` | Vercel deployment URL (auto) |
+| `NEXT_PUBLIC_GITHUB_TOKEN` | No | `ghp_...` | For `scripts/refresh-github-data.mjs` if rate-limited |
+| None other required | — | — | App fetches `templates.json` from `raw.githubusercontent.com/Create-Node-App/cna-templates/main/templates.json` with `revalidate: 3600` (no env). Fallback: `src/lib/mock-data.ts`. |
+
+Create `.env.local` from `.env.example` (currently empty — no runtime env needed).
+
+## shadcn Theme Config
+
+Theme is CSS-variable driven. Configured in `tailwind.config.ts` + `src/app/globals.css`:
+
+```css
+:root { --background: 0 0% 100%; --primary: 24 94% 53%; /* amber */ }
+.dark { --background: 222 47% 11%; }
+```
+
+`components.json` → `baseColor: neutral`, `cssVariables: true`. Customize via `pnpm dlx shadcn@latest init` or edit `globals.css`.
+
+## Deployment Options
+
+- **Vercel (primary)**: Zero-config. `vercel` auto-detects Next.js. `Vercel` GitHub App deploys PR previews (see PR checks `Vercel`). Prod: `main` branch.
+- **Self-host**: `pnpm build && pnpm start` (Next standalone). Requires Node >=24.17.0.
+- **Docker**: Not configured in repo (can add `Dockerfile` with `node:24-alpine`, `pnpm install --frozen-lockfile`, `pnpm build`).
+- **Static export**: Not used (uses ISR `revalidate: 1h` for `/templates/[slug]`, `/extensions/[slug]`).
+
+## Absolute Imports
+
+Already configured in `tsconfig.json` and `vitest.config.mjs`:
+
+```ts
+import { TemplateCard } from '@/components/template-card';
+```
+
+No extra `jsconfig.json` needed (TypeScript project). See [Paths Configuration](../tsconfig.json).
+
+## Verification
+
+```bash
+pnpm lint        # 0 warnings
+pnpm type-check  # no emit
+pnpm test        # 33 tests
+pnpm build       # Next build (pre-existing resizable v4 fix required — see PR #67)
+```
