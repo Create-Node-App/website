@@ -42,8 +42,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Danger JS Action
-        uses: danger/danger-js@279443b7b3fdf4488d79546b3d40dbd76c51d83a # 14.0.6
+      # danger-js 14.0.6 ships a Docker action pinned to node:20-slim, whose
+      # image build fails: its tree resolves @yao-pkg/pkg (node >=22). Run
+      # Danger on the runner's Node (.node-version) instead.
+      - name: Danger JS
+        run: npx danger ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
