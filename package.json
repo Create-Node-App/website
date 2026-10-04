@@ -102,7 +102,10 @@
       "@humanfs/node": "0.16.8",
       "postcss": "8.5.26",
       "sharp": "0.35.4",
-      "@eslint/plugin-kit": "0.3.4"
+      "@eslint/plugin-kit": "0.3.4",
+      "brace-expansion@<1.1.21": "1.1.21",
+      "brace-expansion@>=2 <2.1.7": "2.1.7",
+      "braces": "https://codeload.github.com/micromatch/braces/tar.gz/28d440b5dd449dbf1fe6f3506cf94ecca4d02660"
     }
   }
 }
