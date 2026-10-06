@@ -163,14 +163,14 @@ Install: `pnpm prepare` (auto via `prepare` script).
 
 ### EditorConfig — `.editorconfig`
 
-```
+```ini
 root = true
 [*] { charset = utf-8, end_of_line = lf, indent_style = space, indent_size = 2 }
 ```
 
 ### Node Version — `.node-version` + `package.json#engines`
 
-```
+```text
 24.17.0
 ```
 
