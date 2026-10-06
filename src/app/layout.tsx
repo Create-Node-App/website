@@ -83,11 +83,11 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
 };
-const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-sans' });
+const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' });
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-display',
+  variable: '--font-space-grotesk',
   weight: ['400', '500', '600', '700'],
 });
 

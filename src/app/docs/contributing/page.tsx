@@ -37,18 +37,7 @@ export default function ContributingPage() {
               contributions.
             </p>
 
-            <DiagramWorkflow
-              title="Contribution Workflow"
-              chart={`
-graph TD
-    A["Fork Repository"] --> B["Create New Template/Extension"]
-    B --> C["Add Entry to templates.json"]
-    C --> D["Test Locally"]
-    D --> E["Create Pull Request"]
-    E --> F["Review Process"]
-    F --> G["Merged!"]
-              `}
-            />
+            <DiagramWorkflow title="Contribution Workflow" workflow="contribution" />
           </section>
 
           <section id="contributing-templates" className="space-y-4">

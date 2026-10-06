@@ -6,9 +6,9 @@ Marketing and documentation site for create-node-app.
 
 ## Tech Stack
 
-- Next.js 15 (App Router)
+- Next.js 16 (App Router)
 - TypeScript
-- Tailwind CSS v3
+- Tailwind CSS v4
 - Node.js 24.17.0 (see `.node-version`)
 - pnpm 10+
 
