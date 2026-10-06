@@ -50,7 +50,7 @@ pnpm run dev
 For most development work, you'll primarily use `pnpm run dev`. However, you have additional scripts at your disposal for various tasks:
 
 | pnpm run <script>  | Description                                                                                         |
-| ------------------ | --------------------------------------------------------------------------------------------------- |
+|--------------------|-----------------------------------------------------------------------------------------------------|
 | `npm run dev`      | Starts the local development server for building and previewing your application.                   |
 | `npm run format`   | Formats the codebase using [Prettier](https://prettier.io/) to ensure consistent code styling.      |
 | `npm run lint`     | Runs linting on the codebase to identify and report on patterns with [eslint](https://eslint.org/). |
@@ -61,7 +61,7 @@ For most development work, you'll primarily use `pnpm run dev`. However, you hav
 Scripts for preparing and viewing the production version:
 
 | pnpm run <script> | Description                                                                                  |
-| ----------------- | -------------------------------------------------------------------------------------------- |
+|-------------------|----------------------------------------------------------------------------------------------|
 | `npm run start`   | Serves your application using the production setup, ensuring it's ready for deployment.      |
 | `npm run build`   | Compiles the application into the `dist/` directory, preparing it for production deployment. |
 

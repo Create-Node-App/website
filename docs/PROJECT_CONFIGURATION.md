@@ -7,7 +7,7 @@ This document describes all configuration files in the repository root, their pu
 ## Config Files Overview
 
 | File                   | Purpose                                                              |
-| ---------------------- | -------------------------------------------------------------------- |
+|------------------------|----------------------------------------------------------------------|
 | `eslint.config.mjs`    | Flat ESLint config (typescript-eslint, next, import)                 |
 | `tsconfig.json`        | TypeScript paths (`@/*` → `src/*`), strict mode                      |
 | `next.config.mjs`      | Next.js experimental webpack workers                                 |
@@ -163,14 +163,14 @@ Install: `pnpm prepare` (auto via `prepare` script).
 
 ### EditorConfig — `.editorconfig`
 
-```
+```ini
 root = true
 [*] { charset = utf-8, end_of_line = lf, indent_style = space, indent_size = 2 }
 ```
 
 ### Node Version — `.node-version` + `package.json#engines`
 
-```
+```text
 24.17.0
 ```
 
@@ -183,7 +183,7 @@ Use `fnm use` or `nvm use`.
 ## Environment Variables
 
 | Var                        | Required | Example                      | Description                                                                                                                                                                         |
-| -------------------------- | -------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|----------------------------|----------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `NEXT_PUBLIC_VERCEL_URL`   | No       | `https://website.vercel.app` | Vercel deployment URL (auto)                                                                                                                                                        |
 | `NEXT_PUBLIC_GITHUB_TOKEN` | No       | `ghp_...`                    | For `scripts/refresh-github-data.mjs` if rate-limited                                                                                                                               |
 | None other required        | —        | —                            | App fetches `templates.json` from `raw.githubusercontent.com/Create-Node-App/cna-templates/main/templates.json` with `revalidate: 3600` (no env). Fallback: `src/lib/mock-data.ts`. |
