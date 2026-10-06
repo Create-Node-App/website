@@ -79,6 +79,8 @@ export default nextConfig;
 
 Theme tokens and custom utilities use Tailwind's CSS-first configuration in `src/app/globals.css`. The PostCSS plugin is configured in `postcss.config.mjs`.
 
+Tailwind CSS v4 targets Safari 16.4+, Chrome 111+, and Firefox 128+. Keep this browser support requirement in mind when changing the major version.
+
 ### shadcn/ui — `components.json`
 
 ```json
