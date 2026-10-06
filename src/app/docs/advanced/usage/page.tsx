@@ -139,25 +139,7 @@ pnpm dev`}
               <h3 className="text-xl font-semibold">Deployment Workflow</h3>
               <p className="mt-2">Here's a typical deployment workflow for a create-awesome-node-app project:</p>
 
-              <DiagramWorkflow
-                className="mt-4"
-                title="Deployment Workflow"
-                chart={`
-graph TD
-    A["Developer Pushes Code"] --> B["CI/CD Pipeline Triggered"]
-    B --> C["Install Dependencies"]
-    C --> D["Run Linting"]
-    C --> E["Run Tests"]
-    D --> F["Build Application"]
-    E --> F
-    F --> G["Deploy to Staging"]
-    G --> H["Run Integration Tests"]
-    H --> I{"Tests Pass?"}
-    I -->|Yes| J["Deploy to Production"]
-    I -->|No| K["Notify Team & Fix Issues"]
-    K --> A
-                `}
-              />
+              <DiagramWorkflow className="mt-4" title="Deployment Workflow" workflow="deployment" />
             </div>
           </section>
 

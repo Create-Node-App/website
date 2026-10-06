@@ -6,26 +6,26 @@ This document describes all configuration files in the repository root, their pu
 
 ## Config Files Overview
 
-| File | Purpose |
-|------|---------|
-| `eslint.config.mjs` | Flat ESLint config (typescript-eslint, next, import) |
-| `tsconfig.json` | TypeScript paths (`@/*` → `src/*`), strict mode |
-| `next.config.mjs` | Next.js experimental webpack workers |
-| `tailwind.config.ts` | Tailwind theme (CSS variables, shadcn) |
-| `postcss.config.mjs` | PostCSS (tailwindcss + autoprefixer) |
-| `components.json` | shadcn/ui generator (style, aliases, baseColor) |
-| `vitest.config.mjs` | Vitest: happy-dom, `@` alias, coverage |
-| `.prettierrc.js` | Prettier formatting (requires `prettier-plugin-tailwindcss` if used) |
-| `commitlint.config.ts` | Conventional Commits linting |
-| `.cspell.json` | Spell check dictionary |
-| `.jscpd.json` | Copy-paste detection threshold |
-| `.lintstagedrc.json` | lint-staged: eslint --fix + prettier on staged |
-| `.markdownlint.json` | Markdown lint rules |
-| `.mega-linter.yml` | MegaLinter (all linters) on push/PR to main |
-| `.checkov.yml` | Checkov IaC scan skip rules |
-| `.editorconfig` | Editor whitespace (2 spaces, LF) |
-| `.node-version` | Pinned Node version (>=24.17.0, see `package.json#engines`) |
-| `.husky/` | Git hooks (pre-commit: lint-staged, commit-msg: commitlint) |
+| File                   | Purpose                                                              |
+| ---------------------- | -------------------------------------------------------------------- |
+| `eslint.config.mjs`    | Flat ESLint config (typescript-eslint, next, import)                 |
+| `tsconfig.json`        | TypeScript paths (`@/*` → `src/*`), strict mode                      |
+| `next.config.mjs`      | Next.js experimental webpack workers                                 |
+| `src/app/globals.css`  | Tailwind CSS v4 theme tokens and custom utilities                    |
+| `postcss.config.mjs`   | PostCSS (tailwindcss + autoprefixer)                                 |
+| `components.json`      | shadcn/ui generator (style, aliases, baseColor)                      |
+| `vitest.config.mjs`    | Vitest: happy-dom, `@` alias, coverage                               |
+| `.prettierrc.js`       | Prettier formatting (requires `prettier-plugin-tailwindcss` if used) |
+| `commitlint.config.ts` | Conventional Commits linting                                         |
+| `.cspell.json`         | Spell check dictionary                                               |
+| `.jscpd.json`          | Copy-paste detection threshold                                       |
+| `.lintstagedrc.json`   | lint-staged: eslint --fix + prettier on staged                       |
+| `.markdownlint.json`   | Markdown lint rules                                                  |
+| `.mega-linter.yml`     | MegaLinter (all linters) on push/PR to main                          |
+| `.checkov.yml`         | Checkov IaC scan skip rules                                          |
+| `.editorconfig`        | Editor whitespace (2 spaces, LF)                                     |
+| `.node-version`        | Pinned Node version (>=24.17.0, see `package.json#engines`)          |
+| `.husky/`              | Git hooks (pre-commit: lint-staged, commit-msg: commitlint)          |
 
 ## Detailed
 
@@ -75,26 +75,19 @@ const nextConfig = {
 export default nextConfig;
 ```
 
-### Tailwind — `tailwind.config.ts`
+### Tailwind CSS v4
 
-```ts
-import type { Config } from 'tailwindcss';
-const config: Config = {
-  darkMode: ['class'],
-  content: ['./src/**/*.{ts,tsx}', './app/**/*.{ts,tsx}'],
-  // theme.extend: colors via hsl(var(--border)) etc., from src/app/globals.css
-};
-```
-
-Theme via CSS variables (`--background`, `--primary`, etc.) and `shadcn` design tokens. See `src/app/globals.css`.
+Theme tokens and custom utilities use Tailwind's CSS-first configuration in `src/app/globals.css`. The PostCSS plugin is configured in `postcss.config.mjs`.
 
 ### shadcn/ui — `components.json`
 
 ```json
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "default", "rsc": true, "tsx": true,
-  "tailwind": { "config": "tailwind.config.ts", "css": "src/app/globals.css", "baseColor": "neutral", "cssVariables": true },
+  "style": "default",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": { "css": "src/app/globals.css", "baseColor": "neutral", "cssVariables": true },
   "aliases": { "components": "@/components", "utils": "@/lib/utils", "ui": "@/components/ui" },
   "iconLibrary": "lucide"
 }
@@ -187,21 +180,26 @@ Use `fnm use` or `nvm use`.
 
 ## Environment Variables
 
-| Var | Required | Example | Description |
-|-----|----------|---------|-------------|
-| `NEXT_PUBLIC_VERCEL_URL` | No | `https://website.vercel.app` | Vercel deployment URL (auto) |
-| `NEXT_PUBLIC_GITHUB_TOKEN` | No | `ghp_...` | For `scripts/refresh-github-data.mjs` if rate-limited |
-| None other required | — | — | App fetches `templates.json` from `raw.githubusercontent.com/Create-Node-App/cna-templates/main/templates.json` with `revalidate: 3600` (no env). Fallback: `src/lib/mock-data.ts`. |
+| Var                        | Required | Example                      | Description                                                                                                                                                                         |
+| -------------------------- | -------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_VERCEL_URL`   | No       | `https://website.vercel.app` | Vercel deployment URL (auto)                                                                                                                                                        |
+| `NEXT_PUBLIC_GITHUB_TOKEN` | No       | `ghp_...`                    | For `scripts/refresh-github-data.mjs` if rate-limited                                                                                                                               |
+| None other required        | —        | —                            | App fetches `templates.json` from `raw.githubusercontent.com/Create-Node-App/cna-templates/main/templates.json` with `revalidate: 3600` (no env). Fallback: `src/lib/mock-data.ts`. |
 
 Create `.env.local` from `.env.example` (currently empty — no runtime env needed).
 
 ## shadcn Theme Config
 
-Theme is CSS-variable driven. Configured in `tailwind.config.ts` + `src/app/globals.css`:
+Theme is CSS-variable driven and configured in `src/app/globals.css`:
 
 ```css
-:root { --background: 0 0% 100%; --primary: 24 94% 53%; /* amber */ }
-.dark { --background: 222 47% 11%; }
+:root {
+  --background: 0 0% 100%;
+  --primary: 24 94% 53%; /* amber */
+}
+.dark {
+  --background: 222 47% 11%;
+}
 ```
 
 `components.json` → `baseColor: neutral`, `cssVariables: true`. Customize via `pnpm dlx shadcn@latest init` or edit `globals.css`.
