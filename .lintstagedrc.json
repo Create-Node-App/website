@@ -1,4 +1,5 @@
 {
   "*.{js,jsx,ts,tsx}": ["eslint --fix --max-warnings=0"],
-  "*": ["prettier -u --write"]
+  "*.{js,jsx,ts,tsx,json,jsonc,css,scss,html,mjs,cjs,yml}": ["prettier -u --write"],
+  "pnpm-workspace.yaml": ["prettier -u --write"]
 }
