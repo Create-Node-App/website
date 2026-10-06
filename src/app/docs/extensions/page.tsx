@@ -187,6 +187,86 @@ export default function DocsExtensionsPage() {
             </div>
           </section>
 
+          <section id="choosing-a-styling-extension" className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight">Choosing a styling extension</h2>
+            <p>
+              Pick the styling model that fits how your team works. Tailwind provides utility classes in markup; StyleX
+              provides typed styles that compile to atomic CSS during the build.
+            </p>
+            <div className="grid gap-4 md:grid-cols-2">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Choose Tailwind CSS</CardTitle>
+                  <CardDescription>Utility classes and a familiar design-token workflow</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    Use Tailwind when you want to compose styles in markup and use the existing Tailwind utility and
+                    plugin ecosystem. Browse the{' '}
+                    <Link href="/extensions/react-tailwindcss" className="text-primary hover:underline">
+                      React Vite
+                    </Link>{' '}
+                    and{' '}
+                    <Link href="/extensions/nextjs-tailwindcss" className="text-primary hover:underline">
+                      Next.js
+                    </Link>{' '}
+                    extensions.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Choose StyleX</CardTitle>
+                  <CardDescription>Typed, atomic styles extracted at build time</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    Use StyleX when you want style definitions checked in TypeScript and compiled into atomic CSS. The
+                    React Vite integration registers its Vite plugin before React to preserve Fast Refresh; the Next.js
+                    integration uses Babel and PostCSS. See the{' '}
+                    <Link href="/extensions/react-stylex" className="text-primary hover:underline">
+                      React Vite
+                    </Link>{' '}
+                    and{' '}
+                    <Link href="/extensions/nextjs-stylex" className="text-primary hover:underline">
+                      Next.js
+                    </Link>{' '}
+                    guides. Turbopack supports the Babel and PostCSS setup in Next.js 16 and later; use Webpack with{' '}
+                    earlier versions. See the{' '}
+                    <a
+                      href="https://nextjs.org/docs/app/api-reference/turbopack#supported-features"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-primary hover:underline"
+                    >
+                      Next.js compatibility table
+                    </a>
+                    .
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+            <div className="rounded-lg border bg-muted/40 p-4 text-sm">
+              <h3 className="font-semibold">Using StyleX and Tailwind together in Next.js</h3>
+              <p className="mt-2 text-muted-foreground">
+                The extensions can be combined. Keep <code>@stylexjs/postcss-plugin</code> before{' '}
+                <code>@tailwindcss/postcss</code> and <code>autoprefixer</code> in the generated{' '}
+                <code>config.plugins</code> map. The addons preserve this order whichever is selected first, and the
+                base PostCSS config is applied before their additions. Keep each extension's config contribution and
+                avoid assigning the same visual property to both systems on one component. The combined setup passed
+                lint, type-check, and production build; see{' '}
+                <a
+                  href="https://github.com/Create-Node-App/cna-templates/pull/465"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  the validation details
+                </a>
+                .
+              </p>
+            </div>
+          </section>
           <section id="how-extensions-work" className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">How extensions work</h2>
             <p>
