@@ -5,6 +5,14 @@ updates:
     schedule:
       interval: 'weekly'
     open-pull-requests-limit: 5
+    groups:
+      # Radix packages share internal primitives (dismissable-layer, focus-scope,
+      # popper...). Updating them one at a time leaves two copies of those
+      # primitives in the tree, which can break nested layers such as a menu inside
+      # a dialog, so they are always updated together.
+      radix-ui:
+        patterns:
+          - '@radix-ui/*'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
